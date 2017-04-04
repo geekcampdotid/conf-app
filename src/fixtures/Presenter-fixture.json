@@ -1,0 +1,36 @@
+[
+  {
+    "id": "presenter1",
+    "name": "Rama Mamuaya",
+    "jobTitle": "Founder & CEO",
+    "companyName": "DailySocial",
+    "profilePictureUri": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+    "companyLogoUri": "https://corporate.target.com/_media/TargetCorp/news/2015/Techstars-hero_1.jpg?width=940&height=470&ext=.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales vel felis sit amet semper. Aliquam pellentesque nunc dolor. Ut eget feugiat nibh, eu pulvinar dui. Nulla facilisi. In pharetra justo ante, vel porta mi molestie a. Nullam interdum dui sed eros eleifend, non vestibulum eros laoreet. Etiam condimentum massa eu felis commodo, at malesuada neque pretium. Quisque in urna erat. Nullam tempor eros in mauris blandit, sed eleifend neque pharetra. Integer euismo rhoncus ante, sed malesuada dui luctus ac. Nullam congue, eros ac efficitur lobortis, mi sapien sodales dui, et euismod eros urna vitae erat. Etiam tristique mauris vel efficitur malesuada. Suspendisse potenti."
+  },
+  {
+    "id": "presenter2",
+    "name": "Thaddeus Koh",
+    "jobTitle": "Co-Founder & COO",
+    "companyName": "e27",
+    "profilePictureUri": "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg",
+    "companyLogoUri": "http://blog.octarendra.com/wp-content/uploads/2015/07/gojek-1.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales vel felis sit amet semper. Aliquam pellentesque nunc dolor. Ut eget feugiat nibh, eu pulvinar dui. Nulla facilisi. In pharetra justo ante, vel porta mi molestie a. Nullam interdum dui sed eros eleifend, non vestibulum eros laoreet. Etiam condimentum massa eu felis commodo, at malesuada neque pretium. Quisque in urna erat. Nullam tempor eros in mauris blandit, sed eleifend neque pharetra. Integer euismo rhoncus ante, sed malesuada dui luctus ac. Nullam congue, eros ac efficitur lobortis, mi sapien sodales dui, et euismod eros urna vitae erat. Etiam tristique mauris vel efficitur malesuada. Suspendisse potenti."
+  },
+  {
+    "id": "presenter3",
+    "name": "Hadi Wenas",
+    "jobTitle": "CEO",
+    "companyName": "MatahariMall.com",
+    "profilePictureUri": "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+    "companyLogoUri": "http://www.5i.co.uk/wp-content/uploads/2016/03/Logo-portrait-761x1024.png",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales vel felis sit amet semper. Aliquam pellentesque nunc dolor. Ut eget feugiat nibh, eu pulvinar dui. Nulla facilisi. In pharetra justo ante, vel porta mi molestie a. Nullam interdum dui sed eros eleifend, non vestibulum eros laoreet. Etiam condimentum massa eu felis commodo, at malesuada neque pretium. Quisque in urna erat. Nullam tempor eros in mauris blandit, sed eleifend neque pharetra. Integer euismo rhoncus ante, sed malesuada dui luctus ac. Nullam congue, eros ac efficitur lobortis, mi sapien sodales dui, et euismod eros urna vitae erat. Etiam tristique mauris vel efficitur malesuada. Suspendisse potenti."
+  },
+  {
+    "id": "presenter4",
+    "name": "Stefan Jung",
+    "jobTitle": "Managing Partner",
+    "companyName": "Venturra Capita",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sodales vel felis sit amet semper. Aliquam pellentesque nunc dolor. Ut eget feugiat nibh, eu pulvinar dui. Nulla facilisi. In pharetra justo ante, vel porta mi molestie a. Nullam interdum dui sed eros eleifend, non vestibulum eros laoreet. Etiam condimentum massa eu felis commodo, at malesuada neque pretium. Quisque in urna erat. Nullam tempor eros in mauris blandit, sed eleifend neque pharetra. Integer euismo rhoncus ante, sed malesuada dui luctus ac. Nullam congue, eros ac efficitur lobortis, mi sapien sodales dui, et euismod eros urna vitae erat. Etiam tristique mauris vel efficitur malesuada. Suspendisse potenti."
+  }
+]
