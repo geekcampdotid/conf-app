@@ -1,6 +1,6 @@
 // @flow
 
-import Carousel, {CarouselImage} from './Carousel';
+import Carousel from './Carousel';
 import ColorLabel from './ColorLabel';
 import ExhibitorDetailAvatar from './ExhibitorDetailAvatar';
 import NoItemFound from './NoItemFound';
@@ -18,7 +18,6 @@ import LoadingIndicator from './LoadingIndicator';
 export {
   // Please always sort these components after adding a new one (fn + f5)
   Carousel,
-  CarouselImage,
   ColorLabel,
   DownloadIndicator,
   ExhibitorDetailAvatar,

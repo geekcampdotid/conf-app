@@ -1,180 +1,255 @@
-// @flow
-import React, {Component, Children} from 'react';
-import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
-import {LinearGradient} from 'react-native-linear-gradient';
-import Carousel from 'react-native-card-carousel';
+/* eslint-disable react/prop-types, eqeqeq */
+/**
+ * Created by yjy on 16/8/12.
+ * Updated by yjy on 16/12/26.
+ */
 
-import getScreenSize from 'helpers/getScreenSize';
-import {DEFAULT_GRADIENT, LIGHT_GREY} from 'constants/colors';
-import defaultPicture from 'assets/images/no-image.png';
+import React, {Component} from 'react';
+import {
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Animated,
+  Dimensions,
+  PixelRatio,
+  Platform,
+  StatusBar,
+} from 'react-native';
 
-import {VIEW_SHADOW} from 'constants/genericStyle';
-
-const SCREEN_WIDTH = getScreenSize().width;
-const CAROUSEL_IMAGE_WIDTH = SCREEN_WIDTH - 46;
-const DEFAULT_CAROUSEL_ITEM_BORDER = 6;
+/*
+this is the Props type
 
 type Props = {
-  children?: ReactNode;
-  height?: number;
+  height: number;
 };
+*/
+export default class CarouselCard extends Component {
+  constructor(props) {
+    super(props);
+    this.width = CSS.width();
+    this.blockWidth = this.width * 0.708;
+    this.height = props.height || this.blockWidth * CSS.height() / this.width;
+    this.blockHeight = this.height;
+    this.moveDistance = this.width * 0.733;
+    this.ratio = 0.872;
+    this.x0 = this.moveDistance - (this.width - this.moveDistance) / 2;
+    this.currentPageFloat = 1;
 
-export default function CarouselComponent(props: Props) {
-  let {children, height} = props;
-  let carouselContent = [];
-  Children.forEach(children, (child) => {
-    if (child.type === CarouselImage) {
-      carouselContent.push(child);
+    this.arr = this.props.data;
+    this.arrLength = this.arr.length;
+    this.arr.unshift(this.arr[this.arr.length - 1]);
+    this.arr.unshift(this.arr[this.arr.length - 2]);
+    this.arr.push(this.arr[2]);
+    this.arr.push(this.arr[3]);
+
+    let scaleYArr = [];
+    let translateYArr = [];
+    for (let i = 0; i < this.arrLength + 4; i++) {
+      scaleYArr.push(new Animated.Value(0));
+      translateYArr.push(new Animated.Value(0));
     }
-  });
-
-  return (
-    <Carousel
-      sliderWidth={SCREEN_WIDTH}
-      itemWidth={CAROUSEL_IMAGE_WIDTH}
-      containerCustomStyle={{height}}
-      contentContainerCustomStyle={{
-        height,
-        alignItems: 'center',
-      }}
-      inactiveSlideOpacity={0.4}
-      animationFunc="spring"
-    >
-      {carouselContent}
-    </Carousel>
-  );
-}
-
-type ImageProps = {
-  raised?: boolean;
-  picture?: ImageSource;
-  isOverlay?: boolean;
-  gradientColors?: Array<string> | 'default';
-  children?: ReactNode;
-  onPress?: () => void;
-};
-
-type ImageState = {
-  isMounted: boolean;
-  mountedPicture: ?ImageSource;
-};
-
-export class CarouselImage extends Component {
-  props: ImageProps;
-  state: ImageState;
-
-  constructor() {
-    super(...arguments);
-    this.state = {
-      isMounted: true,
-      mountedPicture: this.props.picture,
-    };
+    this.state = {scaleYArr, translateYArr};
   }
 
-  componentWillMount() {
-    let {picture} = this.props;
-    if (
-      picture &&
-      defaultPicture &&
-      typeof picture === 'object' &&
-      !Array.isArray(picture)
-    ) {
-      Image.getSize(
-        picture.uri,
-        () => {
-          let {isMounted} = this.state;
-          if (isMounted) {
-            this.setState({mountedPicture: picture});
-          }
-        },
-        () => {
-          let {isMounted} = this.state;
-          if (isMounted) {
-            this.setState({mountedPicture: defaultPicture});
-          }
-        },
+  componentDidMount() {
+    setTimeout(() => {
+      if (this.mainScroll) {
+        this.mainScroll.scrollTo({
+          x: this.x0 + this.moveDistance,
+          animated: false,
+        });
+      }
+    }, 0);
+    setTimeout(() => {
+      if (this.assistScroll) {
+        this.assistScroll.scrollTo({x: this.moveDistance, animated: false});
+      }
+    }, 0);
+  }
+
+  _getItem() {
+    return this.arr.map((item, i) => {
+      let marginWidth = (this.moveDistance - this.blockWidth) / 2;
+      return (
+        <View key={i} style={{flexDirection: 'row'}}>
+          <View style={{width: marginWidth}} />
+          <Animated.View
+            style={{
+              width: this.blockWidth,
+              height: this.blockHeight,
+              backgroundColor: '#ffffff',
+              // transform: [
+              //   {scaleY: this.state.scaleYArr[i]},
+              //   {translateY: this.state.translateYArr[i]},
+              // ],
+            }}
+          >
+            {this.props.contentRender ? this.props.contentRender(item) : null}
+          </Animated.View>
+          <View style={{width: marginWidth}} />
+        </View>
       );
+    });
+  }
+
+  _getView() {
+    let arr = [];
+    for (let i = 0; i < this.arrLength + 2; i++) {
+      arr.push('');
+    }
+    return arr.map((item, i) => {
+      let marginWidth = (this.moveDistance - this.blockWidth) / 2;
+      return (
+        <View key={i} style={{flexDirection: 'row'}}>
+          <View style={{width: marginWidth}} />
+          <TouchableOpacity onPress={() => this.props.onPress(this.arr[i + 1])}>
+            <View style={{width: this.blockWidth, height: this.blockHeight}} />
+          </TouchableOpacity>
+          <View style={{width: marginWidth}} />
+        </View>
+      );
+    });
+  }
+
+  _onAssistScroll(e) {
+    if (this.mainScroll && this.assistScroll) {
+      let x = e.nativeEvent.contentOffset.x;
+      if (Math.abs(x - (this.arrLength + 1) * this.moveDistance) < 0.5) {
+        this.mainScroll.scrollTo({
+          x: this.moveDistance + this.x0,
+          animated: false,
+        });
+        this.assistScroll.scrollTo({x: this.moveDistance, animated: false});
+      } else if (Math.abs(x) < 0.1) {
+        this.mainScroll.scrollTo({
+          x: this.moveDistance * this.arrLength + this.x0,
+          animated: false,
+        });
+        this.assistScroll.scrollTo({
+          x: this.moveDistance * this.arrLength,
+          animated: false,
+        });
+      } else {
+        let mainX = x + this.x0;
+        this.mainScroll.scrollTo({x: mainX, animated: false});
+      }
+      let currentPageFloat = x / this.moveDistance;
+      this._cardAnimated(currentPageFloat);
     }
   }
 
-  componentWillUnmount() {
-    this.setState({isMounted: false});
+  _cardAnimated(currentPageFloat) {
+    for (let i = 0; i < this.arrLength + 4; i++) {
+      let ratio = 0;
+      let currentPageInt = parseInt(currentPageFloat, 10);
+      if (i == 2) {
+        ratio = Math.abs(currentPageFloat - (this.arrLength + 1)) < 0.1 ? 1 : 0;
+      }
+      if (i == this.arrLength + 1) {
+        ratio = Math.abs(currentPageFloat) < 0.1 ? 1 : 0;
+      }
+      if (i - 1 == currentPageInt) {
+        ratio = 1 - currentPageFloat % 1;
+      } else if (i - 1 == currentPageInt + 1) {
+        ratio = currentPageFloat % 1;
+      }
+      let scaleY = this.ratio + (1 - this.ratio) * ratio;
+      let translateY = this.height * (1 - scaleY) / 8;
+      Animated.timing(this.state.scaleYArr[i], {
+        toValue: scaleY,
+        duration: 0,
+      }).start();
+      Animated.timing(this.state.translateYArr[i], {
+        toValue: translateY,
+        duration: 0,
+      }).start();
+    }
   }
 
   render() {
-    let {
-      children,
-      gradientColors,
-      isOverlay,
-      onPress,
-      raised,
-      ...otherProps
-    } = this.props;
-    let {mountedPicture} = this.state;
-    let Container = onPress ? TouchableOpacity : View;
-    let imageDetail = isOverlay
-      ? <LinearGradient
-          colors={gradientColors ? gradientColors : DEFAULT_GRADIENT}
-          style={styles.overlayContainer}
-        >
-          {children}
-        </LinearGradient>
-      : <View style={styles.imageDetailView}>
-          {children}
-        </View>;
+    if (this.arr !== this.props.data) {
+      this.arr = this.props.data;
+      this.arrLength = this.arr.length;
+      this.arr.unshift(this.arr[this.arr.length - 1]);
+      this.arr.unshift(this.arr[this.arr.length - 2]);
+      this.arr.push(this.arr[2]);
+      this.arr.push(this.arr[3]);
+    }
     return (
-      <Container
-        style={[styles.imageContainer, raised ? VIEW_SHADOW : null]}
-        onPress={onPress}
-        activeOpacity={0.85}
-      >
-        <Image
-          resizeMode="cover"
-          style={styles.image}
-          source={mountedPicture}
-          {...otherProps}
+      <View style={{minHeight: this.height, width: this.width}}>
+        <ScrollView
+          horizontal={true}
+          pointerEvents="none"
+          ref={(ref) => (this.mainScroll = ref)}
+          showsHorizontalScrollIndicator={false}
+        >
+          {this._getItem()}
+        </ScrollView>
+        <View
+          style={{
+            width: (this.width - this.moveDistance) / 2,
+            height: this.height,
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            backgroundColor: 'rgba(0,0,0,0)',
+          }}
         />
-        {Children.count(children) === 0 ? null : imageDetail}
-
-      </Container>
+        <View
+          style={{
+            width: (this.width - this.moveDistance) / 2,
+            height: this.height,
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            backgroundColor: 'rgba(0,0,0,0)',
+          }}
+        />
+        <ScrollView
+          style={{
+            width: this.moveDistance,
+            height: this.height,
+            position: 'absolute',
+            left: (this.width - this.moveDistance) / 2,
+            top: 0,
+          }}
+          horizontal={true}
+          pagingEnabled={true}
+          ref={(ref) => (this.assistScroll = ref)}
+          _onScroll={(e) => this._onAssistScroll(e)}
+          scrollEventThrottle={16}
+          showsHorizontalScrollIndicator={false}
+        >
+          {this._getView()}
+        </ScrollView>
+      </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  imageContainer: {
-    backgroundColor: 'transparent',
-    flex: 1,
-    justifyContent: 'center',
-    overflow: 'hidden',
-    borderRadius: DEFAULT_CAROUSEL_ITEM_BORDER,
-    borderColor: LIGHT_GREY,
-    borderWidth: 0.8,
-    maxWidth: CAROUSEL_IMAGE_WIDTH,
+var PlatformInfo = {
+  sizeObj: Dimensions.get('window'),
+  pixels: 2,
+  getSize: () => Dimensions.get('window'),
+  width: () => {
+    return PlatformInfo.sizeObj.width;
   },
-  image: {
-    width: CAROUSEL_IMAGE_WIDTH,
-    flex: 1,
-    alignSelf: 'center',
-    borderTopLeftRadius: DEFAULT_CAROUSEL_ITEM_BORDER,
-    borderTopRightRadius: DEFAULT_CAROUSEL_ITEM_BORDER,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
+  height: () => {
+    return (
+      PlatformInfo.sizeObj.height -
+      (Platform.OS === 'android' ? StatusBar.currentHeight : 0)
+    );
   },
-  overlayContainer: {
-    justifyContent: 'space-between',
-    paddingHorizontal: 15,
-    paddingVertical: 12,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    position: 'absolute',
-    borderRadius: DEFAULT_CAROUSEL_ITEM_BORDER,
+  pixel: (px) => {
+    if (!PlatformInfo.pixels) {
+      PlatformInfo.pixels = PixelRatio.get();
+    }
+    return px / PlatformInfo.pixels;
   },
-  imageDetailView: {
-    backgroundColor: 'white',
-    paddingVertical: 12,
-    borderBottomLeftRadius: DEFAULT_CAROUSEL_ITEM_BORDER,
-    borderBottomRightRadius: DEFAULT_CAROUSEL_ITEM_BORDER,
-  },
-});
+};
+
+var CSS = {
+  pixel: PlatformInfo.pixel,
+  width: PlatformInfo.width,
+  height: PlatformInfo.height,
+};

@@ -6,9 +6,8 @@ import {connect} from 'react-redux';
 import {TouchableOpacity, Image} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-import CarouselCard from 'components/Carousel2';
 import {View, Text, ScrollView} from 'components/core-components';
-import {StageLabel} from 'components/components';
+import {StageLabel, Carousel} from 'components/components';
 import formatDateTime from 'helpers/formatDateTime';
 import openLink from 'helpers/openLink';
 
@@ -108,7 +107,7 @@ export class HomeScene extends Component {
           <Text style={styles.carouselTitle}>
             {carouselTitle}
           </Text>
-          <CarouselCard
+          <Carousel
             height={DEFAULT_CAROUSEL_HEIGHT}
             data={events}
             onPress={(schedule) => {
