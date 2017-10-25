@@ -1,14 +1,15 @@
 // @flow
 /* eslint-disable no-undef */
 
+import React from 'react';
 import type {StyleObj} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
 declare type ReactNode =
   | null
   | string
   | number
-  | ReactElement<*>
-  | Array<string | number | ReactElement<*>>;
+  | React.Element<*>
+  | Array<string | number | React.Element<*>>;
 
 type ImageSourceURI = {
   uri: string;
@@ -19,3 +20,5 @@ type ImageSourceURI = {
 declare type ImageSource = number | ImageSourceURI | Array<ImageSourceURI>;
 
 declare type StyleSheetTypes = StyleObj;
+
+declare var __DEV__: boolean;
