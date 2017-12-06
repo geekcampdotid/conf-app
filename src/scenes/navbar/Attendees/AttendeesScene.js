@@ -5,16 +5,16 @@ import autobind from 'class-autobind';
 import {connect} from 'react-redux';
 import {Icon, ButtonGroup} from 'react-native-elements';
 
-import {View, TextInput} from 'components/core-components';
+import {View, TextInput} from '../../../components/core-components';
 import PresenterListView from './PresenterListView';
 import ExhibitorListView from './ExhibitorListView';
-import {THEME_COLOR} from 'constants/colors';
+import {THEME_COLOR} from '../../../constants/colors';
 import styles, {CONTAINER_BORDER_RADIUS} from './AttendeesScene-style';
 
-import type {Presenter} from 'data/presenter/Presenter-type';
-import type {Exhibitor} from 'data/exhibitor/Exhibitor-type';
-import type {Navigation} from 'data/navigation/Navigation-type';
-import type {RootState} from 'types/RootState';
+import type {Presenter} from '../../../data/presenter/Presenter-type';
+import type {Exhibitor} from '../../../data/exhibitor/Exhibitor-type';
+import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {RootState} from '../../../types';
 
 const PRESENTERS = 'Presenters';
 const EXHIBITORS = 'Exhibitors';
@@ -23,20 +23,17 @@ const TAB_MENU = [PRESENTERS, EXHIBITORS];
 const DEFAULT_SELECTED_TAB_INDEX = 0;
 
 type Props = {
-  navigation: Navigation;
-  presenterList: Map<string, Presenter>;
-  exhibitorList: Map<string, Exhibitor>;
+  navigation: Navigation,
+  presenterList: Map<string, Presenter>,
+  exhibitorList: Map<string, Exhibitor>,
 };
 
 type State = {
-  selectedTabIndex: number;
-  searchValue: string;
+  selectedTabIndex: number,
+  searchValue: string,
 };
 
-export class AttendeesScene extends Component {
-  state: State;
-  props: Props;
-
+export class AttendeesScene extends Component<Props, State> {
   static navigationOptions = {
     title: 'Participants',
   };
@@ -78,9 +75,7 @@ export class AttendeesScene extends Component {
             onChangeText={(text) => this.setState({searchValue: text})}
           />
         </View>
-        <View style={styles.listContainer}>
-          {this._renderListView()}
-        </View>
+        <View style={styles.listContainer}>{this._renderListView()}</View>
       </View>
     );
   }

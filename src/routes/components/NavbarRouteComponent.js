@@ -6,19 +6,19 @@ import {Icon} from 'react-native-elements';
 import {TabNavigator} from 'react-navigation';
 
 import Navbar from './Navbar';
-import HomeScene from 'scenes/navbar/Home/HomeScene';
-import AttendeesScene from 'scenes/navbar/Attendees/AttendeesScene';
-import ScheduleScene from 'scenes/navbar/Schedule/ScheduleScene';
-import MapScene from 'scenes/navbar/Maps/MapScene';
-import BookmarkScheduleScene from 'scenes/BookmarkSchedule/BookmarkScheduleScene';
+import HomeScene from '../../scenes/navbar/Home/HomeScene';
+import AttendeesScene from '../../scenes/navbar/Attendees/AttendeesScene';
+import ScheduleScene from '../../scenes/navbar/Schedule/ScheduleScene';
+import MapScene from '../../scenes/navbar/Maps/MapScene';
+import BookmarkScheduleScene from '../../scenes/BookmarkSchedule/BookmarkScheduleScene';
 
-import {INITIAL_SCENE} from 'constants/navigation';
+// import {INITIAL_SCENE} from '../../constants/navigation';
 
 import {
   ACTIVE_ICON_COLOR,
   INACTIVE_ICON_COLOR,
   NAVBAR_BACKGROUND_COLOR,
-} from 'constants/colors';
+} from '../../constants/colors';
 
 import {
   ICON_HOME,
@@ -26,48 +26,38 @@ import {
   ICON_BOOKMARK,
   ICON_SCHEDULE,
   ICON_PRESENTER,
-} from 'constants/icons';
+} from '../../constants/icons';
 
 const NavbarRouteComponent = TabNavigator(
   {
     HomeScene: {
       screen: HomeScene,
       navigationOptions: {
-        tabBar: {
-          icon: () => <Icon name={ICON_HOME} />,
-        },
+        tabBarIcon: () => <Icon name={ICON_HOME} />,
       },
     },
     AttendeesScene: {
       screen: AttendeesScene,
       navigationOptions: {
-        tabBar: {
-          icon: () => <Icon name={ICON_PRESENTER} />,
-        },
+        tabBarIcon: () => <Icon name={ICON_PRESENTER} />,
       },
     },
     ScheduleScene: {
       screen: ScheduleScene,
       navigationOptions: {
-        tabBar: {
-          icon: () => <Icon name={ICON_SCHEDULE} />,
-        },
+        tabBarIcon: () => <Icon name={ICON_SCHEDULE} />,
       },
     },
     MapScene: {
       screen: MapScene,
       navigationOptions: {
-        tabBar: {
-          icon: () => <Icon name={ICON_MAP} />,
-        },
+        tabBarIcon: () => <Icon name={ICON_MAP} />,
       },
     },
     BookmarkSchedule: {
       screen: BookmarkScheduleScene,
       navigationOptions: {
-        tabBar: {
-          icon: () => <Icon name={ICON_BOOKMARK} />,
-        },
+        tabBarIcon: () => <Icon name={ICON_BOOKMARK} />,
       },
     },
   },
@@ -95,8 +85,8 @@ const NavbarRouteComponent = TabNavigator(
     tabBarPosition: 'bottom',
     swipeEnabled: false,
     animationEnabled: false,
-    initialRouteName: INITIAL_SCENE,
-  }
+    initialRouteName: 'HomeScene',
+  },
 );
 
 export default NavbarRouteComponent;

@@ -3,22 +3,22 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 
-import {TabBar, PresenterDetailAvatar} from 'components/components';
+import {TabBar, PresenterDetailAvatar} from '../../components/components';
 import PresenterProfileInfoScene from './PresenterProfileInfoScene';
 import SessionInfoScene from './SessionInfoScene';
 
-import type {Presenter} from 'data/presenter/Presenter-type';
-import type {NavigateFunction} from 'data/navigation/Navigation-type';
+import type {Presenter} from '../../data/presenter/Presenter-type';
+import type {NavigateFunction} from '../../data/navigation/Navigation-type';
 
 type Props = {
   navigation: {
-    navigate: NavigateFunction;
+    navigate: NavigateFunction,
     state: {
       params: {
-        presenter?: Presenter;
-      };
-    };
-  };
+        presenter?: Presenter,
+      },
+    },
+  },
 };
 
 export default function PresenterDetailScene(props: Props) {

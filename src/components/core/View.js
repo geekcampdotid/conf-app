@@ -2,11 +2,11 @@
 
 import React from 'react';
 import {View} from 'react-native';
-import {VIEW_SHADOW} from 'constants/genericStyle';
+import {VIEW_SHADOW} from '../../constants/genericStyle';
 
 type Props = {
-  style?: StyleSheetTypes;
-  raised?: boolean;
+  style?: StyleSheetTypes,
+  raised?: boolean,
 };
 
 export default function ViewComponent(props: Props) {

@@ -1,12 +1,12 @@
 // @flow
 
-import type {Schedule} from 'data/schedule/Schedule-type';
+import type {Schedule} from '../data/schedule/Schedule-type';
 
 export function getFilteredSchedule(
   scheduleList: Map<string, Schedule>,
-  timeString: string
+  timeString: string,
 ) {
-  let filteredSchedule = new Map();
+  let filteredSchedule: Map<string, Schedule> = new Map();
   let time = new Date(timeString);
   scheduleList.forEach((schedule) => {
     let {dateString} = schedule;
@@ -24,9 +24,9 @@ export function getFilteredSchedule(
 
 export function getScheduleHours(
   scheduleList: Map<string, Schedule>,
-  dateFilterString?: string
+  dateFilterString?: string,
 ) {
-  let scheduleHourList = new Map();
+  let scheduleHourList: Map<string, string> = new Map();
   let dateFilter = new Date(dateFilterString || '');
   scheduleList.forEach((schedule) => {
     let {dateString} = schedule;
@@ -46,7 +46,7 @@ export function getScheduleHours(
 }
 
 export function getScheduleDates(scheduleList: Map<string, Schedule>) {
-  let scheduleDateList = new Map();
+  let scheduleDateList: Map<string, string> = new Map();
   scheduleList.forEach((schedule) => {
     let {dateString} = schedule;
     let scheduleDate = new Date(dateString);
@@ -75,9 +75,9 @@ export function isStageMatched(schedule: Schedule, selectedStage: string) {
 
 export function getFilteredScheduleByDate(
   scheduleList: Map<string, Schedule>,
-  filteredDate: string
+  filteredDate: string,
 ) {
-  let filteredSchedule = new Map();
+  let filteredSchedule: Map<string, Schedule> = new Map();
   let date = new Date(filteredDate);
   scheduleList.forEach((schedule) => {
     let {dateString} = schedule;

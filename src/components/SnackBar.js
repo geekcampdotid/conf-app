@@ -6,11 +6,10 @@ import {Animated, Easing, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {View, Text} from './core-components';
 
-import {DEFAULT_FONT_SIZE} from 'constants/text';
+import {DEFAULT_FONT_SIZE} from '../constants/text';
 
-import type {SnackBar as SnackBarType} from 'data/snackBar/SnackBar-type';
-import type {RootState} from 'types/RootState';
-import type {Dispatch} from 'types/Dispatch';
+import type {SnackBar as SnackBarType} from '../data/snackBar/SnackBar-type';
+import type {RootState, Dispatch} from '../types';
 
 /*
 * Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations
@@ -25,11 +24,11 @@ const DEFAULT_VIEW_HEIGHT = 9999;
 const SNACKBAR_PADDING = 10;
 
 type Props = {
-  snackBar: SnackBarType;
-  onCloseSnackBar: () => void;
+  snackBar: SnackBarType,
+  onCloseSnackBar: () => void,
 };
 
-export class SnackBarComponent extends Component {
+export class SnackBarComponent extends Component<Props, void> {
   props: Props;
   _animatedValue: Animated.Value;
   _closeSnackBar: number;
@@ -92,9 +91,7 @@ export class SnackBarComponent extends Component {
           },
         ]}
       >
-        <Text style={styles.textMessage}>
-          {textMessage}
-        </Text>
+        <Text style={styles.textMessage}>{textMessage}</Text>
         {actionButtonComponent}
       </Animated.View>
     );
@@ -104,9 +101,8 @@ export class SnackBarComponent extends Component {
     this._animatedValue.setValue(fromValue);
     Animated.spring(this._animatedValue, {
       toValue,
-      easing: fromValue === SNACKBAR_PADDING
-        ? easingValues.exit
-        : easingValues.entry,
+      easing:
+        fromValue === SNACKBAR_PADDING ? easingValues.exit : easingValues.entry,
     }).start();
   }
 }

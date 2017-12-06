@@ -2,15 +2,15 @@
 
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {View, Text} from 'components/core-components';
-import {ResponsiveImage} from 'components/components';
-import sidebarLogo from 'assets/images/geekcamp-logo.png';
+import {View, Text} from '../../components/core-components';
+import {ResponsiveImage} from '../../components/components';
+import sidebarLogo from '../../assets/images/geekcamp-logo.png';
 
-import openLink from 'helpers/openLink';
+import openLink from '../../helpers/openLink';
 
 import styles from './ContactInfoScene-style';
 
-import {APP_SUB_TITLE} from 'constants/aboutApp';
+import {APP_SUB_TITLE} from '../../constants/aboutApp';
 
 export default function ContactInfoScene() {
   return (

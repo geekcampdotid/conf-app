@@ -1,7 +1,7 @@
 // @flow
 import {StyleSheet} from 'react-native';
 
-import {GREY} from 'constants/colors';
+import {baseColors} from '../../constants/colors';
 
 const styles = StyleSheet.create({
   scheduleDetailContainer: {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   avatarStyle: {
     borderWidth: 0.5,
-    borderColor: GREY,
+    borderColor: baseColors.GREY,
   },
   presenterItemContainer: {
     paddingLeft: 0,

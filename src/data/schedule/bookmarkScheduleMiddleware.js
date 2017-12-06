@@ -1,10 +1,9 @@
 // @flow
 import {AsyncStorage} from 'react-native';
 
-import {BOOKMARKED_SCHEDULE_KEY} from 'constants/asyncStorageKey';
+import {BOOKMARKED_SCHEDULE_KEY} from '../../constants/asyncStorageKey';
 
-import type {Action} from 'types/Action';
-import type {Store} from 'types/Store';
+import type {Store, Action} from '../../types';
 
 export default function bookmarkScheduleMiddleware(store: Store) {
   let {dispatch} = store;
@@ -26,7 +25,7 @@ export default function bookmarkScheduleMiddleware(store: Store) {
       let newBookmarkedScheduleList = [...bookmarkedScheduleList, scheduleID];
       AsyncStorage.setItem(
         BOOKMARKED_SCHEDULE_KEY,
-        newBookmarkedScheduleList.toString()
+        newBookmarkedScheduleList.toString(),
       )
         .then(() => {
           // TODO: dispatch success toast
@@ -51,7 +50,7 @@ export default function bookmarkScheduleMiddleware(store: Store) {
         newBookmarkedScheduleList.splice(index, 1);
         AsyncStorage.setItem(
           BOOKMARKED_SCHEDULE_KEY,
-          newBookmarkedScheduleList.toString()
+          newBookmarkedScheduleList.toString(),
         )
           .then(() => {
             // TODO: dispatch success toast

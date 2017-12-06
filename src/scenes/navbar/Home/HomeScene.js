@@ -6,45 +6,45 @@ import {connect} from 'react-redux';
 import {TouchableOpacity, Image} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-import {View, Text, ScrollView} from 'components/core-components';
-import {StageLabel, Carousel} from 'components/components';
-import formatDateTime from 'helpers/formatDateTime';
-import openLink from 'helpers/openLink';
+import {View, Text, ScrollView} from '../../../components/core-components';
+import {StageLabel, Carousel} from '../../../components/components';
+import formatDateTime from '../../../helpers/formatDateTime';
+import openLink from '../../../helpers/openLink';
 
-import getHighlighTalks from 'helpers/getHighlighTalks';
-import {DARK_GREY, LIGHT_BLUE} from 'constants/colors';
-import DEFAULT_PROFILE_PICTURE from 'assets/images/default-profile-picture-square.png';
-import {mapsUrl} from 'constants/url';
-import {SCALE_RATIO} from 'constants/layout';
+import getHighlighTalks from '../../../helpers/getHighlighTalks';
+import {DARK_GREY, LIGHT_BLUE} from '../../../constants/colors';
+import DEFAULT_PROFILE_PICTURE from '../../../assets/images/default-profile-picture-square.png';
+import {mapsUrl} from '../../../constants/url';
+import {SCALE_RATIO} from '../../../constants/layout';
 import {
   EVENT_PLACE,
   EVENT_DATE,
   FIRST_TALK_TIME,
   LAST_TALK_END,
-} from 'constants/aboutApp';
+} from '../../../constants/aboutApp';
 
 import styles from './HomeScene-style';
 
-import type {Schedule} from 'data/schedule/Schedule-type';
-import type {Presenter} from 'data/presenter/Presenter-type';
-import type {Navigation} from 'data/navigation/Navigation-type';
-import type {RootState} from 'types/RootState';
+import type {Schedule} from '../../../data/schedule/Schedule-type';
+import type {Presenter} from '../../../data/presenter/Presenter-type';
+import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {RootState} from '../../../types';
 
 type State = {
-  isEventStarted: boolean;
+  isEventStarted: boolean,
 };
 
 type Props = {
-  navigation: Navigation;
-  scheduleList: Map<string, Schedule>;
-  presenterList: Map<string, Presenter>;
+  navigation: Navigation,
+  scheduleList: Map<string, Schedule>,
+  presenterList: Map<string, Presenter>,
 };
 
 const DEFAULT_CAROUSEL_HEIGHT = 320;
 const AVATAR_SIZE = SCALE_RATIO * 110;
 // const DEFAULT_UPCOMING_EVENT_MINUTES_DIFFERENCE = 60;
 
-export class HomeScene extends Component {
+export class HomeScene extends Component<Props, State> {
   state: State;
   props: Props;
   static navigationOptions = {
@@ -67,7 +67,10 @@ export class HomeScene extends Component {
     if (today.toISOString() < FIRST_TALK_TIME.toISOString()) {
       carouselTitle = new Date('2017-07-15T03:07:20').toISOString();
       filteredDate = new Date(FIRST_TALK_TIME);
-    } else if (LAST_TALK_END && today.toISOString() >= new Date(LAST_TALK_END).toISOString()) {
+    } else if (
+      LAST_TALK_END &&
+      today.toISOString() >= new Date(LAST_TALK_END).toISOString()
+    ) {
       carouselTitle = 'Past Talks';
       filteredDate = new Date(FIRST_TALK_TIME);
     } else {
@@ -75,7 +78,7 @@ export class HomeScene extends Component {
     }
     let highLightEvents = getHighlighTalks(
       scheduleList,
-      filteredDate.toISOString()
+      filteredDate.toISOString(),
     );
 
     // let upcomingEventDate = new Date(filteredDate);
@@ -93,7 +96,7 @@ export class HomeScene extends Component {
       filteredDate = new Date(FIRST_TALK_TIME);
       highLightEvents = getHighlighTalks(
         scheduleList,
-        filteredDate.toISOString()
+        filteredDate.toISOString(),
       );
       carouselTitle = 'HighLight Talks';
       events = [...highLightEvents];
@@ -104,9 +107,7 @@ export class HomeScene extends Component {
     return (
       <ScrollView style={styles.root}>
         <View style={{paddingVertical: 10}}>
-          <Text style={styles.carouselTitle}>
-            {carouselTitle}
-          </Text>
+          <Text style={styles.carouselTitle}>{carouselTitle}</Text>
           <Carousel
             height={DEFAULT_CAROUSEL_HEIGHT}
             data={events}
@@ -151,7 +152,6 @@ export class HomeScene extends Component {
                 {formatDateTime(EVENT_DATE.toISOString(), 'DATE')}
               </Text>
             </View>
-
           </View>
         </View>
       </ScrollView>
@@ -179,27 +179,24 @@ export class HomeScene extends Component {
               }}
             >
               <Image
-                source={
-                  presenter.profilePictureUri ||
-                  DEFAULT_PROFILE_PICTURE
-                }
+                source={presenter.profilePictureUri || DEFAULT_PROFILE_PICTURE}
                 style={{
                   width: Math.min(
                     AVATAR_SIZE / (presenters.length * 0.4),
-                    AVATAR_SIZE
+                    AVATAR_SIZE,
                   ),
                   height: Math.min(
                     AVATAR_SIZE / (presenters.length * 0.4),
-                    AVATAR_SIZE
+                    AVATAR_SIZE,
                   ),
                   borderRadius:
                     Math.min(
                       AVATAR_SIZE / (presenters.length * 0.4),
-                      AVATAR_SIZE
+                      AVATAR_SIZE,
                     ) / 2,
                 }}
               />
-            </View>
+            </View>,
           );
         }
       });
@@ -230,9 +227,7 @@ export class HomeScene extends Component {
           </Text>
           <View style={styles.footer}>
             <View style={styles.stageContainer}>
-              {schedule.stage
-                ? <StageLabel stage={schedule.stage} />
-                : null}
+              {schedule.stage ? <StageLabel stage={schedule.stage} /> : null}
             </View>
           </View>
         </View>

@@ -31,7 +31,7 @@ let lastTalkEnd;
 if (lastTalk) {
   let lastTalkTime = new Date(lastTalk.dateString);
   lastTalkEnd = lastTalkTime.setTime(
-    lastTalkTime.getTime() + lastTalk.durationInMinutes * 60 * 1000
+    lastTalkTime.getTime() + lastTalk.durationInMinutes * 60 * 1000,
   );
 }
 

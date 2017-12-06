@@ -4,22 +4,22 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Avatar} from 'react-native-elements';
-import {View, Text} from 'components/core-components';
-import {StageLabel} from 'components/components';
-import {GREY, LIGHT_GREY} from 'constants/colors';
-import {FONT_BOLD, DEFAULT_FONT_SIZE} from 'constants/text';
-import DEFAULT_AVATAR from 'assets/images/default-profile-pic.png';
+import {View, Text} from '../../../components/core-components';
+import {StageLabel} from '../../../components/components';
+import {GREY, LIGHT_GREY} from '../../../constants/colors';
+import {FONT_BOLD, DEFAULT_FONT_SIZE} from '../../../constants/text';
+import DEFAULT_AVATAR from '../../../assets/images/default-profile-pic.png';
 
-import type {Schedule} from 'data/schedule/Schedule-type';
-import type {Navigation} from 'data/navigation/Navigation-type';
-import type {Presenter} from 'data/presenter/Presenter-type';
-import type {RootState} from 'types/RootState';
+import type {Schedule} from '../../../data/schedule/Schedule-type';
+import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {Presenter} from '../../../data/presenter/Presenter-type';
+import type {RootState} from '../../../types';
 
 type Props = {
-  presenterList: Map<string, Presenter>;
-  navigation: Navigation;
-  schedule: Schedule;
-  isLastItem: boolean;
+  presenterList: Map<string, Presenter>,
+  navigation: Navigation,
+  schedule: Schedule,
+  isLastItem: boolean,
 };
 
 export function ScheduleListItem(props: Props) {
@@ -37,9 +37,7 @@ export function ScheduleListItem(props: Props) {
     return (
       <View style={[styles.notEventContainer, lastItemStyle]}>
         <View style={[styles.eventContainer, styles.notEvent]}>
-          <Text style={styles.eventName}>
-            {schedule.talkTitle}
-          </Text>
+          <Text style={styles.eventName}>{schedule.talkTitle}</Text>
         </View>
       </View>
     );
@@ -66,9 +64,7 @@ export function ScheduleListItem(props: Props) {
       />
       <View style={styles.eventContainer}>
         <Text style={styles.speakerName}>{presenterName}</Text>
-        <Text style={styles.eventName}>
-          {schedule.talkTitle}
-        </Text>
+        <Text style={styles.eventName}>{schedule.talkTitle}</Text>
         <StageLabel stage={schedule.stage} textStyle={{fontSize: 12}} />
       </View>
     </TouchableOpacity>

@@ -3,18 +3,14 @@ import React from 'react';
 import {StatusBar, StyleSheet} from 'react-native';
 import {View, Text} from './core-components';
 import {ResponsiveImage} from './components';
-import kodefox from 'assets/images/kodefox-logo-text.png';
-import {
-  FONT_BOLD,
-  SMALL_FONT_SIZE,
-  DEFAULT_FONT_SIZE,
-} from 'constants/text';
-import {THEME_COLOR, STATUS_BAR_COLOR} from 'constants/colors';
+import kodefox from '../assets/images/kodefox-logo-text.png';
+import {FONT_BOLD, SMALL_FONT_SIZE, DEFAULT_FONT_SIZE} from '../constants/text';
+import {THEME_COLOR, STATUS_BAR_COLOR} from '../constants/colors';
 
 type Props = {
-  logo: number | {uri: string; width?: number; height?: number};
-  text?: string;
-  textStyle?: StyleSheetTypes;
+  logo: number | {uri: string, width?: number, height?: number},
+  text?: string,
+  textStyle?: StyleSheetTypes,
 };
 
 export default function SplashScreen(props: Props) {
@@ -24,11 +20,11 @@ export default function SplashScreen(props: Props) {
       <StatusBar barStyle="dark-content" backgroundColor={STATUS_BAR_COLOR} />
       <View style={styles.logoContainer}>
         <ResponsiveImage source={logo} />
-        {text
-          ? <Text style={[styles.defaultLogoTextStyle, textStyle]}>
-              {text.toUpperCase()}
-            </Text>
-          : null}
+        {text ? (
+          <Text style={[styles.defaultLogoTextStyle, textStyle]}>
+            {text.toUpperCase()}
+          </Text>
+        ) : null}
       </View>
       <View style={styles.bottomPart}>
         <Text style={styles.informationText}>Crafted with love by</Text>

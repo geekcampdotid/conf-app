@@ -6,7 +6,7 @@ import {
   DEFAULT_FONT_SIZE,
   LARGE_FONT_SIZE,
   PARAGRAPH_LINE_HEIGHT,
-} from 'constants/text';
+} from '../../constants/text';
 
 const THEME_COLOR = '#fd8224';
 

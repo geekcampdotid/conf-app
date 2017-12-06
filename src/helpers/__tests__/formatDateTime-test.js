@@ -8,11 +8,11 @@ import formatDateTime, {
 
 it('should render DATE_TIME format', () => {
   expect(formatDateTime('2017-04-01T21:51:00.000Z', 'DATE_TIME')).toBe(
-    `01 April 2017 - 09:51 p.m.`
+    `01 April 2017 - 09:51 p.m.`,
   );
 
   expect(formatDateTime('2017-04-24T09:51:00.000Z', 'DATE_TIME')).toBe(
-    `24 April 2017 - 09:51 a.m.`
+    `24 April 2017 - 09:51 a.m.`,
   );
 });
 

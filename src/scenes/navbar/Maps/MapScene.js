@@ -3,18 +3,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {List, ListItem} from 'react-native-elements';
-import {ScrollView, View, Text} from 'components/core-components';
-import ResponsiveImage from 'components/ResponsiveImage';
-import conferenceMap from 'assets/images/conference-map.png';
+import {ScrollView, View, Text} from '../../../components/core-components';
+import ResponsiveImage from '../../../components/ResponsiveImage';
+import conferenceMap from '../../../assets/images/conference-map.png';
 
 import styles from './MapScene-style';
 
-import {THEME_COLOR} from 'constants/colors';
+import {THEME_COLOR} from '../../../constants/colors';
 
-import type {Dispatch} from 'types/Dispatch';
+import type {Dispatch} from '../../../types';
 
 type Props = {
-  onMapClicked: (imageSource: number) => void;
+  onMapClicked: (imageSource: number) => void,
 };
 
 export function MapScene(props: Props) {
@@ -29,7 +29,6 @@ export function MapScene(props: Props) {
           source={conferenceMap}
           onPress={() => onMapClicked(conferenceMap)}
         />
-
       </View>
       <List containerStyle={styles.listContainer}>
         <ListItem // TODO: use accordion as an optional ListItem because sometimes places like toilet are many, and we need to locate them all

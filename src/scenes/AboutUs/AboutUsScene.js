@@ -1,14 +1,14 @@
 // @flow
 
 import React from 'react';
-import {ScrollView, View, Text} from 'components/core-components';
-import {ResponsiveImage} from 'components/components';
-import sidebarLogo from 'assets/images/geekcamp-logo.png';
+import {ScrollView, View, Text} from '../../components/core-components';
+import {ResponsiveImage} from '../../components/components';
+import sidebarLogo from '../../assets/images/geekcamp-logo.png';
 
 import OrganizeBy from './OrganizeBy';
 import styles from './AboutUsScene-style';
 
-import {APP_SUB_TITLE, APP_DESCRIPTION} from 'constants/aboutApp';
+import {APP_SUB_TITLE, APP_DESCRIPTION} from '../../constants/aboutApp';
 
 export default function AboutUsScene() {
   return (

@@ -2,9 +2,9 @@
 
 import {StyleSheet, Platform} from 'react-native';
 
-import {DARK_GREY, WHITE} from 'constants/colors';
-import {DEFAULT_FONT_SIZE} from 'constants/text';
-import {SCALE_RATIO} from 'constants/layout';
+import {DARK_GREY, WHITE} from '../../constants/colors';
+import {DEFAULT_FONT_SIZE} from '../../constants/text';
+import {SCALE_RATIO} from '../../constants/layout';
 
 const styles = StyleSheet.create({
   flex: {

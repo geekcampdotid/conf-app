@@ -8,8 +8,8 @@ import exhibitorReducer from './data/exhibitor/exhibitorReducer';
 import snackBarReducer from './data/snackBar/snackBarReducer';
 import pinchToZoomImageReducer from './data/modalComponent/pinchToZoomImage/pinchToZoomImageReducer';
 
-import bookmarkScheduleMiddleware from 'data/schedule/bookmarkScheduleMiddleware';
-import snackBarMiddleware from 'data/snackBar/snackBarMiddleware';
+import bookmarkScheduleMiddleware from './data/schedule/bookmarkScheduleMiddleware';
+import snackBarMiddleware from './data/snackBar/snackBarMiddleware';
 
 let app = combineReducers({
   navigation: navigationReducer,
@@ -24,7 +24,7 @@ let app = combineReducers({
 let createDataStore = () => {
   let store = createStore(
     app,
-    applyMiddleware(bookmarkScheduleMiddleware, snackBarMiddleware)
+    applyMiddleware(bookmarkScheduleMiddleware, snackBarMiddleware),
   );
   return store;
 };

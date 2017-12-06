@@ -6,9 +6,9 @@ import {
   getFilteredScheduleByDate,
 } from '../scheduleFilter';
 
-import convertArrayToMap from 'helpers/convertArrayToMap';
+import convertArrayToMap from '../../helpers/convertArrayToMap';
 
-import type {Schedule} from 'data/schedule/Schedule-type';
+import type {Schedule} from '../../data/schedule/Schedule-type';
 let scheduleListJSON = [
   {
     id: 'schedule1',
@@ -91,7 +91,7 @@ it('should get the correct schedule hour list', () => {
 it('should get the filtered schedule list (by time)', () => {
   let filteredSchedule = getFilteredSchedule(
     scheduleList,
-    '2017-08-15T08:00:00.000Z'
+    '2017-08-15T08:00:00.000Z',
   );
   let expectedResult: Map<string, Schedule> = new Map();
   expectedResult.set('schedule1', {
@@ -123,7 +123,7 @@ it('should get the filtered schedule list (by time)', () => {
 it('should return filtered schedule by date', () => {
   let filteredSchedule = getFilteredScheduleByDate(
     scheduleList,
-    '2017-08-15T20:20:00.000Z'
+    '2017-08-15T20:20:00.000Z',
   );
   expect(filteredSchedule.size).toBe(5);
   expect(filteredSchedule.has('schedule1')).toBe(true);
@@ -135,7 +135,7 @@ it('should return filtered schedule by date', () => {
 
   filteredSchedule = getFilteredScheduleByDate(
     scheduleList,
-    '2017-08-16T00:20:00.000Z'
+    '2017-08-16T00:20:00.000Z',
   );
   expect(filteredSchedule.size).toBe(1);
   expect(filteredSchedule.has('schedule1')).toBe(false);
@@ -147,7 +147,7 @@ it('should return filtered schedule by date', () => {
 
   filteredSchedule = getFilteredScheduleByDate(
     scheduleList,
-    '2017-08-17T00:20:00.000Z'
+    '2017-08-17T00:20:00.000Z',
   );
   expect(filteredSchedule.size).toBe(0);
 });

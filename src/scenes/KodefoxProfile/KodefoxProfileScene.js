@@ -2,10 +2,10 @@
 
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {ScrollView, View, Text} from 'components/core-components';
-import {ResponsiveImage} from 'components/components';
-import kodefoxLogo from 'assets/images/kodefox-logo.png';
-import openLink from 'helpers/openLink';
+import {ScrollView, View, Text} from '../../components/core-components';
+import {ResponsiveImage} from '../../components/components';
+import kodefoxLogo from '../../assets/images/kodefox-logo.png';
+import openLink from '../../helpers/openLink';
 
 // import updateOTALogo from 'assets/images/logo-updates-ota.png';
 // import rapidPrototypingLogo from 'assets/images/logo-rapid-prototyping.png';
@@ -39,12 +39,11 @@ export default function KodefoxProfileScene() {
           development to warranty, our quality is unmatched.
         </Text>
         <Text style={[styles.description, {marginBottom: 0}]}>
-          You have a plan for an app?
-          {' '}
+          You have a plan for an app?{' '}
           <Text style={styles.bold}>
             We have the expertise to make it happen!
-          </Text>
-          {' '}Reach us: {' '}
+          </Text>{' '}
+          Reach us:{' '}
         </Text>
         <TouchableOpacity
           onPress={() => {

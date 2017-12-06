@@ -6,8 +6,8 @@ import {
   DEFAULT_FONT_SIZE,
   LARGE_FONT_SIZE,
   SMALL_FONT_SIZE,
-} from 'constants/text';
-import {THEME_COLOR, GREY, DARK_GREY} from 'constants/colors';
+} from '../../../constants/text';
+import {THEME_COLOR, GREY, DARK_GREY} from '../../../constants/colors';
 
 const styles = StyleSheet.create({
   row: {

@@ -4,7 +4,6 @@ import autobind from 'class-autobind';
 import {Provider} from 'react-redux';
 import {BackHandler} from 'react-native';
 import {AppLoading} from 'expo';
-import {ActionSheetProvider} from '@expo/react-native-action-sheet';
 import {View} from './components/core-components';
 import {PinchToZoomImageModal} from './components/components';
 
@@ -15,13 +14,12 @@ import handleBackPressAndroid from './helpers/handleBackPressAndroid';
 import createDataStore from './createDataStore';
 
 type State = {
-  isLoaded: boolean;
+  isLoaded: boolean,
 };
 
 const store = createDataStore();
 
-export default class App extends Component {
-  state: State;
+export default class App extends Component<void, State> {
   constructor() {
     super(...arguments);
     autobind(this);
@@ -32,8 +30,11 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-    BackHandler.addEventListener('hardwareBackPress', this._onBackPress);
     this._init();
+  }
+
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this._onBackPress);
   }
 
   componentWillUnmount() {
@@ -42,17 +43,17 @@ export default class App extends Component {
 
   render() {
     let {isLoaded} = this.state;
-    return !isLoaded
-      ? <AppLoading />
-      : <Provider store={store}>
-          <ActionSheetProvider>
-            <View style={{flex: 1}}>
-              <MainRoute />
-              <SnackBar />
-              <PinchToZoomImageModal />
-            </View>
-          </ActionSheetProvider>
-        </Provider>;
+    return !isLoaded ? (
+      <AppLoading />
+    ) : (
+      <Provider store={store}>
+        <View style={{flex: 1}}>
+          <MainRoute />
+          <SnackBar />
+          <PinchToZoomImageModal />
+        </View>
+      </Provider>
+    );
   }
 
   async _init() {

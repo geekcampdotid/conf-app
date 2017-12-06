@@ -1,35 +1,34 @@
 // @flow
 
 import React from 'react';
-import {Platform, StatusBar} from 'react-native';
+import {View, Platform, StatusBar} from 'react-native';
 import {connect} from 'react-redux';
 import {addNavigationHelpers} from 'react-navigation';
-import Drawer from 'react-native-drawer';
+// import Drawer from 'react-native-drawer';
 
 import MainRouteComponent from './components/MainRouteComponent';
-import SideDrawerContent from './components/SideDrawerContent';
-import {statusBarHeight} from 'constants/layout';
-import {STATUS_BAR_COLOR} from 'constants/colors';
+// import SideDrawerContent from './components/SideDrawerContent';
+// import {statusBarHeight} from '../constants/layout';
+import {STATUS_BAR_COLOR} from '../constants/colors';
 
-import type {Dispatch} from 'types/Dispatch';
-import type {RootState} from 'types/RootState';
+import type {RootState, Dispatch} from '../types';
 import type {
   NavigationState,
-  NavigationObject,
-} from 'data/navigation/Navigation-type';
-import type {SideDrawerState} from 'data/sideDrawer/SideDrawer-type';
+  // NavigationObject,
+} from '../data/navigation/Navigation-type';
+import type {SideDrawerState} from '../data/sideDrawer/SideDrawer-type';
 
 type Props = {
-  dispatch: Dispatch;
-  navigation: NavigationState;
-  sideDrawer: SideDrawerState;
-  onSideDrawerClose: () => void;
+  dispatch: Dispatch,
+  navigation: NavigationState,
+  sideDrawer: SideDrawerState,
+  onSideDrawerClose: () => void,
 };
 
 export function MainRoute(props: Props) {
-  let {sideDrawer, navigation, dispatch, onSideDrawerClose} = props;
+  let {sideDrawer, navigation, dispatch} = props;
 
-  let navigationObject: NavigationObject = addNavigationHelpers({
+  let navigationObject = addNavigationHelpers({
     dispatch,
     state: navigation,
     index: navigation.index,
@@ -38,42 +37,14 @@ export function MainRoute(props: Props) {
   let {isOpened} = sideDrawer;
 
   return (
-    <Drawer
-      open={isOpened}
-      type={Platform.OS === 'ios' ? 'static' : 'overlay'}
-      content={
-        <SideDrawerContent
-          isOpened={isOpened}
-          navigation={navigationObject}
-          onSideDrawerClose={onSideDrawerClose}
-        />
-      }
-      tapToClose={true}
-      tweenEasing="easeOutQuart"
-      openDrawerOffset={0.25}
-      tweenDuration={200}
-      onCloseStart={onSideDrawerClose}
-      tweenHandler={(ratio) => ({
-        mainOverlay: {backgroundColor: `rgba(0, 0, 0, ${ratio * 0.5})`},
-      })}
-      styles={{
-        ...Platform.select({
-          android: {
-            // drawer: {marginTop: statusBarHeight},
-            main: {paddingTop: statusBarHeight},
-          },
-          ios: {},
-        }),
-      }}
-      useInteractionManager={true}
-    >
+    <View style={{flex: 1}}>
       <StatusBar
         hidden={isOpened && Platform.OS === 'ios'}
         barStyle="dark-content"
         backgroundColor={STATUS_BAR_COLOR}
       />
       <MainRouteComponent navigation={navigationObject} />
-    </Drawer>
+    </View>
   );
 }
 

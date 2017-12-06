@@ -1,22 +1,22 @@
 // @flow
 import {BackHandler} from 'react-native';
-import {DEFAULT_SCENE_INDEX} from 'constants/navigation';
+import {DEFAULT_SCENE_INDEX} from '../constants/navigation';
 
-import type {Dispatch} from 'types/Dispatch';
+import type {Dispatch} from '../types';
 
 type Routes = {
-  index: number;
+  index: number,
 };
 
 type NavigationState = {
-  index: number;
-  key: string;
-  routes: Array<Routes>;
+  index: number,
+  key: string,
+  routes: Array<Routes>,
 };
 
 export default function handleBackPressAndroid(
   navigation: NavigationState,
-  dispatch: Dispatch
+  dispatch: Dispatch,
 ) {
   if (navigation.index > 0) {
     let {key} = navigation;

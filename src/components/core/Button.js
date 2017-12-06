@@ -8,25 +8,25 @@ import {
 } from 'react-native';
 import {Button} from 'react-native-elements';
 
-import {THEME_COLOR, GREY, LIGHT_GREY, WHITE} from 'constants/colors';
-
-import type {Icon} from 'types/Icon-type';
+import {THEME_COLOR, GREY, LIGHT_GREY, WHITE} from '../../constants/colors';
 
 type Props = {
-  onPress: () => void;
-  title: string;
-  type?: 'default' | 'primary';
-  style?: StyleSheetTypes;
-  icon?: Icon;
+  onPress: () => void,
+  title: string,
+  type?: 'default' | 'primary',
+  style?: StyleSheetTypes,
+  icon?: Icon,
 };
-
 
 // this is to solve the Promise rejection error in ios
-let TouchAndroidComponent = (Platform.OS === 'android') ? TouchableNativeFeedback : {
-  Ripple: (color: string) => {
-    return color;
-  },
-};
+let TouchAndroidComponent =
+  Platform.OS === 'android'
+    ? TouchableNativeFeedback
+    : {
+        Ripple: (color: string) => {
+          return color;
+        },
+      };
 
 const DEFAULT_BUTTON_BORDER_RADIUS = 5;
 
@@ -37,7 +37,7 @@ export default function ButtonComponent(props: Props) {
     type === 'primary' ? styles.buttonPrimary : styles.buttonDefault,
     style,
   ];
-  let textStyle = (type === 'primary') ? styles.textPrimary : styles.textDefault;
+  let textStyle = type === 'primary' ? styles.textPrimary : styles.textDefault;
 
   let otherDefaultProps = {
     ...Platform.select({
@@ -46,7 +46,9 @@ export default function ButtonComponent(props: Props) {
       },
       android: {
         Component: TouchAndroidComponent,
-        background: TouchAndroidComponent.Ripple((type === 'primary') ? WHITE : LIGHT_GREY),
+        background: TouchAndroidComponent.Ripple(
+          type === 'primary' ? WHITE : LIGHT_GREY,
+        ),
       },
     }),
   };
@@ -66,9 +68,7 @@ export default function ButtonComponent(props: Props) {
 }
 
 const styles = StyleSheet.create({
-  default: {
-
-  },
+  default: {},
   buttonDefault: {
     borderColor: GREY,
     borderWidth: 0.3,

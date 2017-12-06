@@ -1,5 +1,5 @@
 import handleBackPressAndroid from '../handleBackPressAndroid';
-import {INITIAL_SCENE} from 'constants/navigation';
+import {INITIAL_SCENE} from '../../constants/navigation';
 
 it('should back to prev route if there is stack routes', () => {
   let dispatch = jest.fn();

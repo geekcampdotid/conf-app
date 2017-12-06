@@ -5,31 +5,27 @@ import autobind from 'class-autobind';
 import {TextInput, StyleSheet, Platform} from 'react-native';
 import {View} from '../core-components';
 
-import AutoExpandingTextInput from 'react-native-auto-expanding-textinput';
-import {TRANSPARENT, WHITE} from 'constants/colors';
-import {DEFAULT_FONT_SIZE} from 'constants/text';
+import {TRANSPARENT, WHITE} from '../../constants/colors';
+import {DEFAULT_FONT_SIZE} from '../../constants/text';
 import {
   UNKNOWN_IOS_MULTILINE_PADDING_TOP,
   MAX_NUMBER_OF_LINES,
   FONTSIZE_TO_HEIGHT_ADD_VALUE,
   DEFAULT_NUMBER_OF_LINES,
-} from 'constants/textInput';
+} from '../../constants/textInput';
 
 type State = {
-  marginTop: number;
+  marginTop: number,
 };
 
 type Props = {
-  placeholder?: string;
-  style?: StyleSheetTypes;
-  textStyle?: StyleSheetTypes;
-  maxMultiline?: number;
+  placeholder?: string,
+  style?: StyleSheetTypes,
+  textStyle?: StyleSheetTypes,
+  maxMultiline?: number,
 };
 
-export default class TextInputComponent extends Component {
-  state: State;
-  props: Props;
-
+export default class TextInputComponent extends Component<Props, State> {
   constructor() {
     super(...arguments);
     autobind(this);
@@ -54,7 +50,7 @@ export default class TextInputComponent extends Component {
       ...otherProps
     } = this.props;
     let {marginTop} = this.state;
-    let {onHeightChanged} = this;
+    // let {onHeightChanged} = this;
 
     let isAndroid = Platform.OS === 'android';
     let height = textStyle
@@ -79,23 +75,11 @@ export default class TextInputComponent extends Component {
 
     return (
       <View style={[styles.container, style]}>
-        {maxMultiline > 1
-          ? <AutoExpandingTextInput
-              {...otherProps}
-              style={[styles.default, textStyle]}
-              underlineColorAndroid={TRANSPARENT}
-              minHeight={
-                height + (!isAndroid ? UNKNOWN_IOS_MULTILINE_PADDING_TOP : 0)
-              }
-              maxHeight={height * MAX_NUMBER_OF_LINES + MAX_NUMBER_OF_LINES}
-              onChangeHeight={(before, after) =>
-                onHeightChanged(before, after, height)}
-            />
-          : <TextInput
-              {...otherProps}
-              style={[styles.default, textStyle]}
-              underlineColorAndroid={TRANSPARENT}
-            />}
+        <TextInput
+          {...otherProps}
+          style={[styles.default, textStyle]}
+          underlineColorAndroid={TRANSPARENT}
+        />
       </View>
     );
   }

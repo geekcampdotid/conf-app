@@ -1,27 +1,27 @@
 // @flow
 
 import React from 'react';
-import {View, Text} from 'components/core-components';
-import {ResponsiveImage} from 'components/components';
+import {View, Text} from '../../components/core-components';
+import {ResponsiveImage} from '../../components/components';
 
-import {FONT_BOLD} from 'constants/text';
-import {THEME_COLOR} from 'constants/colors';
+import {baseTextStyle} from '../../constants/text';
+import {themeColors} from '../../constants/colors';
 
-import LIPUTAN6 from 'assets/images/mediaPartners/liputan6.png';
-import TECHINASIA from 'assets/images/mediaPartners/techinasia.png';
-import VIDIO from 'assets/images/mediaPartners/vidio.png';
-import FILE from 'assets/images/mediaPartners/file.png';
+import LIPUTAN6 from '../../assets/images/mediaPartners/liputan6.png';
+import TECHINASIA from '../../assets/images/mediaPartners/techinasia.png';
+import VIDIO from '../../assets/images/mediaPartners/vidio.png';
+import FILE from '../../assets/images/mediaPartners/file.png';
 
 export default function MediaPartners() {
   return (
     <View style={{marginBottom: 40}}>
       <Text
         style={{
-          fontWeight: FONT_BOLD,
+          fontWeight: baseTextStyle.FONT_BOLD,
           textAlign: 'center',
           fontSize: 20,
           paddingVertical: 10,
-          color: THEME_COLOR,
+          color: themeColors.THEME_COLOR,
         }}
       >
         Media Partners

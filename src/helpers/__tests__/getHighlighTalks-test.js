@@ -73,7 +73,7 @@ scheduleList.set('schedule6', {
 
 it('should get highlight talks', () => {
   let currentEvent = convertArrayToMap(
-    getHighlighTalks(scheduleList, '2017-08-15T07:00:00.000Z', 2)
+    getHighlighTalks(scheduleList, '2017-08-15T07:00:00.000Z', 2),
   );
   expect(currentEvent.size).toBe(2);
   expect(currentEvent.has('schedule1')).toBe(true);
@@ -81,7 +81,7 @@ it('should get highlight talks', () => {
   expect(currentEvent.has('schedule3')).toBe(false);
 
   currentEvent = convertArrayToMap(
-    getHighlighTalks(scheduleList, '2017-08-15T08:20:00.000Z', 2)
+    getHighlighTalks(scheduleList, '2017-08-15T08:20:00.000Z', 2),
   );
   expect(currentEvent.size).toBe(2);
   expect(currentEvent.has('schedule1')).toBe(false);
@@ -89,20 +89,20 @@ it('should get highlight talks', () => {
   expect(currentEvent.has('schedule3')).toBe(false);
 
   currentEvent = convertArrayToMap(
-    getHighlighTalks(scheduleList, '2017-08-15T13:20:00.000Z')
+    getHighlighTalks(scheduleList, '2017-08-15T13:20:00.000Z'),
   );
   expect(currentEvent.size).toBe(1);
   expect(currentEvent.has('schedule3')).toBe(true);
 
   currentEvent = convertArrayToMap(
-    getHighlighTalks(scheduleList, '2017-08-16T08:20:00.000Z')
+    getHighlighTalks(scheduleList, '2017-08-16T08:20:00.000Z'),
   );
   expect(currentEvent.size).toBe(0);
 });
 
 it('should not include event with no-presenter schedule', () => {
   let currentEvent = convertArrayToMap(
-    getHighlighTalks(scheduleList, '2017-08-15T12:00:00.000Z')
+    getHighlighTalks(scheduleList, '2017-08-15T12:00:00.000Z'),
   );
   expect(currentEvent.size).toBe(1);
   expect(currentEvent.has('schedule3')).toBe(true);

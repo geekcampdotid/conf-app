@@ -13,12 +13,12 @@ import {
 import * as Animatable from 'react-native-animatable';
 import {Text, View} from './core-components';
 
-import {THEME_COLOR} from 'constants/colors';
+import {THEME_COLOR} from '../constants/colors';
 
 type Props = {
-  visible: boolean;
-  type?: 'dot' | 'bar' | 'ball' | 'pacman' | 'pulse' | 'skype' | 'wave';
-  text?: string;
+  visible: boolean,
+  type?: 'dot' | 'bar' | 'ball' | 'pacman' | 'pulse' | 'skype' | 'wave',
+  text?: string,
 };
 
 const defaultLoadingComponent = {
@@ -50,9 +50,8 @@ const defaultLoadingComponent = {
 
 const DEFAULT_LOADING_INDICATOR_TYPE = 'bar';
 
-export default class LoadingIndicator extends Component {
-  props: Props;
-  _loadingIndicator: Object;
+export default class LoadingIndicator extends Component<Props, void> {
+  _loadingIndicator: ?Object;
   componentDidMount() {
     if (this.props.visible) {
       this._loadingIndicator && this._loadingIndicator.fadeIn();
@@ -86,12 +85,11 @@ export default class LoadingIndicator extends Component {
           {...otherProps}
           color={THEME_COLOR}
         />
-        {loadingText
-          ? <View style={styles.text}>
-              <Text style={{textAlign: 'center'}}>{loadingText}</Text>
-            </View>
-          : null}
-
+        {loadingText ? (
+          <View style={styles.text}>
+            <Text style={{textAlign: 'center'}}>{loadingText}</Text>
+          </View>
+        ) : null}
       </Animatable.View>
     );
   }

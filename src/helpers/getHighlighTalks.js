@@ -2,18 +2,18 @@
 
 import {getFilteredScheduleByDate} from './scheduleFilter';
 
-import type {Schedule} from 'data/schedule/Schedule-type';
+import type {Schedule} from '../data/schedule/Schedule-type';
 
 const MAXIMUM_HIGHLIGHT_TALKS = 4;
 
 export default function getHighlighTalks(
   scheduleList: Map<string, Schedule>,
   currentDateTimeString: string,
-  maxTalksNumber?: number
+  maxTalksNumber?: number,
 ) {
   let filteredSchedule = getFilteredScheduleByDate(
     scheduleList,
-    currentDateTimeString
+    currentDateTimeString,
   );
   let maxData = maxTalksNumber || MAXIMUM_HIGHLIGHT_TALKS;
   let currentDateTime = new Date(currentDateTimeString);

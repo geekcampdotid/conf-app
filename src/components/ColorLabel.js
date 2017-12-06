@@ -4,14 +4,19 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {View, Text} from './core-components';
 
-import {FONT_BOLD, DEFAULT_FONT_SIZE} from 'constants/text';
-import {MAIN_RED, MAIN_GREEN, MAIN_YELLOW, MAIN_BLUE} from 'constants/colors';
+import {FONT_BOLD, DEFAULT_FONT_SIZE} from '../constants/text';
+import {
+  MAIN_RED,
+  MAIN_GREEN,
+  MAIN_YELLOW,
+  MAIN_BLUE,
+} from '../constants/colors';
 
 type Props = {
-  text: string; // TODO: change this based on the upcoming event stage name
-  textStyle?: StyleSheetTypes;
-  color?: 'red' | 'green' | 'blue' | 'yellow';
-  containerStyle?: StyleSheetTypes;
+  text: string, // TODO: change this based on the upcoming event stage name
+  textStyle?: StyleSheetTypes,
+  color?: 'red' | 'green' | 'blue' | 'yellow',
+  containerStyle?: StyleSheetTypes,
 };
 
 export default function ColorLabel(props: Props) {

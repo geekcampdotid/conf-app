@@ -1,19 +1,14 @@
 // @flow
 import {StyleSheet} from 'react-native';
 
-import {FONT_BOLD} from 'constants/text';
-import {THEME_COLOR} from 'constants/colors';
+import {themeTextStyle} from '../../constants/text';
 
 const styles = StyleSheet.create({
   root: {
     backgroundColor: 'white',
     minHeight: '100%',
   },
-  title: {
-    fontWeight: FONT_BOLD,
-    color: THEME_COLOR,
-    fontSize: 28,
-  },
+  title: themeTextStyle.SCHEDULE_DETAIL_TALK_TITLE,
   section: {
     paddingHorizontal: 15,
     marginVertical: 10,

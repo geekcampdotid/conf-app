@@ -4,19 +4,19 @@ import {connect} from 'react-redux';
 import {FlatList} from 'react-native';
 import {ButtonGroup, List} from 'react-native-elements';
 
-import {View} from 'components/core-components';
-import {NoItemFound} from 'components/components';
+import {View} from '../../components/core-components';
+import {NoItemFound} from '../../components/components';
 import HourListItem from '../navbar/Schedule/HourListItem';
-import formatDateTime, {getTimeObject} from 'helpers/formatDateTime';
-import {getScheduleHours} from 'helpers/scheduleFilter';
-import convertArrayToMap from 'helpers/convertArrayToMap';
+import formatDateTime, {getTimeObject} from '../../helpers/formatDateTime';
+import {getScheduleHours} from '../../helpers/scheduleFilter';
+import convertArrayToMap from '../../helpers/convertArrayToMap';
 
-import {THEME_COLOR} from 'constants/colors';
+import {THEME_COLOR} from '../../constants/colors';
 import styles, {CONTAINER_BORDER_RADIUS} from './BookmarkScheduleScene-style';
 
-import type {Navigation} from 'data/navigation/Navigation-type';
-import type {Schedule} from 'data/schedule/Schedule-type';
-import type {RootState} from 'types/RootState';
+import type {Navigation} from '../../data/navigation/Navigation-type';
+import type {Schedule} from '../../data/schedule/Schedule-type';
+import type {RootState} from '../../types';
 
 const STAGE1 = 'The Hall';
 const STAGE2 = 'SCTV Studio';
@@ -27,20 +27,18 @@ const TAB_MENU = [ALLSTAGE, STAGE1, STAGE2];
 const DEFAULT_SELECTED_TAB_INDEX = 0;
 
 type Props = {
-  navigation: Navigation;
-  bookmarkList: Array<string>;
-  scheduleList: Map<string, Schedule>;
+  navigation: Navigation,
+  bookmarkList: Array<string>,
+  scheduleList: Map<string, Schedule>,
 };
 
 type State = {
-  selectedTabIndex: number;
-  selectedStageFilter: string;
+  selectedTabIndex: number,
+  selectedStageFilter: string,
 };
 
-export class BookmarkScheduleScene extends Component {
-  props: Props;
-  state: State;
-  _flatList: Object;
+export class BookmarkScheduleScene extends Component<Props, State> {
+  _flatList: ?Object;
   static navigationOptions = {
     title: 'My Schedule',
   };
@@ -56,19 +54,19 @@ export class BookmarkScheduleScene extends Component {
   render() {
     let {selectedTabIndex, selectedStageFilter} = this.state;
     let {scheduleList, bookmarkList, navigation} = this.props;
-    let bookmarkScheduleList = Array.from(
-      scheduleList.values()
-    ).filter((schedule) => {
-      if (selectedStageFilter !== TAB_MENU[0]) {
-        let {stage} = schedule;
-        return (
-          bookmarkList.includes(schedule.id) &&
-          (stage && stage === selectedStageFilter)
-        );
-      } else {
-        return bookmarkList.includes(schedule.id);
-      }
-    });
+    let bookmarkScheduleList = Array.from(scheduleList.values()).filter(
+      (schedule) => {
+        if (selectedStageFilter !== TAB_MENU[0]) {
+          let {stage} = schedule;
+          return (
+            bookmarkList.includes(schedule.id) &&
+            (stage && stage === selectedStageFilter)
+          );
+        } else {
+          return bookmarkList.includes(schedule.id);
+        }
+      },
+    );
 
     let bookmarkScheduleListMap = convertArrayToMap(bookmarkScheduleList);
     let data = getScheduleHours(bookmarkScheduleListMap);
@@ -129,7 +127,7 @@ export class BookmarkScheduleScene extends Component {
                       y: 0,
                       animated: false,
                     });
-                }
+                },
               );
             }}
             containerStyle={styles.tabBar}
@@ -143,7 +141,6 @@ export class BookmarkScheduleScene extends Component {
         <List containerStyle={styles.scheduleListContainer}>
           {listComponent}
         </List>
-
       </View>
     );
   }

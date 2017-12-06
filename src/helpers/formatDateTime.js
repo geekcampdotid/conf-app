@@ -1,6 +1,6 @@
 // @flow
 
-import {MONTHS} from 'constants/dateNames';
+import {MONTHS} from '../constants/dateNames';
 
 const FORMATS = {
   DATE_TIME: (dateTimeString: string) => {

@@ -4,16 +4,16 @@ import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {View, Text} from './core-components';
 
-import {FONT_BOLD} from 'constants/text';
+import {FONT_BOLD} from '../constants/text';
 
-import DEFAULT_BACKGROUND_IMAGE from 'assets/images/default-background-image-exhibitor.png';
+import DEFAULT_BACKGROUND_IMAGE from '../assets/images/default-background-image-exhibitor.png';
 
 type Props = {
-  avatarPictureUri: ?string;
-  name: string;
-  containerStyle?: StyleSheetTypes;
-  avatarStyle?: StyleSheetTypes;
-  nameTextStyle?: StyleSheetTypes;
+  avatarPictureUri: ?string,
+  name: string,
+  containerStyle?: StyleSheetTypes,
+  avatarStyle?: StyleSheetTypes,
+  nameTextStyle?: StyleSheetTypes,
 };
 
 export default function ExhibitorDetailAvatar(props: Props) {

@@ -12,28 +12,26 @@ import {
 
 import {Text} from '../core-components';
 
-import {TEXT_COLOR} from 'constants/colors';
+import {TEXT_COLOR} from '../../constants/colors';
 
 type DatepickerOptions = {
-  defaultDate: Date;
-  maximumDate?: Date;
-  minimumDate?: Date;
+  defaultDate: Date,
+  maximumDate?: Date,
+  minimumDate?: Date,
 };
 
 type Props = {
-  isOpened: boolean;
-  dateOptions: DatepickerOptions;
-  onDateSelected: (date: string) => void;
-  onClose: () => void;
+  isOpened: boolean,
+  dateOptions: DatepickerOptions,
+  onDateSelected: (date: string) => void,
+  onClose: () => void,
 };
 
 type State = {
-  selectedDate: Date;
+  selectedDate: Date,
 };
 
-export default class DatePicker extends Component {
-  props: Props;
-  state: State;
+export default class DatePicker extends Component<Props, State> {
   constructor() {
     super(...arguments);
     autobind(this);
@@ -102,8 +100,8 @@ export default class DatePicker extends Component {
       Date.UTC(
         selectedDate.getFullYear(),
         selectedDate.getMonth(),
-        selectedDate.getDate()
-      )
+        selectedDate.getDate(),
+      ),
     );
     onDateSelected(date.toISOString());
     onClose();

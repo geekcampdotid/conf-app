@@ -1,8 +1,8 @@
 // @flow
 
 import {StyleSheet, PixelRatio} from 'react-native';
-import {SCENE_DEFAULT, THEME_COLOR} from 'constants/colors';
-import {FONT_BOLD, DEFAULT_FONT_SIZE} from 'constants/text';
+import {SCENE_DEFAULT, THEME_COLOR} from '../../../constants/colors';
+import {FONT_BOLD, DEFAULT_FONT_SIZE} from '../../../constants/text';
 
 export const CONTAINER_BORDER_RADIUS = 5;
 

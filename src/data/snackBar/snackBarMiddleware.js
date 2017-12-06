@@ -1,6 +1,5 @@
 // @flow
-import type {Action} from 'types/Action';
-import type {Store} from 'types/Store';
+import type {Store, Action} from '../../types';
 
 export default function snackBarMiddleware(store: Store) {
   let {dispatch} = store;

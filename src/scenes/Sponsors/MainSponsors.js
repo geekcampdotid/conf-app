@@ -1,25 +1,25 @@
 // @flow
 
 import React from 'react';
-import {View, Text} from 'components/core-components';
-import {ResponsiveImage} from 'components/components';
+import {View, Text} from '../../components/core-components';
+import {ResponsiveImage} from '../../components/components';
 
-import {FONT_BOLD} from 'constants/text';
-import {THEME_COLOR} from 'constants/colors';
+import {baseTextStyle} from '../../constants/text';
+import {themeColors} from '../../constants/colors';
 
-import GOOGLE_CLOUD from 'assets/images/mainSponsors/google-cloud.png';
-import GRAB from 'assets/images/mainSponsors/grab.png';
+import GOOGLE_CLOUD from '../../assets/images/mainSponsors/google-cloud.png';
+import GRAB from '../../assets/images/mainSponsors/grab.png';
 
 export default function MainSponsors() {
   return (
     <View>
       <Text
         style={{
-          fontWeight: FONT_BOLD,
+          fontWeight: baseTextStyle.FONT_BOLD,
           textAlign: 'center',
           fontSize: 20,
           paddingVertical: 10,
-          color: THEME_COLOR,
+          color: themeColors.THEME_COLOR,
         }}
       >
         Main Sponsors

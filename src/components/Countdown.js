@@ -11,28 +11,25 @@ const ONE_MINUTE = 60000;
 const ONE_SECOND = 1000;
 
 type Props = {
-  startingNumber: number;
-  bySecond?: boolean;
-  updateFinishStatus?: (status: boolean) => void;
+  startingNumber: number,
+  bySecond?: boolean,
+  updateFinishStatus?: (status: boolean) => void,
 };
 
 type State = {
-  current1: number;
-  pre1: number;
-  isFlip1Upper: boolean;
-  flipValue1: Animated.Value;
-  isLower1Hidden: boolean;
-  current2: number;
-  pre2: number;
-  isFlip2Upper: boolean;
-  flipValue2: Animated.Value;
-  isLower2Hidden: boolean;
+  current1: number,
+  pre1: number,
+  isFlip1Upper: boolean,
+  flipValue1: Animated.Value,
+  isLower1Hidden: boolean,
+  current2: number,
+  pre2: number,
+  isFlip2Upper: boolean,
+  flipValue2: Animated.Value,
+  isLower2Hidden: boolean,
 };
 
-export default class Countdown extends Component {
-  state: State;
-  props: Props;
-
+export default class Countdown extends Component<Props, State> {
   constructor() {
     super(...arguments);
     autobind(this);
@@ -81,16 +78,18 @@ export default class Countdown extends Component {
       isLower2Hidden,
     } = this.state;
     let {_getPrevious} = this;
-    let FlipComponent = (props: { digit: number }) => {
+    let FlipComponent = (props: {digit: number}) => {
       return this._renderFlipDigit(props.digit);
     };
     let isFirstDigitChange = current2 === 0;
-    let upper1Flip = isFirstDigitChange
-      ? <FlipComponent digit={1} />
-      : <ResponsiveImage
-          source={upperDigits[current1]}
-          style={styles.timerDigit1}
-        />;
+    let upper1Flip = isFirstDigitChange ? (
+      <FlipComponent digit={1} />
+    ) : (
+      <ResponsiveImage
+        source={upperDigits[current1]}
+        style={styles.timerDigit1}
+      />
+    );
     let lower1Cover = (
       <ResponsiveImage
         key={'l1c' + pre1}
@@ -224,7 +223,7 @@ export default class Countdown extends Component {
               [`isFlip${digit}Upper`]: true,
               [`isLower${digit}Hidden`]: false,
             });
-          }
+          },
         );
       });
     });

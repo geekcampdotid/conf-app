@@ -8,12 +8,15 @@ import MediaPartners from './MediaPartners';
 import AdditionalSponsors from './AdditionalSponsors';
 import MainSponsors from './MainSponsors';
 
-import {SCENE_DEFAULT} from 'constants/colors';
+import {themeColors} from '../../constants/colors';
 
 export default function SponsorsScene() {
   return (
     <ScrollView
-      contentContainerStyle={{padding: 22, backgroundColor: SCENE_DEFAULT}}
+      contentContainerStyle={{
+        padding: 22,
+        backgroundColor: themeColors.SCENE_DEFAULT,
+      }}
     >
       <MainSponsors />
       <AdditionalSponsors />

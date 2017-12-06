@@ -4,9 +4,9 @@ const DEFAULT_KEY = 'id';
 
 export default function convertArrayToMap(
   arrayJSON: Array<Object>,
-  key: ?string = DEFAULT_KEY
+  key: ?string = DEFAULT_KEY,
 ) {
-  let map = new Map();
+  let map: Map<string, Object> = new Map();
   arrayJSON.forEach((data) => {
     map.set(data[key], data);
   });

@@ -1,7 +1,7 @@
 // @flow
 
-import type {ScheduleState} from './Schedule-type';
-import type {Action} from 'types/Action';
+import type {Schedule, ScheduleState} from './Schedule-type';
+import type {Action} from '../../types';
 
 let initialState: ScheduleState = {
   scheduleList: new Map(),
@@ -10,12 +10,12 @@ let initialState: ScheduleState = {
 
 export default function presenterReducer(
   scheduleState: ScheduleState = initialState,
-  action: Action
+  action: Action,
 ) {
   switch (action.type) {
     case 'INITIAL_DATA_RECEIVED': {
       let {scheduleList, bookmarkedScheduleList} = action.initialData;
-      let newScheduleList = new Map(scheduleList);
+      let newScheduleList: Map<string, Schedule> = new Map(scheduleList);
       let newBookmarkedScheduleList = bookmarkedScheduleList || [];
       return {
         scheduleList: newScheduleList,

@@ -11,7 +11,7 @@ let initialState = {
 
 export default function pinchToZoomImageReducer(
   state: PinchToZoomImageState = initialState,
-  action: PinchToZoomImageAction
+  action: PinchToZoomImageAction,
 ) {
   switch (action.type) {
     case 'SHOW_PINCHABLE_IMAGE_REQUESTED': {

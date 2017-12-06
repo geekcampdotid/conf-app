@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {View, Text} from 'components/core-components';
+import {View, Text} from '../../components/core-components';
 
 export function AboutUsScene() {
   return (

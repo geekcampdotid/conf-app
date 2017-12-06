@@ -6,17 +6,16 @@ import {Icon} from 'react-native-elements';
 import resolveAssetSource from 'resolveAssetSource';
 import ImageZoom from 'react-native-image-pan-zoom';
 
-import getScreenSize from 'helpers/getScreenSize';
-import {statusBarHeight} from 'constants/layout';
-import {GREY} from 'constants/colors';
+import getScreenSize from '../helpers/getScreenSize';
+import {statusBarHeight} from '../constants/layout';
+import {GREY} from '../constants/colors';
 
-import type {PinchToZoomImageState} from 'data/modalComponent/pinchToZoomImage/PinchToZoom-type';
-import type {RootState} from 'types/RootState';
-import type {Dispatch} from 'types/Dispatch';
+import type {PinchToZoomImageState} from '../data/modalComponent/pinchToZoomImage/PinchToZoom-type';
+import type {RootState, Dispatch} from '../types';
 
 type Props = {
-  pinchToZoomImageModal: PinchToZoomImageState;
-  onRequestClose: () => {};
+  pinchToZoomImageModal: PinchToZoomImageState,
+  onRequestClose: () => {},
 };
 
 let {width: screenWidth, height: screenHeight} = getScreenSize();
@@ -90,5 +89,5 @@ function mapDispatchToProps(dispatch: Dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  PinchToZoomImageModal
+  PinchToZoomImageModal,
 );

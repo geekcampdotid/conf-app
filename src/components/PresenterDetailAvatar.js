@@ -5,17 +5,17 @@ import {Image, StyleSheet} from 'react-native';
 import {LinearGradient} from 'expo';
 import {View, Text} from './core-components';
 
-import {FONT_BOLD} from 'constants/text';
+import {FONT_BOLD} from '../constants/text';
 
-import DEFAULT_PROFILE_PICTURE from 'assets/images/default-profile-picture-square.png';
-import BACKGROUND_IMAGE from 'assets/images/geekcamp-background.jpg';
+import DEFAULT_PROFILE_PICTURE from '../assets/images/default-profile-picture-square.png';
+import BACKGROUND_IMAGE from '../assets/images/geekcamp-background.jpg';
 
 type Props = {
-  profilePictureUri: ?string | number;
-  name: string;
-  containerStyle?: StyleSheetTypes;
-  avatarStyle?: StyleSheetTypes;
-  nameTextStyle?: StyleSheetTypes;
+  profilePictureUri: ?string | number,
+  name: string,
+  containerStyle?: StyleSheetTypes,
+  avatarStyle?: StyleSheetTypes,
+  nameTextStyle?: StyleSheetTypes,
 };
 
 export default function PresenterDetailAvatar(props: Props) {
@@ -67,9 +67,7 @@ export default function PresenterDetailAvatar(props: Props) {
         <Image style={styles.backgroundImage} source={BACKGROUND_IMAGE}>
           <View style={styles.overlay} />
         </Image>
-        <View style={styles.avatarContainer}>
-          {profilePictureComponent}
-        </View>
+        <View style={styles.avatarContainer}>{profilePictureComponent}</View>
       </View>
     </View>
   );

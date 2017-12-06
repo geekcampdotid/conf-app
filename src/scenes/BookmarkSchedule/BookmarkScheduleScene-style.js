@@ -1,10 +1,10 @@
 // @flow
 import {StyleSheet} from 'react-native';
-import {SCENE_DEFAULT, THEME_COLOR} from 'constants/colors';
-import {FONT_BOLD, DEFAULT_FONT_SIZE} from 'constants/text';
-import {SCALE_RATIO} from 'constants/layout';
+import {SCENE_DEFAULT, THEME_COLOR} from '../../constants/colors';
+import {FONT_BOLD, DEFAULT_FONT_SIZE} from '../../constants/text';
+import {SCALE_RATIO} from '../../constants/layout';
 
-import getScreenSize from 'helpers/getScreenSize';
+import getScreenSize from '../../helpers/getScreenSize';
 
 let {width: screenWidth} = getScreenSize();
 

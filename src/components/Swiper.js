@@ -11,42 +11,36 @@ import {
   Platform,
 } from 'react-native';
 
-import getScreenSize from 'helpers/getScreenSize';
+import getScreenSize from '../helpers/getScreenSize';
 
-import {THEME_COLOR, LIGHT_GREY} from 'constants/colors';
+import {THEME_COLOR, LIGHT_GREY} from '../constants/colors';
 
 const {width: screenWidth} = getScreenSize();
 const DEFAULT_BUTTON_SIZE = 30;
 
 type Props = {
-  width?: number;
-  showDots?: boolean;
-  showNavigationButtons?: boolean;
-  children?: ReactNode;
+  width?: number,
+  showDots?: boolean,
+  showNavigationButtons?: boolean,
+  children?: ReactNode,
 };
 
 type State = {
-  index: number;
-  total: number;
-  offset?: Offset;
-};
-
-type SwiperComponent = {
-  scrollTo: ({x: number; y: number; animated: boolean}) => void;
+  index: number,
+  total: number,
+  offset?: Offset,
 };
 
 type Offset = {
-  x: number;
-  y: number;
+  x: number,
+  y: number,
 };
 
-export default class Swiper extends Component {
-  props: Props;
-  state: State;
+export default class Swiper extends Component<Props, State> {
   _slideWidth: number;
   _height: number;
   _isScrolling: boolean;
-  _swiper: SwiperComponent;
+  _swiper: ?Object;
 
   constructor() {
     super(...arguments);
@@ -64,11 +58,7 @@ export default class Swiper extends Component {
   render() {
     let {children} = this.props;
     let pages = Children.map(children, (child) => {
-      return (
-        <View style={{width: this._slideWidth}}>
-          {child}
-        </View>
-      );
+      return <View style={{width: this._slideWidth}}>{child}</View>;
     });
     return (
       <View>
@@ -179,9 +169,7 @@ export default class Swiper extends Component {
 
     return (
       <TouchableOpacity onPress={() => this._scrollBy(-1)}>
-        <View>
-          {button}
-        </View>
+        <View>{button}</View>
       </TouchableOpacity>
     );
   }
@@ -200,9 +188,7 @@ export default class Swiper extends Component {
 
     return (
       <TouchableOpacity onPress={() => this._scrollBy(1)}>
-        <View>
-          {button}
-        </View>
+        <View>{button}</View>
       </TouchableOpacity>
     );
   }

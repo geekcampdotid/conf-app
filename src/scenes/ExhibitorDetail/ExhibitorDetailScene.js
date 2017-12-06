@@ -1,25 +1,25 @@
 // @flow
 import React from 'react';
-import {ScrollView} from 'components/core-components';
-import {TabBar, ExhibitorDetailAvatar} from 'components/components';
+import {ScrollView} from '../../components/core-components';
+import {TabBar, ExhibitorDetailAvatar} from '../../components/components';
 
 import ExhibitorProfileInfoScene from './ExhibitorProfileInfoScene';
 import ExhibitorBoothLocation from './ExhibitorBoothLocation';
 
-import type {Exhibitor} from 'data/exhibitor/Exhibitor-type';
-import type {NavigateFunction} from 'data/navigation/Navigation-type';
+import type {Exhibitor} from '../../data/exhibitor/Exhibitor-type';
+import type {NavigateFunction} from '../../data/navigation/Navigation-type';
 
 type Navigation = {
-  navigate: NavigateFunction;
+  navigate: NavigateFunction,
   state: {
     params: {
-      exhibitor: Exhibitor;
-    };
-  };
+      exhibitor: Exhibitor,
+    },
+  },
 };
 
 type Props = {
-  navigation: Navigation;
+  navigation: Navigation,
 };
 
 export default function ExhibitorDetailScene(props: Props) {

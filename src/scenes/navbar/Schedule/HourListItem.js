@@ -3,27 +3,27 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-import {View, Text} from 'components/core-components';
+import {View, Text} from '../../../components/core-components';
 import ScheduleListItem from './ScheduleListItem';
-import {GREY, LIGHT_GREY} from 'constants/colors';
+import {GREY, LIGHT_GREY} from '../../../constants/colors';
 import {
   FONT_BOLD,
   DEFAULT_FONT_SIZE,
   LARGE_FONT_SIZE,
-} from 'constants/text';
+} from '../../../constants/text';
 
-import type {Navigation} from 'data/navigation/Navigation-type';
-import type {Schedule} from 'data/schedule/Schedule-type';
+import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {Schedule} from '../../../data/schedule/Schedule-type';
 
 type Props = {
-  scheduleList: Array<Schedule>;
-  navigation: Navigation;
+  scheduleList: Array<Schedule>,
+  navigation: Navigation,
   time: {
-    hour: string;
-    minute: string;
-    period: string;
-  };
-  showBottomBorder?: boolean;
+    hour: string,
+    minute: string,
+    period: string,
+  },
+  showBottomBorder?: boolean,
 };
 
 export default function HourListItem(props: Props) {

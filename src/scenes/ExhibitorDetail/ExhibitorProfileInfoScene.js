@@ -1,12 +1,12 @@
 // @flow
 
 import React from 'react';
-import {View, Text} from 'components/core-components';
+import {View, Text} from '../../components/core-components';
 import styles from './ExhibitorProfileInfoScene-style';
-import type {Exhibitor} from 'data/exhibitor/Exhibitor-type';
+import type {Exhibitor} from '../../data/exhibitor/Exhibitor-type';
 
 type Props = {
-  exhibitor: Exhibitor;
+  exhibitor: Exhibitor,
 };
 
 export default function ExhibitorProfileInfoScene(props: Props) {

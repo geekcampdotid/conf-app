@@ -6,49 +6,46 @@ import {connect} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 
-import {View, Text, ScrollView} from 'components/core-components';
+import {View, Text, ScrollView} from '../../components/core-components';
 import ScheduleDetailComponent from './ScheduleDetailComponent';
 
 import styles from './ScheduleDetailScene-styles';
-import {VIEW_SHADOW} from 'constants/genericStyle';
-import {THEME_COLOR, GREY} from 'constants/colors';
+import {VIEW_SHADOW} from '../../constants/genericStyle';
+import {themeColors} from '../../constants/colors';
 
-import type {Schedule} from 'data/schedule/Schedule-type';
-import type {Presenter} from 'data/presenter/Presenter-type';
-import type {RootState} from 'types/RootState';
-import type {Dispatch} from 'types/Dispatch';
-import type {NavigateFunction} from 'data/navigation/Navigation-type';
+import type {Schedule} from '../../data/schedule/Schedule-type';
+import type {Presenter} from '../../data/presenter/Presenter-type';
+import type {RootState, Dispatch} from '../../types';
+import type {NavigateFunction} from '../../data/navigation/Navigation-type';
 
 type Navigation = {
-  navigate: NavigateFunction;
+  navigate: NavigateFunction,
   state: {
     params: {
-      schedule?: Schedule;
-    };
-  };
+      schedule?: Schedule,
+    },
+  },
 };
 
 type Props = {
-  navigation: Navigation;
-  presenterList: Map<string, Presenter>;
-  bookmarkList: Array<string>;
-  onBookmarkSaved: (scheduleID: string) => void;
-  onBookmarkRemoved: (scheduleID: string) => void;
+  navigation: Navigation,
+  presenterList: Map<string, Presenter>,
+  bookmarkList: Array<string>,
+  onBookmarkSaved: (scheduleID: string) => void,
+  onBookmarkRemoved: (scheduleID: string) => void,
   showSnackBar: (
     textMessage: string,
     actionText: string,
-    actionHandler: Function
-  ) => void;
+    actionHandler: Function,
+  ) => void,
 };
 
 type State = {
-  bookmarkLayout: Object;
+  bookmarkLayout: Object,
 };
 
-export class ScheduleDetailScene extends Component {
-  props: Props;
-  state: State;
-  _actionButton: Object;
+export class ScheduleDetailScene extends Component<Props, State> {
+  _actionButton: ?Object;
   bookmarkAnimationInterval: number;
   _isBookmarked: boolean;
 
@@ -117,12 +114,11 @@ export class ScheduleDetailScene extends Component {
                   opacity: 1,
                   backgroundColor: 'transparent',
                 },
-              })}
+              })
+            }
           >
             <View style={styles.section}>
-              <Text style={styles.title}>
-                {schedule.talkTitle}
-              </Text>
+              <Text style={styles.title}>{schedule.talkTitle}</Text>
             </View>
             <View style={[styles.section, {paddingBottom: 15}]}>
               <Text>{schedule.description}</Text>
@@ -149,14 +145,18 @@ export class ScheduleDetailScene extends Component {
                 name="bookmark"
                 raised
                 reverse
-                color={this._isBookmarked ? GREY : THEME_COLOR}
+                color={
+                  this._isBookmarked
+                    ? themeColors.UNBOOKMARK_COLOR
+                    : themeColors.BOOKMARK_COLOR
+                }
                 size={18}
                 onPress={() =>
-                  schedule && this._onBookmarkButtonPressed(schedule.id)}
+                  schedule && this._onBookmarkButtonPressed(schedule.id)
+                }
               />
             </Animatable.View>
           </View>
-
         </ScrollView>
       </View>
     );
@@ -168,7 +168,7 @@ export class ScheduleDetailScene extends Component {
 
   _setActionButtonAnimationInterval() {
     return setInterval(() => {
-      this._actionButton.pulse();
+      this._actionButton && this._actionButton.pulse();
     }, 3000);
   }
 
@@ -177,15 +177,15 @@ export class ScheduleDetailScene extends Component {
     if (this._isBookmarked) {
       onBookmarkRemoved(scheduleID);
       showSnackBar('Bookmark removed', 'Undo', () =>
-        onBookmarkSaved(scheduleID)
+        onBookmarkSaved(scheduleID),
       );
     } else {
       onBookmarkSaved(scheduleID);
       showSnackBar('Bookmark added', 'Undo', () =>
-        onBookmarkRemoved(scheduleID)
+        onBookmarkRemoved(scheduleID),
       );
     }
-    this._actionButton.bounceIn();
+    this._actionButton && this._actionButton.bounceIn();
   }
 }
 
@@ -201,7 +201,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
     showSnackBar: (
       textMessage: string,
       actionText: string,
-      actionHandler: Function
+      actionHandler: Function,
     ) => {
       dispatch({
         type: 'SHOW_SNACKBAR_REQUESTED',
@@ -228,5 +228,5 @@ function mapDispatchToProps(dispatch: Dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  ScheduleDetailScene
+  ScheduleDetailScene,
 );

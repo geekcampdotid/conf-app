@@ -3,26 +3,26 @@
 import React from 'react';
 import {Icon, ListItem} from 'react-native-elements';
 
-import {View, Text} from 'components/core-components';
-import {StageLabel} from 'components/components';
+import {View, Text} from '../../components/core-components';
+import {StageLabel} from '../../components/components';
 
-import formatDateTime from 'helpers/formatDateTime';
+import formatDateTime from '../../helpers/formatDateTime';
 
 import styles from './ScheduleDetailComponent-styles';
 
-import {DARK_GREY} from 'constants/colors';
-import DEFAULT_AVATAR from 'assets/images/default-profile-pic.png';
+import {baseColors} from '../../constants/colors';
+import DEFAULT_AVATAR from '../../assets/images/default-profile-pic.png';
 
-import type {Presenter} from 'data/presenter/Presenter-type';
-import type {StageName} from 'data/stage/Stage-type';
-import type {NavigateFunction} from 'data/navigation/Navigation-type';
+import type {Presenter} from '../../data/presenter/Presenter-type';
+import type {StageName} from '../../data/stage/Stage-type';
+import type {NavigateFunction} from '../../data/navigation/Navigation-type';
 
 type Props = {
-  time: string;
-  stage: StageName;
-  presenters: Array<string>;
-  presenterList: Map<string, Presenter>;
-  navigate: NavigateFunction;
+  time: string,
+  stage: StageName,
+  presenters: Array<string>,
+  presenterList: Map<string, Presenter>,
+  navigate: NavigateFunction,
 };
 
 export default function ScheduleDetailComponent(props: Props) {
@@ -35,7 +35,7 @@ export default function ScheduleDetailComponent(props: Props) {
             <Icon
               name="date-range"
               iconStyle={styles.scheduleDetailIcon}
-              color={DARK_GREY}
+              color={baseColors.DARK_GREY}
             />
             <Text>Time</Text>
           </View>
@@ -51,7 +51,7 @@ export default function ScheduleDetailComponent(props: Props) {
             <Icon
               name="room"
               iconStyle={styles.scheduleDetailIcon}
-              color={DARK_GREY}
+              color={baseColors.DARK_GREY}
             />
             <Text>Place</Text>
           </View>
@@ -72,7 +72,7 @@ export default function ScheduleDetailComponent(props: Props) {
             <Icon
               name="people"
               iconStyle={styles.scheduleDetailIcon}
-              color={DARK_GREY}
+              color={baseColors.DARK_GREY}
             />
             <Text>Speakers</Text>
           </View>
@@ -102,7 +102,8 @@ export default function ScheduleDetailComponent(props: Props) {
                 onPress={() =>
                   navigate('PresenterDetailScene', {
                     presenter: presenterDetail,
-                  })}
+                  })
+                }
               />
             );
           })}

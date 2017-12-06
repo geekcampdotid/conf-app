@@ -4,28 +4,28 @@ import autobind from 'class-autobind';
 import {FlatList} from 'react-native';
 import {List, ListItem} from 'react-native-elements';
 
-import {DismissKeyboardView} from 'components/core-components';
-import {NoItemFound} from 'components/components';
+import {DismissKeyboardView} from '../../../components/core-components';
+import {NoItemFound} from '../../../components/components';
 
 import styles from './ListView-style';
 
-import type {Exhibitor} from 'data/exhibitor/Exhibitor-type';
-import type {Navigation} from 'data/navigation/Navigation-type';
+import type {Exhibitor} from '../../../data/exhibitor/Exhibitor-type';
+import type {Navigation} from '../../../data/navigation/Navigation-type';
 
-import DEFAULT_AVATAR from 'assets/images/default-company-avatar.png';
+import DEFAULT_AVATAR from '../../../assets/images/default-company-avatar.png';
 
 type Props = {
-  navigation: Navigation;
-  exhibitorList: Map<string, Exhibitor>;
-  searchValue: string;
+  navigation: Navigation,
+  exhibitorList: Map<string, Exhibitor>,
+  searchValue: string,
 };
 
 type ExhibitorListItem = {
-  item: Exhibitor;
-  index: number;
+  item: Exhibitor,
+  index: number,
 };
 
-export default class PresenterListView extends Component {
+export default class PresenterListView extends Component<Props, void> {
   props: Props;
 
   constructor() {

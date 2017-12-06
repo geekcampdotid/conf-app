@@ -4,21 +4,5 @@
     "development": {
       "plugins": ["transform-react-jsx-source"]
     }
-  },
-  "plugins": [
-    ["module-resolver", {
-      "root": ["./src"],
-      "alias": {
-        "assets": "./assets",
-        "components": "./src/components",
-        "constants": "./src/constants",
-        "data": "./src/data",
-        "fixtures": "./src/fixtures",
-        "helpers": "./src/helpers",
-        "routes": "./src/routes",
-        "scenes": "./src/scenes",
-        "types": "./src/types"
-      }
-    }]
-  ]
+  }
 }

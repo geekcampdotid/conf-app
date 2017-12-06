@@ -8,25 +8,25 @@ import {List, ButtonGroup} from 'react-native-elements';
 
 import styles, {CONTAINER_BORDER_RADIUS} from './ScheduleScene-style';
 import HourListItem from './HourListItem';
-import formatDateTime, {getTimeObject} from 'helpers/formatDateTime';
+import formatDateTime, {getTimeObject} from '../../../helpers/formatDateTime';
 
-import {getScheduleHours} from 'helpers/scheduleFilter';
-import {View} from 'components/core-components';
-import {NoItemFound} from 'components/components';
-import {THEME_COLOR} from 'constants/colors';
+import {getScheduleHours} from '../../../helpers/scheduleFilter';
+import {View} from '../../../components/core-components';
+import {NoItemFound} from '../../../components/components';
+import {THEME_COLOR} from '../../../constants/colors';
 
-import type {Schedule} from 'data/schedule/Schedule-type';
-import type {Navigation} from 'data/navigation/Navigation-type';
-import type {RootState} from 'types/RootState';
+import type {Schedule} from '../../../data/schedule/Schedule-type';
+import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {RootState} from '../../../types';
 
 type Props = {
-  scheduleList: Map<string, Schedule>;
-  navigation: Navigation;
+  scheduleList: Map<string, Schedule>,
+  navigation: Navigation,
 };
 
 type State = {
-  selectedTabIndex: number;
-  selectedStageFilter: string;
+  selectedTabIndex: number,
+  selectedStageFilter: string,
 };
 
 const NO_SCHEDULE_MESSAGE = 'No schedule available';
@@ -37,10 +37,8 @@ const ALLSTAGE = 'All Stages';
 const TAB_MENU = [ALLSTAGE, STAGE1, STAGE2];
 const DEFAULT_SELECTED_TAB_INDEX = 0;
 
-export class ScheduleScene extends Component {
-  state: State;
-  props: Props;
-  _flatList: Object;
+export class ScheduleScene extends Component<Props, State> {
+  _flatList: ?Object;
   static navigationOptions = {
     title: 'Schedule',
   };
@@ -90,37 +88,37 @@ export class ScheduleScene extends Component {
           />
         </View>
         <View style={styles.listContainer}>
-          {data.length > 0
-            ? <List containerStyle={styles.scheduleContainer}>
-                <FlatList
-                  ref={(flatList) => {
-                    this._flatList = flatList;
-                  }}
-                  showsVerticalScrollIndicator={false}
-                  data={data}
-                  renderItem={({item}) => {
-                    let scheduleListPerTime = Array.from(
-                      filteredScheduleList.values()
-                    ).filter((schedule) => {
-                      return (
-                        formatDateTime(schedule.dateString, 'DATE_TIME') ===
-                        formatDateTime(item, 'DATE_TIME')
-                      );
-                    });
+          {data.length > 0 ? (
+            <List containerStyle={styles.scheduleContainer}>
+              <FlatList
+                ref={(flatList) => (this._flatList = flatList)}
+                showsVerticalScrollIndicator={false}
+                data={data}
+                renderItem={({item}) => {
+                  let scheduleListPerTime = Array.from(
+                    filteredScheduleList.values(),
+                  ).filter((schedule) => {
                     return (
-                      <HourListItem
-                        scheduleList={scheduleListPerTime}
-                        time={getTimeObject(item)}
-                        navigation={navigation}
-                      />
+                      formatDateTime(schedule.dateString, 'DATE_TIME') ===
+                      formatDateTime(item, 'DATE_TIME')
                     );
-                  }}
-                  keyExtractor={(item) => item}
-                />
-              </List>
-            : <View style={styles.scheduleContainer}>
-                <NoItemFound text={NO_SCHEDULE_MESSAGE} />
-              </View>}
+                  });
+                  return (
+                    <HourListItem
+                      scheduleList={scheduleListPerTime}
+                      time={getTimeObject(item)}
+                      navigation={navigation}
+                    />
+                  );
+                }}
+                keyExtractor={(item) => item}
+              />
+            </List>
+          ) : (
+            <View style={styles.scheduleContainer}>
+              <NoItemFound text={NO_SCHEDULE_MESSAGE} />
+            </View>
+          )}
         </View>
       </View>
     );
@@ -129,12 +127,16 @@ export class ScheduleScene extends Component {
   _onTabPress(newIndex: number) {
     let {selectedTabIndex} = this.state;
     if (selectedTabIndex !== newIndex) {
-      this.setState({
-        selectedTabIndex: newIndex,
-        selectedStageFilter: TAB_MENU[newIndex],
-      }, () => {
-        this._flatList.scrollToOffset({x: 0, y: 0, animated: false});
-      });
+      this.setState(
+        {
+          selectedTabIndex: newIndex,
+          selectedStageFilter: TAB_MENU[newIndex],
+        },
+        () => {
+          this._flatList &&
+            this._flatList.scrollToOffset({x: 0, y: 0, animated: false});
+        },
+      );
     }
   }
 }

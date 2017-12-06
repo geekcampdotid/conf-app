@@ -1,27 +1,27 @@
 // @flow
 
 import React from 'react';
-import {View, Text} from 'components/core-components';
-import {ResponsiveImage} from 'components/components';
+import {View, Text} from '../../components/core-components';
+import {ResponsiveImage} from '../../components/components';
 
-import {FONT_BOLD} from 'constants/text';
-import {THEME_COLOR} from 'constants/colors';
+import {baseTextStyle} from '../../constants/text';
+import {themeColors} from '../../constants/colors';
 
-import CODEPOLITAN from 'assets/images/communityPartners/codepolitan.png';
-import ID_RUBY from 'assets/images/communityPartners/id-ruby.png';
-import SARCCOM from 'assets/images/communityPartners/sarccom.png';
-import BNCC from 'assets/images/communityPartners/bncc.png';
+import CODEPOLITAN from '../../assets/images/communityPartners/codepolitan.png';
+import ID_RUBY from '../../assets/images/communityPartners/id-ruby.png';
+import SARCCOM from '../../assets/images/communityPartners/sarccom.png';
+import BNCC from '../../assets/images/communityPartners/bncc.png';
 
 export default function CommunityPartners() {
   return (
     <View>
       <Text
         style={{
-          fontWeight: FONT_BOLD,
+          fontWeight: baseTextStyle.FONT_BOLD,
           textAlign: 'center',
           fontSize: 20,
           paddingVertical: 10,
-          color: THEME_COLOR,
+          color: themeColors.THEME_COLOR,
         }}
       >
         Community Partners

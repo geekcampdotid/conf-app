@@ -1,7 +1,7 @@
 // @flow
 
 import {StyleSheet} from 'react-native';
-import {GREY} from 'constants/colors';
+import {GREY} from '../../../constants/colors';
 
 const styles = StyleSheet.create({
   listContainer: {

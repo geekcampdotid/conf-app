@@ -6,10 +6,10 @@ import {View, Text} from './core-components';
 import {LoadingIndicator} from './components';
 
 type Props = {
-  style?: StyleSheetTypes;
-  isShowing: boolean;
-  downloadProgress: number;
-  totalDownloadSize: number;
+  style?: StyleSheetTypes,
+  isShowing: boolean,
+  downloadProgress: number,
+  totalDownloadSize: number,
 };
 
 const styles = StyleSheet.create({
@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class DownloadIndicator extends Component {
-  props: Props;
+export default class DownloadIndicator extends Component<Props, void> {
   constructor() {
     super(...arguments);
   }
@@ -62,8 +61,7 @@ export default class DownloadIndicator extends Component {
             <LoadingIndicator visible={true} />
             <View style={styles.textContainer}>
               <Text style={styles.text}>
-                Downloading updates...
-                {' '}
+                Downloading updates...{' '}
                 {Math.round(currentDownloaded / totalDownload * 100)} %
               </Text>
             </View>

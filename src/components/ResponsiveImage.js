@@ -15,24 +15,22 @@ import {Text} from './core-components';
 import {THEME_COLOR} from '../constants/colors';
 
 type Props = {
-  source: number | {uri: string; width?: number; height?: number};
-  initialRatio?: number;
-  style?: StyleSheetTypes;
-  animated?: boolean;
-  animatedStyle?: StyleSheetTypes;
-  onPress?: () => void;
-  pinchToZoom?: boolean;
+  source: number | {uri: string, width?: number, height?: number},
+  initialRatio?: number,
+  style?: StyleSheetTypes,
+  animated?: boolean,
+  animatedStyle?: StyleSheetTypes,
+  onPress?: () => void,
+  pinchToZoom?: boolean,
 };
 
 type State = {
-  isLoading: boolean;
-  ratio: ?number;
-  error: ?string;
+  isLoading: boolean,
+  ratio: ?number,
+  error: ?string,
 };
 
-export default class ResponsiveImage extends Component {
-  props: Props;
-  state: State;
+export default class ResponsiveImage extends Component<Props, State> {
   _pendingGetSize: ?{cancel: () => void};
 
   constructor() {
@@ -59,7 +57,7 @@ export default class ResponsiveImage extends Component {
       this._pendingGetSize = getImageSize(
         source,
         this._onLoadSuccess,
-        this._onLoadFail
+        this._onLoadFail,
       );
     }
 
@@ -133,11 +131,7 @@ export default class ResponsiveImage extends Component {
       </View>
     );
     if (onPress) {
-      return (
-        <TouchableOpacity onPress={onPress}>
-          {component}
-        </TouchableOpacity>
-      );
+      return <TouchableOpacity onPress={onPress}>{component}</TouchableOpacity>;
     } else {
       return component;
     }
@@ -163,7 +157,7 @@ export default class ResponsiveImage extends Component {
 export function getImageSize(
   source: {uri: string},
   onSuccess: Function,
-  onFail: Function
+  onFail: Function,
 ) {
   let isCancelled = false;
   Image.getSize(
@@ -177,7 +171,7 @@ export function getImageSize(
       if (!isCancelled) {
         onFail(...args);
       }
-    }
+    },
   );
   return {
     cancel: () => {

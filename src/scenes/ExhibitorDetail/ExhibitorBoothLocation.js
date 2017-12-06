@@ -3,13 +3,13 @@
 import React from 'react';
 import * as Animatable from 'react-native-animatable';
 
-import {ResponsiveImage} from 'components/components';
-import {View} from 'components/core-components';
+import {ResponsiveImage} from '../../components/components';
+import {View} from '../../components/core-components';
 
-import {SCALE_RATIO} from 'constants/layout';
+import {SCALE_RATIO} from '../../constants/layout';
 
 import styles from './ExhibitorProfileInfoScene-style';
-import boothLocation from 'assets/images/conference-map.png';
+import boothLocation from '../../assets/images/conference-map.png';
 
 export default function ExhibitorBoothLocation() {
   return (
@@ -30,7 +30,9 @@ export default function ExhibitorBoothLocation() {
               height: 50,
             }}
           >
-            <ResponsiveImage source={require('assets/images/left-arrow.png')} />
+            <ResponsiveImage
+              source={require('../../assets/images/left-arrow.png')}
+            />
           </Animatable.View>
         </ResponsiveImage>
       </View>

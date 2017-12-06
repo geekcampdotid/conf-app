@@ -2,31 +2,31 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text} from 'components/core-components';
-import {ResponsiveImage} from 'components/components';
+import {View, Text} from '../../components/core-components';
+import {ResponsiveImage} from '../../components/components';
 import {TouchableOpacity} from 'react-native';
 
 import styles from './SideDrawerContent-style';
-import sidebarLogo from 'assets/images/geekcamp-logo.png';
-import kodefoxLogo from 'assets/images/kodefox-logo.png';
+import sidebarLogo from '../../assets/images/geekcamp-logo.png';
+import kodefoxLogo from '../../assets/images/kodefox-logo.png';
 import {List, ListItem} from 'react-native-elements';
-import {DARK_GREY} from 'constants/colors';
-import {SCALE_RATIO} from 'constants/layout';
+import {DARK_GREY} from '../../constants/colors';
+import {SCALE_RATIO} from '../../constants/layout';
 
-import type {NavigationObject} from 'data/navigation/Navigation-type';
-import type {Dispatch} from 'types/Dispatch';
+import type {NavigationObject} from '../../data/navigation/Navigation-type';
+import type {Dispatch} from '../../types';
 
 type Props = {
-  isOpened: boolean;
-  navigation: NavigationObject;
-  closeDrawer: () => void;
+  isOpened: boolean,
+  navigation: NavigationObject,
+  closeDrawer: () => void,
 };
 
 type MenuItem = {
-  title: string;
-  icon: string;
-  iconType?: string;
-  screen: string;
+  title: string,
+  icon: string,
+  iconType?: string,
+  screen: string,
 };
 
 const list: Array<MenuItem> = [

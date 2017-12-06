@@ -4,27 +4,26 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {FlatList} from 'react-native';
 
-import {View} from 'components/core-components';
+import {View} from '../../components/core-components';
 import HourListItem from '../navbar/Schedule/HourListItem';
 
-import {getScheduleHours} from 'helpers/scheduleFilter';
-import formatDateTime, {getTimeObject} from 'helpers/formatDateTime';
+import {getScheduleHours} from '../../helpers/scheduleFilter';
+import formatDateTime, {getTimeObject} from '../../helpers/formatDateTime';
 
 import styles from './SessionInfoScene-style';
 
-import type {Presenter} from 'data/presenter/Presenter-type';
-import type {Schedule} from 'data/schedule/Schedule-type';
-import type {Navigation} from 'data/navigation/Navigation-type';
-import type {RootState} from 'types/RootState';
+import type {Presenter} from '../../data/presenter/Presenter-type';
+import type {Schedule} from '../../data/schedule/Schedule-type';
+import type {Navigation} from '../../data/navigation/Navigation-type';
+import type {RootState} from '../../types';
 
 type Props = {
-  presenter: Presenter;
-  navigation: Navigation;
-  scheduleList: Map<string, Schedule>;
+  presenter: Presenter,
+  navigation: Navigation,
+  scheduleList: Map<string, Schedule>,
 };
 
-export class SessionInfoScene extends Component {
-  props: Props;
+export class SessionInfoScene extends Component<Props, void> {
   shownDate: string;
 
   render() {
@@ -46,7 +45,7 @@ export class SessionInfoScene extends Component {
           data={data}
           renderItem={({item}) => {
             let filteredPresenterSchedule = Array.from(
-              presenterSchedules.values()
+              presenterSchedules.values(),
             ).filter((schedule) => {
               return (
                 formatDateTime(schedule.dateString, 'DATE_TIME') ===

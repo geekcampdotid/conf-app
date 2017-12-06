@@ -2,8 +2,8 @@
 
 import {StyleSheet, Platform} from 'react-native';
 
-import {FONT_BOLD} from 'constants/text';
-import {GREY, SHADOW_GREY} from 'constants/colors';
+import {FONT_BOLD} from '../../../constants/text';
+import {GREY, SHADOW_GREY} from '../../../constants/colors';
 
 const styles = StyleSheet.create({
   root: {

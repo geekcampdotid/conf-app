@@ -9,29 +9,28 @@ import NavbarIcon from './NavbarIcon';
 import type {
   NavigationRoute,
   NavigationState,
-} from 'data/navigation/Navigation-type';
-import {SCALE_RATIO} from 'constants/layout';
+} from '../../data/navigation/Navigation-type';
+import {SCALE_RATIO} from '../../constants/layout';
 
 type TabScene = {
-  route: NavigationRoute;
-  focused: boolean;
-  index: number;
+  route: NavigationRoute,
+  focused: boolean,
+  index: number,
 };
 
 type Props = {
-  activeTintColor: string;
-  inactiveTintColor: string;
-  navigationState: NavigationState;
-  jumpToIndex: (index: number) => void;
-  renderIcon: (scene: TabScene) => React.Element<*>;
-  style: StyleSheetTypes;
+  activeTintColor: string,
+  inactiveTintColor: string,
+  navigationState: NavigationState,
+  jumpToIndex: (index: number) => void,
+  renderIcon: (scene: TabScene) => React$Element<*>,
+  style: StyleSheetTypes,
 };
 
 const SELECTED_MENU_ICON_SIZE = 1.3;
 const DEFAULT_ICON_SIZE = SCALE_RATIO * 24;
 
-export class Navbar extends Component {
-  props: Props;
+export class Navbar extends Component<Props, void> {
   selectedMenuScale: Animated.Value;
 
   constructor() {

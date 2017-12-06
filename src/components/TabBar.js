@@ -2,42 +2,35 @@
 
 import React, {Component} from 'react';
 import autobind from 'class-autobind';
-import {
-  Animated,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
+import {Animated, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 
 import {View, Text} from './core-components';
 
-import getScreenSize from 'helpers/getScreenSize'; // here we need to calculate maximum width of each menu according to screen size
-import {THEME_COLOR, TEXT_COLOR} from 'constants/colors';
-import {SCALE_RATIO} from 'constants/layout';
+import getScreenSize from '../helpers/getScreenSize'; // here we need to calculate maximum width of each menu according to screen size
+import {THEME_COLOR, TEXT_COLOR} from '../constants/colors';
+import {SCALE_RATIO} from '../constants/layout';
 
 type TabScene = {
-  tabBarTitle: string;
-  scene: (props: Object) => React$Element<*>;
-  sceneProps?: Object;
+  tabBarTitle: string,
+  scene: (props: Object) => React$Element<*>,
+  sceneProps?: Object,
 };
 
 type Props = {
-  tabMenu: {[tabName: string]: TabScene};
-  selectedColor?: string;
-  style?: StyleSheetTypes;
+  tabMenu: {[tabName: string]: TabScene},
+  selectedColor?: string,
+  style?: StyleSheetTypes,
 };
 
 type State = {
-  activeTab: string;
+  activeTab: string,
 };
 
 // TODO: calculate dynamically
 const {width} = getScreenSize();
 const DEFAULT_ANIMATION_DURATION = 250;
 
-export default class TabBar extends Component {
-  props: Props;
-  state: State;
+export default class TabBar extends Component<Props, State> {
   maximumBorderWidth: number;
   selectedMenuBorder: Animated.Value;
 
@@ -56,9 +49,7 @@ export default class TabBar extends Component {
     let {style} = this.props;
     return (
       <View style={style}>
-        <View style={styles.tabMenuContainer}>
-          {this._renderMenu()}
-        </View>
+        <View style={styles.tabMenuContainer}>{this._renderMenu()}</View>
         {this._renderScene()}
       </View>
     );
@@ -77,17 +68,19 @@ export default class TabBar extends Component {
           <View style={styles.tabMenuTextContainer}>
             <Text style={styles.tabMenuText}>{title}</Text>
           </View>
-          {activeTab === tabName
-            ? <Animated.View
-                style={[
-                  styles.selectedBorder,
-                  {
-                    width: this.selectedMenuBorder,
-                    backgroundColor: selectedColor || THEME_COLOR,
-                  },
-                ]}
-              />
-            : <View style={styles.selectedBorder} />}
+          {activeTab === tabName ? (
+            <Animated.View
+              style={[
+                styles.selectedBorder,
+                {
+                  width: this.selectedMenuBorder,
+                  backgroundColor: selectedColor || THEME_COLOR,
+                },
+              ]}
+            />
+          ) : (
+            <View style={styles.selectedBorder} />
+          )}
         </TouchableOpacity>
       );
     });

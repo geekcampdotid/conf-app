@@ -6,13 +6,13 @@ import {Icon} from 'react-native-elements';
 
 import {View, Text} from './core-components';
 
-import {GREY} from 'constants/colors';
-import {DEFAULT_FONT_SIZE} from 'constants/text';
+import {GREY} from '../constants/colors';
+import {DEFAULT_FONT_SIZE} from '../constants/text';
 
 type Props = {
-  text: string;
-  iconName?: string;
-  iconType?: string;
+  text: string,
+  iconName?: string,
+  iconType?: string,
 };
 
 const DEFAULT_ICON = {

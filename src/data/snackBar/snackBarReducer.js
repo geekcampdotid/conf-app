@@ -9,7 +9,7 @@ const initialState = {
 
 export default function snackBarReducer(
   snackBarState: SnackBar = initialState,
-  action: SnackBarAction
+  action: SnackBarAction,
 ) {
   switch (action.type) {
     case 'SHOW_SNACKBAR_REQUESTED': {

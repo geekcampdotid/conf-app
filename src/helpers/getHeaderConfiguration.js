@@ -3,17 +3,17 @@ import React from 'react';
 import {View} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-import {SCALE_RATIO} from 'constants/layout';
+import {SCALE_RATIO} from '../constants/layout';
 
-import type {NavigationState} from 'data/navigation/Navigation-type';
-import type {Dispatch} from 'types/Dispatch';
+import type {NavigationState} from '../data/navigation/Navigation-type';
+import type {Dispatch} from '../types';
 
 type NavigationArgs = {
-  dispatch: Dispatch;
-  state: NavigationState;
-  goBack: () => void;
-  styles: StyleSheetTypes;
-  iconColor: string;
+  dispatch: Dispatch,
+  state: NavigationState,
+  goBack: () => void,
+  styles: StyleSheetTypes,
+  iconColor: string,
 };
 
 const ICON_LEFT_SIZE = SCALE_RATIO * 24;
