@@ -1,23 +1,11 @@
 // @flow
-import MainRouteComponent from '../../routes/components/MainRouteComponent';
-import {NavigationActions} from 'react-navigation';
+import MainRouter from '../../routes/main/MainRouter';
 
 import type {NavigationState, NavigationAction} from './Navigation-type';
 
-const initialNavState = MainRouteComponent.router.getStateForAction(
-  NavigationActions.reset({
-    index: 0,
-    actions: [
-      NavigationActions.navigate({
-        routeName: 'Main',
-      }),
-    ],
-  }),
-);
-
 export default function navigationReducer(
-  navigationState: NavigationState = initialNavState,
+  navigationState: NavigationState,
   action: NavigationAction,
 ) {
-  return MainRouteComponent.router.getStateForAction(action, navigationState);
+  return MainRouter.router.getStateForAction(action, navigationState);
 }

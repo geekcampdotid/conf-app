@@ -1,7 +1,6 @@
 // @flow
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import navigationReducer from './data/navigation/navigationReducer';
-import sideDrawerReducer from './data/sideDrawer/sideDrawerReducer';
 import presenterReducer from './data/presenter/presenterReducer';
 import scheduleReducer from './data/schedule/scheduleReducer';
 import exhibitorReducer from './data/exhibitor/exhibitorReducer';
@@ -13,7 +12,6 @@ import snackBarMiddleware from './data/snackBar/snackBarMiddleware';
 
 let app = combineReducers({
   navigation: navigationReducer,
-  sideDrawer: sideDrawerReducer,
   presenterList: presenterReducer,
   schedule: scheduleReducer,
   exhibitorList: exhibitorReducer,

@@ -4,6 +4,7 @@ import type {Dispatch} from '../../types';
 
 export type NavigationState = {
   index: number,
+  key: string,
   routes: Array<NavigationRoute | (NavigationRoute & NavigationState)>,
 };
 

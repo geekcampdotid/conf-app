@@ -4,10 +4,6 @@ import type {
   NavigationState,
   NavigationAction,
 } from './data/navigation/Navigation-type';
-import type {
-  SideDrawerState,
-  SideDrawerAction,
-} from './data/sideDrawer/SideDrawer-type';
 import type {PresenterState, Presenter} from './data/presenter/Presenter-type';
 import type {
   ScheduleState,
@@ -38,14 +34,12 @@ export type InitialDataAction = {
 export type Action =
   | InitialDataAction
   | NavigationAction
-  | SideDrawerAction
   | ScheduleAction
   | SnackBarAction
   | PinchToZoomImageAction;
 
 export type RootState = {
   navigation: NavigationState,
-  sideDrawer: SideDrawerState,
   presenterList: PresenterState,
   schedule: ScheduleState,
   exhibitorList: ExhibitorState,

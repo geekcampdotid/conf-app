@@ -49,11 +49,9 @@ export class ScheduleDetailScene extends Component<Props, State> {
   bookmarkAnimationInterval: number;
   _isBookmarked: boolean;
 
-  static navigationOptions = {
-    title: ({state}) => {
-      return state.params.schedule.talkTitle;
-    },
-  };
+  static navigationOptions = ({navigation}) => ({
+    title: `${navigation.state.params.schedule.talkTitle}`,
+  });
 
   constructor() {
     super(...arguments);

@@ -50,8 +50,6 @@ export default function ExhibitorDetailScene(props: Props) {
   );
 }
 
-ExhibitorDetailScene.navigationOptions = {
-  title: ({state}) => {
-    return state.params.exhibitor.name;
-  },
-};
+ExhibitorDetailScene.navigationOptions = ({navigation}) => ({
+  title: `${navigation.state.params.exhibitor.name}`,
+});

@@ -8,13 +8,13 @@ import {View} from './components/core';
 import {PinchToZoomImageModal} from './components';
 
 import {SnackBar} from './components';
-import MainRoute from './routes/MainRoute';
+import Router from './routes/Router';
 import populateInitialData from './helpers/populateInitialData';
 import handleBackPressAndroid from './helpers/handleBackPressAndroid';
 import createDataStore from './createDataStore';
 
 type State = {
-  isLoaded: boolean,
+  isReady: boolean,
 };
 
 const store = createDataStore();
@@ -25,7 +25,7 @@ export default class App extends Component<void, State> {
     autobind(this);
 
     this.state = {
-      isLoaded: false,
+      isReady: false,
     };
   }
 
@@ -42,13 +42,13 @@ export default class App extends Component<void, State> {
   }
 
   render() {
-    let {isLoaded} = this.state;
-    return !isLoaded ? (
+    let {isReady} = this.state;
+    return !isReady ? (
       <AppLoading />
     ) : (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <MainRoute />
+          <Router />
           <SnackBar />
           <PinchToZoomImageModal />
         </View>
@@ -58,7 +58,7 @@ export default class App extends Component<void, State> {
 
   async _init() {
     await populateInitialData(store.dispatch);
-    this.setState({isLoaded: true});
+    this.setState({isReady: true});
   }
 
   _onBackPress() {

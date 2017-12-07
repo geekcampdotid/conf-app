@@ -12,3 +12,4 @@ if (Platform.OS === 'ios') {
 }
 
 export const SCALE_RATIO = scaleRatio;
+export const HIT_SLOP = {top: 25, bottom: 25, left: 25, right: 25};

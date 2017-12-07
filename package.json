@@ -24,7 +24,6 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-23.0.0.tar.gz",
     "react-native-animatable": "^1.2.4",
     "react-native-card-carousel": "^1.0.0",
-    "react-native-drawer": "^2.5.0",
     "react-native-elements": "^0.18.4",
     "react-native-image-pan-zoom": "^2.0.9",
     "react-native-indicators": "^0.10.0",

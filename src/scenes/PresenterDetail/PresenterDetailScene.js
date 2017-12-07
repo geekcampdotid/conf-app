@@ -50,8 +50,6 @@ export default function PresenterDetailScene(props: Props) {
   );
 }
 
-PresenterDetailScene.navigationOptions = {
-  title: ({state}) => {
-    return state.params.presenter.name;
-  },
-};
+PresenterDetailScene.navigationOptions = ({navigation}) => ({
+  title: `${navigation.state.params.presenter.name}`,
+});

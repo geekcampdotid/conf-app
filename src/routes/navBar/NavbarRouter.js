@@ -12,7 +12,7 @@ import ScheduleScene from '../../scenes/navbar/Schedule/ScheduleScene';
 import MapScene from '../../scenes/navbar/Maps/MapScene';
 import BookmarkScheduleScene from '../../scenes/BookmarkSchedule/BookmarkScheduleScene';
 
-// import {INITIAL_SCENE} from '../../constants/navigation';
+import {INITIAL_SCENE} from '../../constants/navigation';
 
 import {
   ACTIVE_ICON_COLOR,
@@ -28,7 +28,7 @@ import {
   ICON_PRESENTER,
 } from '../../constants/icons';
 
-const NavbarRouteComponent = TabNavigator(
+export default TabNavigator(
   {
     HomeScene: {
       screen: HomeScene,
@@ -85,8 +85,6 @@ const NavbarRouteComponent = TabNavigator(
     tabBarPosition: 'bottom',
     swipeEnabled: false,
     animationEnabled: false,
-    initialRouteName: 'HomeScene',
+    initialRouteName: INITIAL_SCENE,
   },
 );
-
-export default NavbarRouteComponent;
