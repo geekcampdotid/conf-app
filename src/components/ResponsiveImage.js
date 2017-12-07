@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {Text} from './core-components';
+import {Text} from './core';
 import {THEME_COLOR} from '../constants/colors';
 
 type Props = {

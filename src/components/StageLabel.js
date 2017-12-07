@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {ColorLabel} from './components';
+import ColorLabel from './ColorLabel';
 
 import {DEFAULT_STAGE_COLOR} from '../constants/colors';
 

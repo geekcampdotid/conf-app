@@ -2,8 +2,8 @@
 
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {ScrollView, View, Text} from '../../components/core-components';
-import {ResponsiveImage} from '../../components/components';
+import {ScrollView, View, Text} from '../../components/core';
+import {ResponsiveImage} from '../../components';
 import kodefoxLogo from '../../assets/images/kodefox-logo.png';
 import openLink from '../../helpers/openLink';
 

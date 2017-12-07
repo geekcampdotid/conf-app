@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {View, Text} from '../../components/core-components';
+import {View, Text} from '../../components/core';
 import styles from './ExhibitorProfileInfoScene-style';
 import type {Exhibitor} from '../../data/exhibitor/Exhibitor-type';
 

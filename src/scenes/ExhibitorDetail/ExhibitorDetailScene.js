@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import {ScrollView} from '../../components/core-components';
-import {TabBar, ExhibitorDetailAvatar} from '../../components/components';
+import {ScrollView} from '../../components/core';
+import {TabBar, ExhibitorDetailAvatar} from '../../components';
 
 import ExhibitorProfileInfoScene from './ExhibitorProfileInfoScene';
 import ExhibitorBoothLocation from './ExhibitorBoothLocation';

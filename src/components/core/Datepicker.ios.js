@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {Text} from '../core-components';
+import {Text} from '../core';
 
 import {TEXT_COLOR} from '../../constants/colors';
 

@@ -3,8 +3,8 @@
 import React from 'react';
 import {Icon, ListItem} from 'react-native-elements';
 
-import {View, Text} from '../../components/core-components';
-import {StageLabel} from '../../components/components';
+import {View, Text} from '../../components/core';
+import {StageLabel} from '../../components';
 
 import formatDateTime from '../../helpers/formatDateTime';
 

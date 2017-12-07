@@ -6,8 +6,8 @@ import {connect} from 'react-redux';
 import {TouchableOpacity, Image} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-import {View, Text, ScrollView} from '../../../components/core-components';
-import {StageLabel, Carousel} from '../../../components/components';
+import {View, Text, ScrollView} from '../../../components/core';
+import {StageLabel, Carousel} from '../../../components';
 import formatDateTime from '../../../helpers/formatDateTime';
 import openLink from '../../../helpers/openLink';
 

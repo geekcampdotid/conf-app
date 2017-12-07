@@ -3,7 +3,7 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 
-import {TabBar, PresenterDetailAvatar} from '../../components/components';
+import {TabBar, PresenterDetailAvatar} from '../../components';
 import PresenterProfileInfoScene from './PresenterProfileInfoScene';
 import SessionInfoScene from './SessionInfoScene';
 

@@ -3,7 +3,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-import {View, Text} from '../../../components/core-components';
+import {View, Text} from '../../../components/core';
 import ScheduleListItem from './ScheduleListItem';
 import {GREY, LIGHT_GREY} from '../../../constants/colors';
 import {

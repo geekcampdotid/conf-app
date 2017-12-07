@@ -5,7 +5,7 @@ import autobind from 'class-autobind';
 import {connect} from 'react-redux';
 import {Icon, ButtonGroup} from 'react-native-elements';
 
-import {View, TextInput} from '../../../components/core-components';
+import {View, TextInput} from '../../../components/core';
 import PresenterListView from './PresenterListView';
 import ExhibitorListView from './ExhibitorListView';
 import {THEME_COLOR} from '../../../constants/colors';

@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Animated, Easing, StyleSheet, TouchableOpacity} from 'react-native';
 
-import {View, Text} from './core-components';
+import {View, Text} from './core';
 
 import {DEFAULT_FONT_SIZE} from '../constants/text';
 

@@ -4,10 +4,10 @@ import autobind from 'class-autobind';
 import {Provider} from 'react-redux';
 import {BackHandler} from 'react-native';
 import {AppLoading} from 'expo';
-import {View} from './components/core-components';
-import {PinchToZoomImageModal} from './components/components';
+import {View} from './components/core';
+import {PinchToZoomImageModal} from './components';
 
-import {SnackBar} from './components/components';
+import {SnackBar} from './components';
 import MainRoute from './routes/MainRoute';
 import populateInitialData from './helpers/populateInitialData';
 import handleBackPressAndroid from './helpers/handleBackPressAndroid';

@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import autobind from 'class-autobind';
 import {TextInput, StyleSheet, Platform} from 'react-native';
-import {View} from '../core-components';
+import {View} from '../core';
 
 import {TRANSPARENT, WHITE} from '../../constants/colors';
 import {DEFAULT_FONT_SIZE} from '../../constants/text';

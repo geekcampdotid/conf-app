@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import autobind from 'class-autobind';
 import {Animated, StyleSheet, TouchableOpacity, Platform} from 'react-native';
 
-import {View, Text} from './core-components';
+import {View, Text} from './core';
 
 import getScreenSize from '../helpers/getScreenSize'; // here we need to calculate maximum width of each menu according to screen size
 import {THEME_COLOR, TEXT_COLOR} from '../constants/colors';

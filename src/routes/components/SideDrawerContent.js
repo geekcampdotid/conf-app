@@ -2,8 +2,8 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text} from '../../components/core-components';
-import {ResponsiveImage} from '../../components/components';
+import {View, Text} from '../../components/core';
+import {ResponsiveImage} from '../../components';
 import {TouchableOpacity} from 'react-native';
 
 import styles from './SideDrawerContent-style';

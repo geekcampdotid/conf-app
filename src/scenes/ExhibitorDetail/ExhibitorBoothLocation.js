@@ -3,8 +3,8 @@
 import React from 'react';
 import * as Animatable from 'react-native-animatable';
 
-import {ResponsiveImage} from '../../components/components';
-import {View} from '../../components/core-components';
+import {ResponsiveImage} from '../../components';
+import {View} from '../../components/core';
 
 import {SCALE_RATIO} from '../../constants/layout';
 

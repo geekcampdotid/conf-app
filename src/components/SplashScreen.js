@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
 import {StatusBar, StyleSheet} from 'react-native';
-import {View, Text} from './core-components';
-import {ResponsiveImage} from './components';
+import {View, Text} from './core';
+import ResponsiveImage from './ResponsiveImage';
 import kodefox from '../assets/images/kodefox-logo-text.png';
 import {FONT_BOLD, SMALL_FONT_SIZE, DEFAULT_FONT_SIZE} from '../constants/text';
 import {THEME_COLOR, STATUS_BAR_COLOR} from '../constants/colors';

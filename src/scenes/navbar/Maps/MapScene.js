@@ -3,7 +3,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {List, ListItem} from 'react-native-elements';
-import {ScrollView, View, Text} from '../../../components/core-components';
+import {ScrollView, View, Text} from '../../../components/core';
 import ResponsiveImage from '../../../components/ResponsiveImage';
 import conferenceMap from '../../../assets/images/conference-map.png';
 

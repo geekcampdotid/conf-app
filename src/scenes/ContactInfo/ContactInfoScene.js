@@ -2,8 +2,8 @@
 
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {View, Text} from '../../components/core-components';
-import {ResponsiveImage} from '../../components/components';
+import {View, Text} from '../../components/core';
+import {ResponsiveImage} from '../../components';
 import sidebarLogo from '../../assets/images/geekcamp-logo.png';
 
 import openLink from '../../helpers/openLink';

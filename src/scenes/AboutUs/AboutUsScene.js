@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import {ScrollView, View, Text} from '../../components/core-components';
-import {ResponsiveImage} from '../../components/components';
+import {ScrollView, View, Text} from '../../components/core';
+import {ResponsiveImage} from '../../components';
 import sidebarLogo from '../../assets/images/geekcamp-logo.png';
 
 import OrganizeBy from './OrganizeBy';

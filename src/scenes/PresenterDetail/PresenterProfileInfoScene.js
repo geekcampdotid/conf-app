@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import {ResponsiveImage} from '../../components/components';
-import {View, Text} from '../../components/core-components';
+import {ResponsiveImage} from '../../components';
+import {View, Text} from '../../components/core';
 
 import type {Presenter} from '../../data/presenter/Presenter-type';
 

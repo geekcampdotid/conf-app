@@ -11,8 +11,8 @@ import HourListItem from './HourListItem';
 import formatDateTime, {getTimeObject} from '../../../helpers/formatDateTime';
 
 import {getScheduleHours} from '../../../helpers/scheduleFilter';
-import {View} from '../../../components/core-components';
-import {NoItemFound} from '../../../components/components';
+import {View} from '../../../components/core';
+import {NoItemFound} from '../../../components';
 import {THEME_COLOR} from '../../../constants/colors';
 
 import type {Schedule} from '../../../data/schedule/Schedule-type';

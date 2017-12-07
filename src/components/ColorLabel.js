@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {View, Text} from './core-components';
+import {View, Text} from './core';
 
 import {FONT_BOLD, DEFAULT_FONT_SIZE} from '../constants/text';
 import {

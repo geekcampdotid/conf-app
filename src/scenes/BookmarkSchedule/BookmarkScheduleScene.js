@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import {FlatList} from 'react-native';
 import {ButtonGroup, List} from 'react-native-elements';
 
-import {View} from '../../components/core-components';
-import {NoItemFound} from '../../components/components';
+import {View} from '../../components/core';
+import {NoItemFound} from '../../components';
 import HourListItem from '../navbar/Schedule/HourListItem';
 import formatDateTime, {getTimeObject} from '../../helpers/formatDateTime';
 import {getScheduleHours} from '../../helpers/scheduleFilter';

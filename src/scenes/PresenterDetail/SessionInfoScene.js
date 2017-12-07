@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {FlatList} from 'react-native';
 
-import {View} from '../../components/core-components';
+import {View} from '../../components/core';
 import HourListItem from '../navbar/Schedule/HourListItem';
 
 import {getScheduleHours} from '../../helpers/scheduleFilter';

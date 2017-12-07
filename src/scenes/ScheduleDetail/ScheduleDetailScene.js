@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {Icon} from 'react-native-elements';
 import * as Animatable from 'react-native-animatable';
 
-import {View, Text, ScrollView} from '../../components/core-components';
+import {View, Text, ScrollView} from '../../components/core';
 import ScheduleDetailComponent from './ScheduleDetailComponent';
 
 import styles from './ScheduleDetailScene-styles';

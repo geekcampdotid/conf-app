@@ -4,7 +4,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 
-import {View, Text} from './core-components';
+import {View, Text} from './core';
 
 import {GREY} from '../constants/colors';
 import {DEFAULT_FONT_SIZE} from '../constants/text';

@@ -4,8 +4,8 @@ import autobind from 'class-autobind';
 import {FlatList} from 'react-native';
 import {List, ListItem} from 'react-native-elements';
 
-import {DismissKeyboardView} from '../../../components/core-components';
-import {NoItemFound} from '../../../components/components';
+import {DismissKeyboardView} from '../../../components/core';
+import {NoItemFound} from '../../../components';
 
 import styles from './ListView-style';
 

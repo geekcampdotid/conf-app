@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react';
-import {View, Text} from '../../components/core-components';
-import {ResponsiveImage} from '../../components/components';
+import {View, Text} from '../../components/core';
+import {ResponsiveImage} from '../../components';
 
 import {FONT_BOLD} from '../../constants/text';
 import {THEME_COLOR} from '../../constants/colors';

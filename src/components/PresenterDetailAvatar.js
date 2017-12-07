@@ -3,7 +3,7 @@
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {LinearGradient} from 'expo';
-import {View, Text} from './core-components';
+import {View, Text} from './core';
 
 import {FONT_BOLD} from '../constants/text';
 

@@ -11,7 +11,7 @@ import {
   WaveIndicator,
 } from 'react-native-indicators';
 import * as Animatable from 'react-native-animatable';
-import {Text, View} from './core-components';
+import {Text, View} from './core';
 
 import {THEME_COLOR} from '../constants/colors';
 

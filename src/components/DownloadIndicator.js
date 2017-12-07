@@ -1,9 +1,9 @@
 // @flow
 import React, {Component} from 'react';
 import {Modal, StyleSheet} from 'react-native';
-import {View, Text} from './core-components';
+import {View, Text} from './core';
 
-import {LoadingIndicator} from './components';
+import LoadingIndicator from './LoadingIndicator';
 
 type Props = {
   style?: StyleSheetTypes,
