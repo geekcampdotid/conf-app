@@ -1,13 +1,12 @@
 // @flow
 
 import React from 'react';
-import {View, Text} from '../../components/core';
+import {View} from '../../components/core';
 import {ResponsiveImage} from '../../components';
 import {TouchableOpacity} from 'react-native';
 
 import styles from './DrawerContent-style';
 import sidebarLogo from '../../assets/images/geekcamp-logo.png';
-import kodefoxLogo from '../../assets/images/kodefox-logo.png';
 import {List, ListItem} from 'react-native-elements';
 import {DARK_GREY} from '../../constants/colors';
 import {SCALE_RATIO} from '../../constants/layout';
@@ -49,51 +48,38 @@ const list: Array<MenuItem> = [
 export default function DrawerContent(props: Props) {
   let {navigation: {navigate}} = props;
   return (
-    <View style={styles.flex}>
-      <View style={styles.root}>
-        <View style={styles.logoContainer}>
-          <ResponsiveImage source={sidebarLogo} />
-        </View>
-        <View style={styles.menuContainer}>
-          <List containerStyle={styles.menuListView}>
-            {list.map((item, i) => {
-              let {title, icon, screen, iconType} = item;
-              return (
-                <ListItem
-                  key={i}
-                  containerStyle={styles.menuListItem}
-                  component={TouchableOpacity}
-                  title={title}
-                  titleStyle={styles.menuText}
-                  titleNumberOfLines={5}
-                  leftIcon={{
-                    name: icon,
-                    size: SCALE_RATIO * 20,
-                    color: DARK_GREY,
-                    type: iconType || 'material-icon',
-                  }}
-                  hideChevron={true}
-                  onPress={() => {
-                    if (screen) {
-                      navigate(screen);
-                    }
-                  }}
-                />
-              );
-            })}
-          </List>
-        </View>
-        <TouchableOpacity
-          style={styles.footerContainer}
-          onPress={() => {
-            navigate('KodefoxProfileScene');
-          }}
-        >
-          <Text style={styles.footerText}>Created by</Text>
-          <View style={styles.footerLogoContainer}>
-            <ResponsiveImage source={kodefoxLogo} />
-          </View>
-        </TouchableOpacity>
+    <View style={styles.root}>
+      <View style={styles.logoContainer}>
+        <ResponsiveImage source={sidebarLogo} />
+      </View>
+      <View style={styles.menuContainer}>
+        <List containerStyle={styles.menuListView}>
+          {list.map((item, i) => {
+            let {title, icon, screen, iconType} = item;
+            return (
+              <ListItem
+                key={i}
+                containerStyle={styles.menuListItem}
+                component={TouchableOpacity}
+                title={title}
+                titleStyle={styles.menuText}
+                titleNumberOfLines={5}
+                leftIcon={{
+                  name: icon,
+                  size: SCALE_RATIO * 20,
+                  color: DARK_GREY,
+                  type: iconType || 'material-icon',
+                }}
+                hideChevron={true}
+                onPress={() => {
+                  if (screen) {
+                    navigate(screen);
+                  }
+                }}
+              />
+            );
+          })}
+        </List>
       </View>
     </View>
   );

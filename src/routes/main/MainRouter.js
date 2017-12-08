@@ -8,7 +8,6 @@ import DrawerContent from '../drawer/DrawerContent';
 
 import AboutUsScene from '../../scenes/AboutUs/AboutUsScene';
 import ContactInfoScene from '../../scenes/ContactInfo/ContactInfoScene';
-import KodefoxProfileScene from '../../scenes/KodefoxProfile/KodefoxProfileScene';
 import SponsorsScene from '../../scenes/Sponsors/SponsorsScene';
 import PresenterDetailScene from '../../scenes/PresenterDetail/PresenterDetailScene';
 import ScheduleDetailScene from '../../scenes/ScheduleDetail/ScheduleDetailScene';
@@ -21,7 +20,6 @@ const MainRouter = StackNavigator(
     // drawer navigation
     AboutUsScene: {screen: AboutUsScene},
     ContactInfoScene: {screen: ContactInfoScene},
-    KodefoxProfileScene: {screen: KodefoxProfileScene},
     SponsorsScene: {screen: SponsorsScene},
 
     // other screens
