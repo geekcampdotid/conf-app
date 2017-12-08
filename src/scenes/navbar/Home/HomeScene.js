@@ -166,6 +166,7 @@ export class HomeScene extends Component<Props, State> {
     let avatarContent = [];
     let {presenters} = schedule;
     if (presenters) {
+      let length = presenters.length;
       presenters.forEach((presenterID) => {
         let presenter = presenterList.get(presenterID);
         if (presenter) {
@@ -181,19 +182,10 @@ export class HomeScene extends Component<Props, State> {
               <Image
                 source={presenter.profilePictureUri || DEFAULT_PROFILE_PICTURE}
                 style={{
-                  width: Math.min(
-                    AVATAR_SIZE / (presenters.length * 0.4),
-                    AVATAR_SIZE,
-                  ),
-                  height: Math.min(
-                    AVATAR_SIZE / (presenters.length * 0.4),
-                    AVATAR_SIZE,
-                  ),
+                  width: Math.min(AVATAR_SIZE / (length * 0.4), AVATAR_SIZE),
+                  height: Math.min(AVATAR_SIZE / (length * 0.4), AVATAR_SIZE),
                   borderRadius:
-                    Math.min(
-                      AVATAR_SIZE / (presenters.length * 0.4),
-                      AVATAR_SIZE,
-                    ) / 2,
+                    Math.min(AVATAR_SIZE / (length * 0.4), AVATAR_SIZE) / 2,
                 }}
               />
             </View>,

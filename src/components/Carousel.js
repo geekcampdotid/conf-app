@@ -1,8 +1,5 @@
-/* eslint-disable react/prop-types, eqeqeq */
-/**
- * Created by yjy on 16/8/12.
- * Updated by yjy on 16/12/26.
- */
+// @flow
+// copied and modified from https://github.com/yjy5264/react-native-card-carousel
 
 import React, {Component} from 'react';
 import {
@@ -16,31 +13,49 @@ import {
   StatusBar,
 } from 'react-native';
 
-/*
-this is the Props type
+import type {Schedule} from '../data/schedule/Schedule-type';
+
+type State = {
+  scaleYArr: Array<Animated.Value>,
+  translateYArr: Array<Animated.Value>,
+};
 
 type Props = {
-  height: number;
+  height: number,
+  data: Array<Schedule>,
+  onPress: (item: Schedule) => void,
+  contentRender: (item: Schedule) => ReactNode,
 };
-*/
-export default class CarouselCard extends Component {
-  constructor(props) {
-    super(props);
-    this.width = CSS.width();
+
+export default class CarouselCard extends Component<Props, State> {
+  width: number;
+  blockWidth: number;
+  height: number;
+  blockHeight: number;
+  moveDistance: number;
+  ratio: number;
+  x0: number;
+  currentPageFloat: number;
+  arr: Array<Schedule>;
+  arrLength: number;
+  mainScroll: ?ScrollView;
+  assistScroll: ?ScrollView;
+
+  constructor() {
+    super(...arguments);
+    this.width = PlatformInfo.width();
     this.blockWidth = this.width * 0.708;
-    this.height = props.height || this.blockWidth * CSS.height() / this.width;
+    this.height =
+      this.props.height || this.blockWidth * PlatformInfo.height() / this.width;
     this.blockHeight = this.height;
     this.moveDistance = this.width * 0.733;
     this.ratio = 0.872;
     this.x0 = this.moveDistance - (this.width - this.moveDistance) / 2;
     this.currentPageFloat = 1;
 
-    this.arr = this.props.data;
-    this.arrLength = this.arr.length;
-    this.arr.unshift(this.arr[this.arr.length - 1]);
-    this.arr.unshift(this.arr[this.arr.length - 2]);
-    this.arr.push(this.arr[2]);
-    this.arr.push(this.arr[3]);
+    let {array, arrayLength} = this._getArrayFromProps();
+    this.arr = array;
+    this.arrLength = arrayLength;
 
     let scaleYArr = [];
     let translateYArr = [];
@@ -49,6 +64,14 @@ export default class CarouselCard extends Component {
       translateYArr.push(new Animated.Value(0));
     }
     this.state = {scaleYArr, translateYArr};
+  }
+
+  componentWillReceiveProps() {
+    if (this.arr !== this.props.data) {
+      let {array, arrayLength} = this._getArrayFromProps();
+      this.arr = array;
+      this.arrLength = arrayLength;
+    }
   }
 
   componentDidMount() {
@@ -67,7 +90,7 @@ export default class CarouselCard extends Component {
     }, 0);
   }
 
-  _getItem() {
+  _getItems() {
     return this.arr.map((item, i) => {
       let marginWidth = (this.moveDistance - this.blockWidth) / 2;
       return (
@@ -78,13 +101,13 @@ export default class CarouselCard extends Component {
               width: this.blockWidth,
               height: this.blockHeight,
               backgroundColor: '#ffffff',
-              // transform: [
-              //   {scaleY: this.state.scaleYArr[i]},
-              //   {translateY: this.state.translateYArr[i]},
-              // ],
+              transform: [
+                {scaleY: this.state.scaleYArr[i]},
+                {translateY: this.state.translateYArr[i]},
+              ],
             }}
           >
-            {this.props.contentRender ? this.props.contentRender(item) : null}
+            {this.props.contentRender(item)}
           </Animated.View>
           <View style={{width: marginWidth}} />
         </View>
@@ -97,60 +120,63 @@ export default class CarouselCard extends Component {
     for (let i = 0; i < this.arrLength + 2; i++) {
       arr.push('');
     }
-    return arr.map((item, i) => {
-      let marginWidth = (this.moveDistance - this.blockWidth) / 2;
-      return (
-        <View key={i} style={{flexDirection: 'row'}}>
-          <View style={{width: marginWidth}} />
-          <TouchableOpacity onPress={() => this.props.onPress(this.arr[i + 1])}>
-            <View style={{width: this.blockWidth, height: this.blockHeight}} />
-          </TouchableOpacity>
-          <View style={{width: marginWidth}} />
-        </View>
-      );
-    });
+    let marginWidth = (this.moveDistance - this.blockWidth) / 2;
+    return arr.map((item, i) => (
+      <View key={i} style={{flexDirection: 'row'}}>
+        <View style={{width: marginWidth}} />
+        <TouchableOpacity onPress={() => this.props.onPress(this.arr[i + 1])}>
+          <View style={{width: this.blockWidth, height: this.blockHeight}} />
+        </TouchableOpacity>
+        <View style={{width: marginWidth}} />
+      </View>
+    ));
   }
 
   _onAssistScroll(e) {
     if (this.mainScroll && this.assistScroll) {
-      let x = e.nativeEvent.contentOffset.x;
+      let x: number = e.nativeEvent.contentOffset.x;
       if (Math.abs(x - (this.arrLength + 1) * this.moveDistance) < 0.5) {
-        this.mainScroll.scrollTo({
-          x: this.moveDistance + this.x0,
-          animated: false,
-        });
-        this.assistScroll.scrollTo({x: this.moveDistance, animated: false});
+        this.mainScroll &&
+          this.mainScroll.scrollTo({
+            x: this.moveDistance + this.x0,
+            animated: false,
+          });
+        this.assistScroll &&
+          this.assistScroll.scrollTo({x: this.moveDistance, animated: false});
       } else if (Math.abs(x) < 0.1) {
-        this.mainScroll.scrollTo({
-          x: this.moveDistance * this.arrLength + this.x0,
-          animated: false,
-        });
-        this.assistScroll.scrollTo({
-          x: this.moveDistance * this.arrLength,
-          animated: false,
-        });
+        this.mainScroll &&
+          this.mainScroll.scrollTo({
+            x: this.moveDistance * this.arrLength + this.x0,
+            animated: false,
+          });
+        this.assistScroll &&
+          this.assistScroll.scrollTo({
+            x: this.moveDistance * this.arrLength,
+            animated: false,
+          });
       } else {
         let mainX = x + this.x0;
-        this.mainScroll.scrollTo({x: mainX, animated: false});
+        this.mainScroll &&
+          this.mainScroll.scrollTo({x: mainX, animated: false});
       }
       let currentPageFloat = x / this.moveDistance;
-      this._cardAnimated(currentPageFloat);
+      this._animateCards(currentPageFloat);
     }
   }
 
-  _cardAnimated(currentPageFloat) {
+  _animateCards(currentPageFloat) {
     for (let i = 0; i < this.arrLength + 4; i++) {
       let ratio = 0;
-      let currentPageInt = parseInt(currentPageFloat, 10);
-      if (i == 2) {
+      let currentPageInt = Math.floor(currentPageFloat);
+      if (i === 2) {
         ratio = Math.abs(currentPageFloat - (this.arrLength + 1)) < 0.1 ? 1 : 0;
       }
-      if (i == this.arrLength + 1) {
+      if (i === this.arrLength + 1) {
         ratio = Math.abs(currentPageFloat) < 0.1 ? 1 : 0;
       }
-      if (i - 1 == currentPageInt) {
+      if (i - 1 === currentPageInt) {
         ratio = 1 - currentPageFloat % 1;
-      } else if (i - 1 == currentPageInt + 1) {
+      } else if (i - 1 === currentPageInt + 1) {
         ratio = currentPageFloat % 1;
       }
       let scaleY = this.ratio + (1 - this.ratio) * ratio;
@@ -166,24 +192,29 @@ export default class CarouselCard extends Component {
     }
   }
 
+  _getArrayFromProps() {
+    let {data} = this.props;
+    let array;
+    let arrayLength;
+    array = [...data];
+    arrayLength = array.length;
+    array.unshift(array[arrayLength - 1]);
+    array.unshift(array[arrayLength - 2]);
+    array.push(array[2]);
+    array.push(array[3]);
+    return {array, arrayLength};
+  }
+
   render() {
-    if (this.arr !== this.props.data) {
-      this.arr = this.props.data;
-      this.arrLength = this.arr.length;
-      this.arr.unshift(this.arr[this.arr.length - 1]);
-      this.arr.unshift(this.arr[this.arr.length - 2]);
-      this.arr.push(this.arr[2]);
-      this.arr.push(this.arr[3]);
-    }
     return (
       <View style={{minHeight: this.height, width: this.width}}>
         <ScrollView
           horizontal={true}
           pointerEvents="none"
-          ref={(ref) => (this.mainScroll = ref)}
+          ref={(node) => (this.mainScroll = node)}
           showsHorizontalScrollIndicator={false}
         >
-          {this._getItem()}
+          {this._getItems()}
         </ScrollView>
         <View
           style={{
@@ -215,8 +246,8 @@ export default class CarouselCard extends Component {
           }}
           horizontal={true}
           pagingEnabled={true}
-          ref={(ref) => (this.assistScroll = ref)}
-          _onScroll={(e) => this._onAssistScroll(e)}
+          ref={(node) => (this.assistScroll = node)}
+          onScroll={(e: Object) => this._onAssistScroll(e)}
           scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}
         >
@@ -227,20 +258,20 @@ export default class CarouselCard extends Component {
   }
 }
 
-var PlatformInfo = {
+let PlatformInfo = {
   sizeObj: Dimensions.get('window'),
   pixels: 2,
   getSize: () => Dimensions.get('window'),
-  width: () => {
+  width: (): number => {
     return PlatformInfo.sizeObj.width;
   },
-  height: () => {
+  height: (): number => {
     return (
       PlatformInfo.sizeObj.height -
       (Platform.OS === 'android' ? StatusBar.currentHeight : 0)
     );
   },
-  pixel: (px) => {
+  pixel: (px: number): number => {
     if (!PlatformInfo.pixels) {
       PlatformInfo.pixels = PixelRatio.get();
     }
@@ -248,8 +279,4 @@ var PlatformInfo = {
   },
 };
 
-var CSS = {
-  pixel: PlatformInfo.pixel,
-  width: PlatformInfo.width,
-  height: PlatformInfo.height,
-};
+export {PlatformInfo};
