@@ -29,24 +29,26 @@ export default function PresenterDetailAvatar(props: Props) {
   let profilePictureComponent;
   if (profilePictureUri == null) {
     profilePictureComponent = (
-      <Image
-        style={[styles.avatar, avatarStyle]}
-        source={DEFAULT_PROFILE_PICTURE}
-      >
+      <View>
+        <Image
+          style={[styles.avatar, avatarStyle]}
+          source={DEFAULT_PROFILE_PICTURE}
+        />
         <LinearGradient
           colors={['transparent', 'rgba(0,0,0,0.6)', 'rgba(0,0,0,0.8)']}
           style={styles.nameContainer}
         >
           <Text style={[styles.name, nameTextStyle]}>{name}</Text>
         </LinearGradient>
-      </Image>
+      </View>
     );
   } else {
     profilePictureComponent = (
-      <Image
-        style={[styles.avatar, avatarStyle]}
-        source={props.profilePictureUri}
-      >
+      <View>
+        <Image
+          style={[styles.avatar, avatarStyle]}
+          source={props.profilePictureUri}
+        />
         <LinearGradient
           colors={[
             'transparent',
@@ -58,15 +60,14 @@ export default function PresenterDetailAvatar(props: Props) {
         >
           <Text style={[styles.name, nameTextStyle]}>{name}</Text>
         </LinearGradient>
-      </Image>
+      </View>
     );
   }
   return (
     <View style={{paddingTop: 20}}>
       <View style={[styles.root, containerStyle]}>
-        <Image style={styles.backgroundImage} source={BACKGROUND_IMAGE}>
-          <View style={styles.overlay} />
-        </Image>
+        <Image style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
+        <View style={styles.overlay} />
         <View style={styles.avatarContainer}>{profilePictureComponent}</View>
       </View>
     </View>
@@ -85,6 +86,11 @@ const styles = StyleSheet.create({
   },
   overlay: {
     flex: 1,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
   avatarContainer: {
@@ -101,6 +107,7 @@ const styles = StyleSheet.create({
     height: 220,
     borderWidth: 0.5,
     borderColor: 'black',
+    zIndex: 3,
     justifyContent: 'flex-end',
   },
   nameContainer: {
@@ -108,6 +115,11 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
+    zIndex: 4,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   name: {
     fontSize: 27,
