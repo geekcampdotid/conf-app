@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     borderBottomWidth: 0,
-    paddingLeft: 15,
+    paddingHorizontal: 20,
+    marginVertical: 10,
   },
   avatar: {
     width: 55,
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     borderWidth: 0.3,
     borderColor: GREY,
+    marginRight: 20,
   },
   noItemFound: {
     flex: 1,

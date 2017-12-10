@@ -1,6 +1,6 @@
 // @flow
 
-import React, {Component} from 'react';
+import React, {Children, Component} from 'react';
 import autobind from 'class-autobind';
 import resolveAssetSource from 'resolveAssetSource';
 import {
@@ -9,6 +9,7 @@ import {
   ActivityIndicator,
   Animated,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 
 import {Text} from './core';
@@ -22,6 +23,7 @@ type Props = {
   animatedStyle?: StyleSheetTypes,
   onPress?: () => void,
   pinchToZoom?: boolean,
+  children?: ReactNode,
 };
 
 type State = {
@@ -121,9 +123,14 @@ export default class ResponsiveImage extends Component<Props, State> {
         </View>
       );
     }
+
+    let ImageComponent = Image;
+    if (Children.count(this.props.children)) {
+      ImageComponent = ImageBackground;
+    }
     component = (
       <View style={[{aspectRatio: ratio}, style]}>
-        <Image
+        <ImageComponent
           {...otherProps}
           source={imageSource}
           style={{width: '100%', height: '100%'}}

@@ -36,17 +36,19 @@ export default class PresenterListView extends Component<Props, void> {
   render() {
     let {exhibitorList, searchValue} = this.props;
     let data = this._getFilteredData(exhibitorList, searchValue);
-    if (data.length === 0) {
-      return (
-        <DismissKeyboardView style={[styles.listContainer, styles.noItemFound]}>
-          <NoItemFound text="Data not yet available" />
-        </DismissKeyboardView>
-      );
-    }
     return (
       <List containerStyle={styles.listContainer}>
         <FlatList
           data={data}
+          ListEmptyComponent={() => {
+            return (
+              <DismissKeyboardView
+                style={[styles.listContainer, styles.noItemFound]}
+              >
+                <NoItemFound text="No Exhibitors Found" />
+              </DismissKeyboardView>
+            );
+          }}
           renderItem={this._renderItem}
           keyExtractor={(item) => item.id}
         />

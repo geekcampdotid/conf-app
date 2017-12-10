@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, ImageBackground} from 'react-native';
 import {View, Text} from './core';
 
 import {FONT_BOLD} from '../constants/text';
@@ -27,7 +27,7 @@ export default function ExhibitorDetailAvatar(props: Props) {
   let backgroundImageSource = DEFAULT_BACKGROUND_IMAGE;
   return (
     <View style={[styles.root, containerStyle]}>
-      <Image
+      <ImageBackground
         style={styles.backgroundImage}
         source={backgroundImageSource}
         resizeMode="cover"
@@ -39,7 +39,7 @@ export default function ExhibitorDetailAvatar(props: Props) {
           />
           <Text style={[styles.name, nameTextStyle]}>{name}</Text>
         </View>
-      </Image>
+      </ImageBackground>
     </View>
   );
 }

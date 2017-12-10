@@ -11,7 +11,7 @@ import ContactInfoScene from '../../scenes/ContactInfo/ContactInfoScene';
 import SponsorsScene from '../../scenes/Sponsors/SponsorsScene';
 import PresenterDetailScene from '../../scenes/PresenterDetail/PresenterDetailScene';
 import ScheduleDetailScene from '../../scenes/ScheduleDetail/ScheduleDetailScene';
-import ExhibitorDetailScene from '../../scenes/ExhibitorDetail/ExhibitorProfileInfoScene';
+import ExhibitorDetailScene from '../../scenes/ExhibitorDetail/ExhibitorDetailScene';
 import BookmarkScheduleScene from '../../scenes/BookmarkSchedule/BookmarkScheduleScene';
 
 const MainRouter = StackNavigator(
