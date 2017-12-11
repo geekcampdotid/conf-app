@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {FlatList} from 'react-native';
+import DateTime from 'immutable-datetime';
 
 import {View} from '../../components/core';
 import HourListItem from '../navbar/Schedule/HourListItem';
@@ -56,7 +57,7 @@ export class SessionInfoScene extends Component<Props, void> {
             return (
               <View>
                 <HourListItem
-                  time={getTimeObject(item)}
+                  time={getTimeObject(DateTime.fromString(item))}
                   scheduleList={filteredPresenterSchedule}
                   navigation={navigation}
                 />

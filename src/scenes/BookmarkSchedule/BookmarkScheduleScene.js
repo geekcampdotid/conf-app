@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {FlatList} from 'react-native';
 import {ButtonGroup, List} from 'react-native-elements';
+import DateTime from 'immutable-datetime';
 
 import {View} from '../../components/core';
 import {NoItemFound} from '../../components';
@@ -89,7 +90,7 @@ export class BookmarkScheduleScene extends Component<Props, State> {
             });
             return (
               <HourListItem
-                time={getTimeObject(item)}
+                time={getTimeObject(DateTime.fromString(item))}
                 scheduleList={scheduleList}
                 navigation={navigation}
                 showBottomBorder={!(index === data.length - 1)}

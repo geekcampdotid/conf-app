@@ -5,6 +5,7 @@ import autobind from 'class-autobind';
 import {connect} from 'react-redux';
 import {FlatList} from 'react-native';
 import {List, ButtonGroup} from 'react-native-elements';
+import DateTime from 'immutable-datetime';
 
 import styles, {CONTAINER_BORDER_RADIUS} from './ScheduleScene-style';
 import HourListItem from './HourListItem';
@@ -13,7 +14,7 @@ import formatDateTime, {getTimeObject} from '../../../helpers/formatDateTime';
 import {getScheduleHours} from '../../../helpers/scheduleFilter';
 import {View} from '../../../components/core';
 import {NoItemFound} from '../../../components';
-import {THEME_COLOR} from '../../../constants/colors';
+import {THEME_COLOR, LIGHT_GREY} from '../../../constants/colors';
 
 import type {Schedule} from '../../../data/schedule/Schedule-type';
 import type {Navigation} from '../../../data/navigation/Navigation-type';
@@ -94,6 +95,17 @@ export class ScheduleScene extends Component<Props, State> {
                 ref={(flatList) => (this._flatList = flatList)}
                 showsVerticalScrollIndicator={false}
                 data={data}
+                ItemSeparatorComponent={() => {
+                  return (
+                    <View
+                      style={{
+                        backgroundColor: LIGHT_GREY,
+                        flex: 1,
+                        height: 0.75,
+                      }}
+                    />
+                  );
+                }}
                 renderItem={({item}) => {
                   let scheduleListPerTime = Array.from(
                     filteredScheduleList.values(),
@@ -106,7 +118,7 @@ export class ScheduleScene extends Component<Props, State> {
                   return (
                     <HourListItem
                       scheduleList={scheduleListPerTime}
-                      time={getTimeObject(item)}
+                      time={getTimeObject(DateTime.fromString(item))}
                       navigation={navigation}
                     />
                   );

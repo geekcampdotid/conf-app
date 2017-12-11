@@ -1,43 +1,57 @@
 // @flow
 
+import DateTime from 'immutable-datetime';
 import {MONTHS} from '../constants/dateNames';
 
 const FORMATS = {
-  DATE_TIME: (dateTimeString: string) => {
-    let date = new Date(dateTimeString);
-    let {hour, minute, period} = getTimeObject(dateTimeString);
+  DATE_TIME: (dateTimeString: string, formatTo12Hours: boolean) => {
+    let date = DateTime.fromString(dateTimeString);
+    let {hours, minutes, periods} = getTimeObject(date);
+
+    let time = `${hours}:${minutes}`;
+    if (formatTo12Hours) {
+      time = `${format12Hours(hours)}:${minutes} ${periods}`;
+    }
 
     if (isToday(date)) {
-      return `Today - ${hour}:${minute} ${period}`;
+      return `Today - ${time}`;
     }
-    let month = MONTHS[date.getUTCMonth()];
-    let dateNumber = padZero(date.getUTCDate());
-    let year = date.getUTCFullYear();
-    return `${dateNumber} ${month} ${year} - ${hour}:${minute} ${period}`;
+    let month = MONTHS[date.getMonth()];
+    let dateNumber = padZero(date.getDate());
+    let year = date.getYear();
+
+    if (format12Hours) {
+      return `${dateNumber} ${month} ${year} - ${time}`;
+    }
   },
   DATE: (dateString: string) => {
-    let date = new Date(dateString);
+    let date = DateTime.fromString(dateString);
     if (isToday(date)) {
       return 'Today';
     }
-    let month = MONTHS[date.getUTCMonth()];
-    let dateNumber = padZero(date.getUTCDate());
-    let year = date.getUTCFullYear();
+    let month = MONTHS[date.getMonth()];
+    let dateNumber = padZero(date.getDate());
+    let year = date.getYear();
     return `${dateNumber} ${month} ${year}`;
   },
-  TIME: (dateTimeString: string) => {
-    let {hour, minute, period} = getTimeObject(dateTimeString);
-    return `${hour}:${minute} ${period}`;
+  TIME: (dateTimeString: string, formatTo12Hours: boolean) => {
+    let date = DateTime.fromString(dateTimeString);
+    let {hours, minutes, periods} = getTimeObject(date);
+    if (formatTo12Hours) {
+      return `${format12Hours(hours)}:${minutes} ${periods}`;
+    }
+    return `${hours}:${minutes}`;
   },
 };
 
-export function getTimeObject(time: string) {
-  let {localHour, minute} = getClockTime(time);
-  let {hour, period} = format12Hour(localHour);
+export function getTimeObject(date: Date) {
+  let hours = date.getHours();
+  let minutes = padZero(date.getMinutes());
+  let periods = hours >= 12 ? 'pm' : 'am';
   return {
-    hour,
-    minute,
-    period,
+    hours: padZero(hours),
+    minutes,
+    periods,
   };
 }
 
@@ -46,29 +60,19 @@ export function padZero(value: number): string {
 }
 
 export function isToday(date: Date, today: Date = new Date()) {
-  return today.toDateString() === date.toDateString() ? true : false;
+  return today.toDateString() === date.toDateString();
 }
 
-export default function formatDateTime(dateString: string, format: string) {
+export default function formatDateTime(
+  dateString: string,
+  format: string,
+  formatTo12Hours?: boolean = true,
+) {
   let formatter = FORMATS[format];
-  return formatter ? formatter(dateString) : '';
+  return formatter ? formatter(dateString, formatTo12Hours) : '';
 }
 
-export function getClockTime(dateTime: string) {
-  let localHour = padZero(new Date(dateTime).getUTCHours());
-  let minute = padZero(new Date(dateTime).getUTCMinutes());
-  return {
-    localHour,
-    minute,
-  };
-}
-
-export function format12Hour(hourString: string) {
-  let hour = Number(hourString);
-  let newHour = padZero(hour > 12 ? hour - 12 : hour);
-  let period = hour >= 12 ? 'p.m.' : 'a.m.';
-  return {
-    hour: newHour,
-    period,
-  };
+export function format12Hours(hours: string) {
+  let hoursInNumber = Number(hours);
+  return padZero(hoursInNumber > 12 ? hoursInNumber - 12 : hoursInNumber);
 }

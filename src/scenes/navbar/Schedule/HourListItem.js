@@ -5,7 +5,7 @@ import {StyleSheet} from 'react-native';
 
 import {View, Text} from '../../../components/core';
 import ScheduleListItem from './ScheduleListItem';
-import {GREY, LIGHT_GREY} from '../../../constants/colors';
+import {GREY} from '../../../constants/colors';
 import {
   FONT_BOLD,
   DEFAULT_FONT_SIZE,
@@ -19,28 +19,22 @@ type Props = {
   scheduleList: Array<Schedule>,
   navigation: Navigation,
   time: {
-    hour: string,
-    minute: string,
-    period: string,
+    hours: string,
+    minutes: string,
+    periods: string,
   },
-  showBottomBorder?: boolean,
 };
 
 export default function HourListItem(props: Props) {
-  let {scheduleList, navigation, time, showBottomBorder = true} = props;
-  let {hour, minute, period} = time;
+  let {scheduleList, navigation, time} = props;
+  let {hours, minutes, periods} = time;
   let HourListContent = (
-    <View
-      style={[
-        styles.hourListContainer,
-        showBottomBorder ? styles.bottomBorder : null,
-      ]}
-    >
+    <View style={[styles.hourListContainer]}>
       <View style={styles.hourTextContainer}>
         <Text style={styles.hourText}>
-          {hour}:{minute}
+          {hours}:{minutes}
         </Text>
-        <Text style={styles.hourFormat12Text}>{period}</Text>
+        <Text style={styles.hourFormat12Text}>{periods}</Text>
       </View>
       <View style={styles.filteredScheduleContainer}>
         {scheduleList.map((schedule, index) => {
@@ -63,10 +57,6 @@ const styles = StyleSheet.create({
   hourListContainer: {
     flexDirection: 'row',
     paddingTop: 15,
-  },
-  bottomBorder: {
-    borderBottomWidth: 0.75,
-    borderBottomColor: LIGHT_GREY,
   },
   hourTextContainer: {
     flex: 1,

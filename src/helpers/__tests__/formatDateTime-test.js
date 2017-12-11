@@ -1,23 +1,32 @@
 // @flow
 
+import DateTime from 'immutable-datetime';
+
 import formatDateTime, {
+  getTimeObject,
   isToday,
-  getClockTime,
-  format12Hour,
+  format12Hours,
 } from '../formatDateTime';
 
 it('should render DATE_TIME format', () => {
   expect(formatDateTime('2017-04-01T21:51:00.000Z', 'DATE_TIME')).toBe(
-    `01 April 2017 - 09:51 p.m.`,
+    `01 April 2017 - 09:51 pm`,
   );
 
   expect(formatDateTime('2017-04-24T09:51:00.000Z', 'DATE_TIME')).toBe(
-    `24 April 2017 - 09:51 a.m.`,
+    `24 April 2017 - 09:51 am`,
+  );
+
+  expect(formatDateTime('2017-04-24T21:51:00.000Z', 'DATE_TIME', false)).toBe(
+    `24 April 2017 - 21:51`,
   );
 });
 
 it('should render TIME format', () => {
-  expect(formatDateTime('2017-04-15T21:51:00.000Z', 'TIME')).toBe(`09:51 p.m.`);
+  expect(formatDateTime('2017-04-15T21:51:00.000Z', 'TIME')).toBe(`09:51 pm`);
+  expect(formatDateTime('2017-04-15T21:51:00.000Z', 'TIME', false)).toBe(
+    `21:51`,
+  );
 });
 
 it('should render DATE format', () => {
@@ -29,19 +38,20 @@ it('should render DATE format', () => {
 });
 
 it('should return true if the date is today', () => {
-  let today = new Date();
-  let result = isToday(today);
+  let date = new Date();
+  let result = isToday(date, new Date());
   expect(result).toBe(true);
 
-  let date = new Date(2017, 3, 1, 21, 51, 23);
-  result = isToday(date);
+  date = new Date(2017, 3, 1, 21, 51, 23);
+  result = isToday(date, new Date());
   expect(result).toBe(false);
 });
 
 it('should return the correct formatted local time', () => {
-  let dateTime = '2017-08-15T08:00:00.000Z';
-  let {localHour, minute} = getClockTime(dateTime);
-  let {hour, period} = format12Hour(localHour);
-  let result = hour + ':' + minute + ' ' + period;
-  expect(result).toBe('08:00 a.m.');
+  let date = DateTime.fromString('2017-08-15T08:00:00.000Z');
+
+  let {hours, minutes, periods} = getTimeObject(date);
+  let formattedHours = format12Hours(hours);
+  let result = `${formattedHours}:${minutes} ${periods}`;
+  expect(result).toBe('08:00 am');
 });

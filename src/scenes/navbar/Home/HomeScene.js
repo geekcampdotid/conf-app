@@ -5,23 +5,19 @@ import autobind from 'class-autobind';
 import {connect} from 'react-redux';
 import {TouchableOpacity, Image} from 'react-native';
 import {Icon} from 'react-native-elements';
+import DateTime from 'immutable-datetime';
 
 import {View, Text, ScrollView} from '../../../components/core';
 import {StageLabel, Carousel} from '../../../components';
-import formatDateTime from '../../../helpers/formatDateTime';
+import formatDateTime, {isToday} from '../../../helpers/formatDateTime';
 import openLink from '../../../helpers/openLink';
 
-import getHighlighTalks from '../../../helpers/getHighlighTalks';
+import {getScheduleBasedOnCurrentTime} from '../../../helpers';
 import {DARK_GREY, LIGHT_BLUE} from '../../../constants/colors';
 import DEFAULT_PROFILE_PICTURE from '../../../assets/images/default-profile-picture-square.png';
 import {mapsUrl} from '../../../constants/url';
 import {SCALE_RATIO} from '../../../constants/layout';
-import {
-  EVENT_PLACE,
-  EVENT_DATE,
-  FIRST_TALK_TIME,
-  LAST_TALK_END,
-} from '../../../constants/aboutApp';
+import {EVENT_PLACE, EVENT_DATE} from '../../../constants/aboutApp';
 
 import styles from './HomeScene-style';
 
@@ -61,48 +57,33 @@ export class HomeScene extends Component<Props, State> {
 
   render() {
     let {navigation, scheduleList} = this.props;
-    let today = new Date();
-    let filteredDate = new Date(today);
     let carouselTitle = '';
-    if (today.toISOString() < FIRST_TALK_TIME.toISOString()) {
-      carouselTitle = new Date('2017-07-15T03:07:20').toISOString();
-      filteredDate = new Date(FIRST_TALK_TIME);
-    } else if (
-      LAST_TALK_END &&
-      today.toISOString() >= new Date(LAST_TALK_END).toISOString()
-    ) {
-      carouselTitle = 'Past Talks';
-      filteredDate = new Date(FIRST_TALK_TIME);
-    } else {
-      carouselTitle = 'Highlighted Talks';
-    }
-    let highLightEvents = getHighlighTalks(
-      scheduleList,
-      filteredDate.toISOString(),
+
+    let now = Date.now();
+
+    let groupedSchedule = getScheduleBasedOnCurrentTime(
+      Array.from(scheduleList.values()),
+      now,
     );
 
-    // let upcomingEventDate = new Date(filteredDate);
-    // upcomingEventDate.setUTCMinutes(
-    //   upcomingEventDate.getUTCMinutes() +
-    //     DEFAULT_UPCOMING_EVENT_MINUTES_DIFFERENCE
-    // );
-    //
-    // let upcomingEvents = Array.from(
-    //   getCurrentEvent(scheduleList, upcomingEventDate.toISOString()).values()
-    // );
+    let events = [];
+    let onGoingSchedule = groupedSchedule.get('ongoing') || [];
+    let upcomingSchedule = groupedSchedule.get('upcoming') || [];
+    let pastSchedule = groupedSchedule.get('past') || [];
 
-    let events = [...highLightEvents];
-    if (events.length === 0) {
-      filteredDate = new Date(FIRST_TALK_TIME);
-      highLightEvents = getHighlighTalks(
-        scheduleList,
-        filteredDate.toISOString(),
-      );
-      carouselTitle = 'HighLight Talks';
-      events = [...highLightEvents];
-    } else if (events.length === 1) {
-      events = [...events, ...highLightEvents];
+    // change this logic if event is more than 1 day
+    if (isToday(DateTime.fromString(EVENT_DATE))) {
+      events = [...onGoingSchedule, ...upcomingSchedule];
+    } else if (
+      DateTime.fromNumber(now).getDate() <
+      DateTime.fromString(EVENT_DATE).getDate()
+    ) {
+      events = pastSchedule;
+    } else {
+      events = upcomingSchedule;
     }
+
+    let filteredEvents = events.filter((event) => event.presenters).slice(0, 5);
 
     return (
       <ScrollView style={styles.root}>
@@ -110,7 +91,7 @@ export class HomeScene extends Component<Props, State> {
           <Text style={styles.carouselTitle}>{carouselTitle}</Text>
           <Carousel
             height={DEFAULT_CAROUSEL_HEIGHT}
-            data={events}
+            data={filteredEvents}
             onPress={(schedule) => {
               navigation.navigate('ScheduleDetailScene', {
                 schedule,
@@ -149,7 +130,7 @@ export class HomeScene extends Component<Props, State> {
             <View style={styles.detailsItemText}>
               <Text style={styles.detailsItemTitleText}>WHEN</Text>
               <Text style={styles.contentText}>
-                {formatDateTime(EVENT_DATE.toISOString(), 'DATE')}
+                {formatDateTime(EVENT_DATE, 'DATE')}
               </Text>
             </View>
           </View>
