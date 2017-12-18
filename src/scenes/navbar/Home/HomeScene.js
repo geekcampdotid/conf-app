@@ -74,10 +74,7 @@ export class HomeScene extends Component<Props, State> {
     // change this logic if event is more than 1 day
     if (isToday(DateTime.fromString(EVENT_DATE))) {
       events = [...onGoingSchedule, ...upcomingSchedule];
-    } else if (
-      DateTime.fromNumber(now).getDate() <
-      DateTime.fromString(EVENT_DATE).getDate()
-    ) {
+    } else if (now > DateTime.fromString(EVENT_DATE).valueOf()) {
       events = pastSchedule;
     } else {
       events = upcomingSchedule;
