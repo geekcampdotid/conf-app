@@ -3,6 +3,8 @@
 import {StyleSheet} from 'react-native';
 import {GREY} from '../../../constants/colors';
 
+export const AVATAR_SIZE = 60;
+
 const styles = StyleSheet.create({
   listContainer: {
     marginTop: 0,
@@ -14,15 +16,12 @@ const styles = StyleSheet.create({
   itemContainer: {
     borderBottomWidth: 0,
     paddingHorizontal: 20,
-    marginVertical: 10,
+    height: 70,
+    justifyContent: 'center',
   },
-  avatar: {
-    width: 55,
-    height: 55,
-    borderRadius: 28,
-    borderWidth: 0.3,
+  avatarContainer: {
+    borderWidth: 0.5,
     borderColor: GREY,
-    marginRight: 20,
   },
   noItemFound: {
     flex: 1,

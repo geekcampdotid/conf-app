@@ -2,12 +2,12 @@
 import React, {Component} from 'react';
 import autobind from 'class-autobind';
 import {FlatList} from 'react-native';
-import {List, ListItem} from 'react-native-elements';
+import {List, ListItem, Avatar} from 'react-native-elements';
 
 import {DismissKeyboardView} from '../../../components/core';
 import {NoItemFound} from '../../../components';
 
-import styles from './ListView-style';
+import styles, {AVATAR_SIZE} from './ListView-style';
 
 import type {Exhibitor} from '../../../data/exhibitor/Exhibitor-type';
 import type {Navigation} from '../../../data/navigation/Navigation-type';
@@ -69,8 +69,15 @@ export default class PresenterListView extends Component<Props, void> {
       <ListItem
         key={exhibitor.id}
         roundAvatar
-        avatar={avatar}
-        avatarStyle={styles.avatar}
+        avatar={
+          <Avatar
+            rounded
+            source={avatar}
+            width={AVATAR_SIZE}
+            height={AVATAR_SIZE}
+            avatarStyle={styles.avatarContainer}
+          />
+        }
         title={exhibitor.name}
         hideChevron={true}
         containerStyle={styles.itemContainer}
