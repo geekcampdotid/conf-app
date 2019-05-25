@@ -3,7 +3,7 @@
 
 import React from 'react';
 import {Icon} from 'react-native-elements';
-import {TabNavigator} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation';
 
 import Navbar from './Navbar';
 import HomeScene from '../../scenes/navbar/Home/HomeScene';
@@ -28,7 +28,7 @@ import {
   ICON_PRESENTER,
 } from '../../constants/icons';
 
-export default TabNavigator(
+export default createBottomTabNavigator(
   {
     HomeScene: {
       screen: HomeScene,
@@ -62,7 +62,7 @@ export default TabNavigator(
     },
   },
   {
-    tabBarComponent: (args) => {
+    tabBarComponent: args => {
       return <Navbar {...args} />;
     },
     tabBarOptions: {

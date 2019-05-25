@@ -1,6 +1,6 @@
 // @flow
 
-import {StackNavigator, DrawerNavigator} from 'react-navigation';
+import {createStackNavigator, createDrawerNavigator} from 'react-navigation';
 
 import {configureNavigationHeader} from '../../helpers';
 import NavbarRouter from '../navBar/NavbarRouter';
@@ -14,7 +14,7 @@ import ScheduleDetailScene from '../../scenes/ScheduleDetail/ScheduleDetailScene
 import ExhibitorDetailScene from '../../scenes/ExhibitorDetail/ExhibitorDetailScene';
 import BookmarkScheduleScene from '../../scenes/BookmarkSchedule/BookmarkScheduleScene';
 
-const MainRouter = StackNavigator(
+const MainRouter = createStackNavigator(
   {
     Navbar: {screen: NavbarRouter},
     // drawer navigation
@@ -36,7 +36,7 @@ const MainRouter = StackNavigator(
   },
 );
 
-const DrawerRouter = DrawerNavigator(
+const DrawerRouter = createDrawerNavigator(
   {
     Main: {
       screen: MainRouter,
@@ -53,7 +53,7 @@ const DrawerRouter = DrawerNavigator(
   },
 );
 
-export default StackNavigator(
+export default createStackNavigator(
   {
     Drawer: {
       screen: DrawerRouter,
