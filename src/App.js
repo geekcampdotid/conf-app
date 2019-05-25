@@ -1,9 +1,8 @@
 // @flow
 import React, {Component} from 'react';
-import autobind from 'class-autobind';
 import {Provider} from 'react-redux';
 import {BackHandler} from 'react-native';
-import {AppLoading} from 'expo';
+import {AppLoading, Font} from 'expo';
 import {View} from './components/core';
 import {PinchToZoomImageModal} from './components';
 
@@ -20,20 +19,12 @@ type State = {
 const store = createDataStore();
 
 export default class App extends Component<void, State> {
-  constructor() {
-    super(...arguments);
-    autobind(this);
-
-    this.state = {
-      isReady: false,
-    };
-  }
-
-  componentWillMount() {
-    this._init();
-  }
+  state = {
+    isReady: false,
+  };
 
   componentDidMount() {
+    this._init();
     BackHandler.addEventListener('hardwareBackPress', this._onBackPress);
   }
 
@@ -58,6 +49,10 @@ export default class App extends Component<void, State> {
 
   async _init() {
     await populateInitialData(store.dispatch);
+    await Font.loadAsync({
+      'Material Icons': require('@expo/vector-icons/fonts/MaterialIcons.ttf'),
+      FontAwesome: require('@expo/vector-icons/fonts/FontAwesome.ttf'),
+    });
     this.setState({isReady: true});
   }
 
