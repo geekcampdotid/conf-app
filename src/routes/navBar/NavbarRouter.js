@@ -62,7 +62,7 @@ export default createBottomTabNavigator(
     },
   },
   {
-    tabBarComponent: args => {
+    tabBarComponent: (args) => {
       return <Navbar {...args} />;
     },
     tabBarOptions: {
