@@ -79,14 +79,17 @@ export default class ResponsiveImage extends Component<Props, State> {
   render() {
     let {
       source,
+      initialRatio, // eslint-disable-line no-unused-vars
       style,
       animated,
       animatedStyle,
       onPress,
+      pinchToZoom, // eslint-disable-line no-unused-vars
+      children,
       ...otherProps
     } = this.props;
     let {isLoading, ratio, error} = this.state;
-    let component;
+    let imageEl;
     if (isLoading) {
       return (
         <View style={[{justifyContent: 'center', alignItems: 'center'}, style]}>
@@ -106,41 +109,47 @@ export default class ResponsiveImage extends Component<Props, State> {
       );
     }
     let imageSource;
-    if (typeof source === 'number') {
-      imageSource = source;
-    } else {
-      let {uri, width, height, ...other} = source; // eslint-disable-line
+    if (source != null && typeof source === 'object') {
+      // eslint-disable-next-line no-unused-vars
+      let {uri, width, height, ...other} = source;
       imageSource = {uri, ...other};
+    } else {
+      imageSource = source;
     }
     if (animated) {
-      component = (
-        <View style={[{aspectRatio: ratio}, style]}>
-          <Animated.Image
-            {...otherProps}
-            source={imageSource}
-            style={[{width: '100%', height: '100%'}, animatedStyle]}
-          />
-        </View>
+      imageEl = (
+        <Animated.Image
+          {...otherProps}
+          source={imageSource}
+          style={[{width: '100%', height: '100%'}, animatedStyle]}
+        >
+          {children}
+        </Animated.Image>
       );
-    }
-
-    let ImageComponent = Image;
-    if (Children.count(this.props.children)) {
-      ImageComponent = ImageBackground;
-    }
-    component = (
-      <View style={[{aspectRatio: ratio}, style]}>
-        <ImageComponent
+    } else if (Children.count(children)) {
+      imageEl = (
+        <ImageBackground
+          {...otherProps}
+          source={imageSource}
+          style={{width: '100%', height: '100%'}}
+        >
+          {children}
+        </ImageBackground>
+      );
+    } else {
+      imageEl = (
+        <Image
           {...otherProps}
           source={imageSource}
           style={{width: '100%', height: '100%'}}
         />
-      </View>
-    );
+      );
+    }
+    let viewEl = <View style={[{aspectRatio: ratio}, style]}>{imageEl}</View>;
     if (onPress) {
-      return <TouchableOpacity onPress={onPress}>{component}</TouchableOpacity>;
+      return <TouchableOpacity onPress={onPress}>{viewEl}</TouchableOpacity>;
     } else {
-      return component;
+      return viewEl;
     }
   }
 

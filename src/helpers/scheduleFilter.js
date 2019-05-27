@@ -25,7 +25,7 @@ export function getFilteredSchedule(
 export function getScheduleHours(
   scheduleList: Map<string, Schedule>,
   dateFilterString?: string,
-) {
+): Array<string> {
   let scheduleHourList: Map<string, string> = new Map();
   let dateFilter = new Date(dateFilterString || '');
   scheduleList.forEach((schedule) => {
@@ -45,7 +45,9 @@ export function getScheduleHours(
   return Array.from(scheduleHourList.values()).sort();
 }
 
-export function getScheduleDates(scheduleList: Map<string, Schedule>) {
+export function getScheduleDates(
+  scheduleList: Map<string, Schedule>,
+): Array<string> {
   let scheduleDateList: Map<string, string> = new Map();
   scheduleList.forEach((schedule) => {
     let {dateString} = schedule;

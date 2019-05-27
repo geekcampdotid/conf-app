@@ -85,9 +85,9 @@ export default class Swiper extends Component<Props, State> {
     this._isScrolling = true;
   };
 
-  _onScrollEnd = (e) => {
+  _onScrollEnd = (e: any) => {
     this._isScrolling = false;
-    // making our events coming from android compatible to updateIndex logic
+    // Make our event coming from Android compatible with updateIndex logic
     let contentOffset = e.nativeEvent.contentOffset || {
       x: e.nativeEvent.position * this._slideWidth,
       y: e.nativeEvent.position * this._height,

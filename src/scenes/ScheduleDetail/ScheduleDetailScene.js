@@ -46,10 +46,10 @@ type State = {
 
 export class ScheduleDetailScene extends Component<Props, State> {
   _actionButton: ?Object;
-  bookmarkAnimationInterval: number;
+  _bookmarkAnimationInterval: any; // ?TimeoutID
   _isBookmarked: boolean;
 
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({navigation}: any) => ({
     title: `${navigation.state.params.schedule.talkTitle}`,
   });
 
@@ -68,11 +68,11 @@ export class ScheduleDetailScene extends Component<Props, State> {
 
   componentDidMount() {
     if (this._actionButton) {
-      if (this.bookmarkAnimationInterval == null) {
+      if (this._bookmarkAnimationInterval == null) {
         this._actionButton.zoomIn();
       }
       if (!this._isBookmarked) {
-        this.bookmarkAnimationInterval = this._setActionButtonAnimationInterval();
+        this._bookmarkAnimationInterval = this._setActionButtonAnimationInterval();
       }
     }
   }
@@ -84,14 +84,14 @@ export class ScheduleDetailScene extends Component<Props, State> {
       (schedule && this._checkBookmark(bookmarkList, schedule.id)) || false;
 
     if (this._isBookmarked) {
-      clearInterval(this.bookmarkAnimationInterval);
+      clearInterval(this._bookmarkAnimationInterval);
     } else {
-      this.bookmarkAnimationInterval = this._setActionButtonAnimationInterval();
+      this._bookmarkAnimationInterval = this._setActionButtonAnimationInterval();
     }
   }
 
   componentWillUnmount() {
-    clearInterval(this.bookmarkAnimationInterval);
+    clearInterval(this._bookmarkAnimationInterval);
   }
 
   render() {

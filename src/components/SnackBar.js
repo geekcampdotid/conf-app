@@ -31,7 +31,7 @@ type Props = {
 export class SnackBarComponent extends Component<Props, void> {
   props: Props;
   _animatedValue: Animated.Value;
-  _closeSnackBar: number;
+  _closeSnackBar: any; // ?TimeoutID
   _viewHeight: number;
 
   constructor() {
