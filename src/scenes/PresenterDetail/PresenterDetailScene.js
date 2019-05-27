@@ -7,18 +7,15 @@ import {TabBar, PresenterDetailAvatar} from '../../components';
 import PresenterProfileInfoScene from './PresenterProfileInfoScene';
 import SessionInfoScene from './SessionInfoScene';
 
+import type {NavigationScreenProp} from 'react-navigation';
 import type {Presenter} from '../../data/presenter/Presenter-type';
-import type {NavigateFunction} from '../../data/navigation/Navigation-type';
 
 type Props = {
-  navigation: {
-    navigate: NavigateFunction,
-    state: {
-      params: {
-        presenter?: Presenter,
-      },
+  navigation: NavigationScreenProp<{
+    params: {
+      presenter?: Presenter,
     },
-  },
+  }>,
 };
 
 export default function PresenterDetailScene(props: Props) {

@@ -16,13 +16,13 @@ import {View} from '../../../components/core';
 import {NoItemFound} from '../../../components';
 import {THEME_COLOR, LIGHT_GREY} from '../../../constants/colors';
 
+import type {NavigationScreenProp} from 'react-navigation';
 import type {Schedule} from '../../../data/schedule/Schedule-type';
-import type {Navigation} from '../../../data/navigation/Navigation-type';
 import type {RootState} from '../../../types';
 
 type Props = {
   scheduleList: Map<string, Schedule>,
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
 };
 
 type State = {

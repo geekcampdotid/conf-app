@@ -29,6 +29,6 @@ export default function AboutUsScene() {
   );
 }
 
-AboutUsScene.navigationOptions = {
+AboutUsScene.navigationOptions = ({
   title: 'About Us',
-};
+}: any);

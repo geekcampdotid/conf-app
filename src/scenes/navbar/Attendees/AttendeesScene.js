@@ -13,7 +13,7 @@ import styles, {CONTAINER_BORDER_RADIUS} from './AttendeesScene-style';
 
 import type {Presenter} from '../../../data/presenter/Presenter-type';
 import type {Exhibitor} from '../../../data/exhibitor/Exhibitor-type';
-import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {NavigationScreenProp} from 'react-navigation';
 import type {RootState} from '../../../types';
 
 const PRESENTERS = 'Presenters';
@@ -23,7 +23,7 @@ const TAB_MENU = [PRESENTERS, EXHIBITORS];
 const DEFAULT_SELECTED_TAB_INDEX = 0;
 
 type Props = {
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
   presenterList: Map<string, Presenter>,
   exhibitorList: Map<string, Exhibitor>,
 };

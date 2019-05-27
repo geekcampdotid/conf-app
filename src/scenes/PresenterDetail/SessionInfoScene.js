@@ -13,14 +13,14 @@ import formatDateTime, {getTimeObject} from '../../helpers/formatDateTime';
 
 import styles from './SessionInfoScene-style';
 
+import type {NavigationScreenProp} from 'react-navigation';
 import type {Presenter} from '../../data/presenter/Presenter-type';
 import type {Schedule} from '../../data/schedule/Schedule-type';
-import type {Navigation} from '../../data/navigation/Navigation-type';
 import type {RootState} from '../../types';
 
 type Props = {
   presenter: Presenter,
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
   scheduleList: Map<string, Schedule>,
 };
 

@@ -21,9 +21,9 @@ import {EVENT_PLACE, EVENT_DATE} from '../../../constants/aboutApp';
 
 import styles from './HomeScene-style';
 
+import type {NavigationScreenProp} from 'react-navigation';
 import type {Schedule} from '../../../data/schedule/Schedule-type';
 import type {Presenter} from '../../../data/presenter/Presenter-type';
-import type {Navigation} from '../../../data/navigation/Navigation-type';
 import type {RootState} from '../../../types';
 
 type State = {
@@ -31,7 +31,7 @@ type State = {
 };
 
 type Props = {
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
   scheduleList: Map<string, Schedule>,
   presenterList: Map<string, Presenter>,
 };
@@ -44,7 +44,7 @@ export class HomeScene extends Component<Props, State> {
   state: State;
   props: Props;
   static navigationOptions = {
-    title: 'HOME',
+    title: 'Home',
   };
 
   constructor() {
@@ -205,10 +205,6 @@ export class HomeScene extends Component<Props, State> {
     );
   }
 }
-
-HomeScene.navigationOptions = {
-  title: 'Home',
-};
 
 function mapStateToProps(state: RootState) {
   return {

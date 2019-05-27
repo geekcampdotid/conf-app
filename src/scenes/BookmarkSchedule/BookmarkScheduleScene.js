@@ -15,7 +15,7 @@ import convertArrayToMap from '../../helpers/convertArrayToMap';
 import {THEME_COLOR} from '../../constants/colors';
 import styles, {CONTAINER_BORDER_RADIUS} from './BookmarkScheduleScene-style';
 
-import type {Navigation} from '../../data/navigation/Navigation-type';
+import type {NavigationScreenProp} from 'react-navigation';
 import type {Schedule} from '../../data/schedule/Schedule-type';
 import type {RootState} from '../../types';
 
@@ -28,7 +28,7 @@ const TAB_MENU = [ALLSTAGE, STAGE1, STAGE2];
 const DEFAULT_SELECTED_TAB_INDEX = 0;
 
 type Props = {
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
   bookmarkList: Array<string>,
   scheduleList: Map<string, Schedule>,
 };

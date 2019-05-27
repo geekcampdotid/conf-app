@@ -34,6 +34,6 @@ export default function ContactInfoScene() {
   );
 }
 
-ContactInfoScene.navigationOptions = {
+ContactInfoScene.navigationOptions = ({
   title: 'Contact Us',
-};
+}: any);

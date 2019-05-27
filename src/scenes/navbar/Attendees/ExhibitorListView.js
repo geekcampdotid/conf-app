@@ -10,12 +10,12 @@ import {NoItemFound} from '../../../components';
 import styles, {AVATAR_SIZE} from './ListView-style';
 
 import type {Exhibitor} from '../../../data/exhibitor/Exhibitor-type';
-import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {NavigationScreenProp} from 'react-navigation';
 
 import DEFAULT_AVATAR from '../../../assets/images/default-company-avatar.png';
 
 type Props = {
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
   exhibitorList: Map<string, Exhibitor>,
   searchValue: string,
 };

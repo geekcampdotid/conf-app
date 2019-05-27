@@ -9,12 +9,12 @@ import {NoItemFound} from '../../../components';
 import styles, {AVATAR_SIZE} from './ListView-style';
 
 import type {Presenter} from '../../../data/presenter/Presenter-type';
-import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {NavigationScreenProp} from 'react-navigation';
 
 import DEFAULT_AVATAR from '../../../assets/images/default-profile-pic.png';
 
 type Props = {
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
   presenterList: Map<string, Presenter>,
   searchValue: string,
 };

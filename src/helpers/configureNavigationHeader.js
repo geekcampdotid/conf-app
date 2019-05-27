@@ -7,12 +7,12 @@ import {View} from '../components/core';
 import {themeColors} from '../constants/colors';
 import {SCALE_RATIO, HIT_SLOP} from '../constants/layout';
 
-import type {NavigationObject} from '../data/navigation/Navigation-type';
+import type {NavigationScreenProp} from 'react-navigation';
 
 const ICON_LEFT_SIZE = SCALE_RATIO * 27;
 
 export default function configureNavigationHeader(
-  navigation: NavigationObject,
+  navigation: NavigationScreenProp<*>,
 ) {
   let {state, navigate, goBack} = navigation;
 

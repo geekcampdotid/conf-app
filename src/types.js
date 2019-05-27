@@ -3,7 +3,7 @@
 import type {
   NavigationState,
   NavigationAction,
-} from './data/navigation/Navigation-type';
+} from 'react-navigation';
 import type {PresenterState, Presenter} from './data/presenter/Presenter-type';
 import type {
   ScheduleState,

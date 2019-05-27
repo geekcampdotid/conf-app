@@ -10,14 +10,14 @@ import {GREY, LIGHT_GREY} from '../../../constants/colors';
 import {FONT_BOLD, DEFAULT_FONT_SIZE} from '../../../constants/text';
 import DEFAULT_AVATAR from '../../../assets/images/default-profile-pic.png';
 
+import type {NavigationScreenProp} from 'react-navigation';
 import type {Schedule} from '../../../data/schedule/Schedule-type';
-import type {Navigation} from '../../../data/navigation/Navigation-type';
 import type {Presenter} from '../../../data/presenter/Presenter-type';
 import type {RootState} from '../../../types';
 
 type Props = {
   presenterList: Map<string, Presenter>,
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
   schedule: Schedule,
   isLastItem: boolean,
 };

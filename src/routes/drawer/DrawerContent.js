@@ -11,10 +11,10 @@ import {List, ListItem} from 'react-native-elements';
 import {DARK_GREY} from '../../constants/colors';
 import {SCALE_RATIO} from '../../constants/layout';
 
-import type {NavigationObject} from '../../data/navigation/Navigation-type';
+import type {NavigationScreenProp} from 'react-navigation';
 
 type Props = {
-  navigation: NavigationObject,
+  navigation: NavigationScreenProp<*>,
 };
 
 type MenuItem = {

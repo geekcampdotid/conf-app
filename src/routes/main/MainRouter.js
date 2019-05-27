@@ -28,12 +28,12 @@ const MainRouter = createStackNavigator(
     ExhibitorDetailScene: {screen: ExhibitorDetailScene},
     BookmarkScheduleScene: {screen: BookmarkScheduleScene},
   },
-  {
+  ({
     navigationOptions: ({navigation}) => ({
       ...configureNavigationHeader(navigation),
       headerBackTitle: null,
     }),
-  },
+  }: any),
 );
 
 const DrawerRouter = createDrawerNavigator(
@@ -42,7 +42,7 @@ const DrawerRouter = createDrawerNavigator(
       screen: MainRouter,
     },
   },
-  {
+  ({
     contentComponent: DrawerContent,
     navigationOptions: ({navigation}) => {
       return {
@@ -50,7 +50,7 @@ const DrawerRouter = createDrawerNavigator(
           navigation.state.index > 0 ? 'locked-closed' : 'unlocked',
       };
     },
-  },
+  }: any),
 );
 
 export default createStackNavigator(
@@ -59,11 +59,11 @@ export default createStackNavigator(
       screen: DrawerRouter,
     },
   },
-  {
+  ({
     navigationOptions: {
       headerBackTitle: null,
       header: null,
       gesturesEnabled: false,
     },
-  },
+  }: any),
 );

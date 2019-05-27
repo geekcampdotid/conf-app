@@ -13,19 +13,16 @@ import styles from './ScheduleDetailScene-styles';
 import {VIEW_SHADOW} from '../../constants/genericStyle';
 import {themeColors} from '../../constants/colors';
 
+import type {NavigationScreenProp} from 'react-navigation';
 import type {Schedule} from '../../data/schedule/Schedule-type';
 import type {Presenter} from '../../data/presenter/Presenter-type';
 import type {RootState, Dispatch} from '../../types';
-import type {NavigateFunction} from '../../data/navigation/Navigation-type';
 
-type Navigation = {
-  navigate: NavigateFunction,
-  state: {
-    params: {
-      schedule?: Schedule,
-    },
+type Navigation = NavigationScreenProp<{
+  params: {
+    schedule?: Schedule,
   },
-};
+}>;
 
 type Props = {
   navigation: Navigation,
@@ -104,7 +101,11 @@ export class ScheduleDetailScene extends Component<Props, State> {
       <View style={styles.root}>
         <ScrollView>
           <View
-            onLayout={({nativeEvent: {layout: {height}}}) =>
+            onLayout={({
+              nativeEvent: {
+                layout: {height},
+              },
+            }) =>
               this.setState({
                 bookmarkLayout: {
                   ...VIEW_SHADOW,
@@ -129,7 +130,7 @@ export class ScheduleDetailScene extends Component<Props, State> {
                 stage={schedule.stage}
                 presenters={schedule.presenters}
                 presenterList={presenterList}
-                navigate={navigation.navigate}
+                navigation={navigation}
               />
             </View>
           </View>
@@ -225,6 +226,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  ScheduleDetailScene,
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ScheduleDetailScene);

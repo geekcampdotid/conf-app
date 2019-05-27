@@ -7,16 +7,13 @@ import ExhibitorProfileInfoScene from './ExhibitorProfileInfoScene';
 import ExhibitorBoothLocation from './ExhibitorBoothLocation';
 
 import type {Exhibitor} from '../../data/exhibitor/Exhibitor-type';
-import type {NavigateFunction} from '../../data/navigation/Navigation-type';
+import type {NavigationScreenProp} from 'react-navigation';
 
-type Navigation = {
-  navigate: NavigateFunction,
-  state: {
-    params: {
-      exhibitor: Exhibitor,
-    },
+type Navigation = NavigationScreenProp<{
+  params: {
+    exhibitor: Exhibitor,
   },
-};
+}>;
 
 type Props = {
   navigation: Navigation,

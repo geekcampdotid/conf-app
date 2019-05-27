@@ -12,12 +12,12 @@ import {
   LARGE_FONT_SIZE,
 } from '../../../constants/text';
 
-import type {Navigation} from '../../../data/navigation/Navigation-type';
+import type {NavigationScreenProp} from 'react-navigation';
 import type {Schedule} from '../../../data/schedule/Schedule-type';
 
 type Props = {
   scheduleList: Array<Schedule>,
-  navigation: Navigation,
+  navigation: NavigationScreenProp<*>,
   time: {
     hours: string,
     minutes: string,
