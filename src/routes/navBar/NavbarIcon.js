@@ -1,34 +1,21 @@
 // @flow
 
 import React from 'react';
-import {Animated, View} from 'react-native';
+import {View} from 'react-native';
 import {Icon} from 'react-native-elements';
 
 type Props = {
+  name: string,
   focused: boolean,
-  activeColor: string,
-  inactiveColor: string,
-  size: number,
-  scale: Animated.Value,
+  tintColor: string,
 };
 
 export default function NavbarIcon(props: Props) {
-  let {focused, inactiveColor, activeColor, scale, size, ...otherProps} = props;
-
-  if (focused) {
-    return (
-      <Animated.View
-        style={{
-          transform: [{scale}],
-        }}
-      >
-        <Icon {...otherProps} color={activeColor} />
-      </Animated.View>
-    );
-  }
+  // eslint-disable-next-line no-unused-vars
+  let {focused, tintColor, ...otherProps} = props;
   return (
     <View>
-      <Icon {...otherProps} color={inactiveColor} size={size} />
+      <Icon {...otherProps} color={tintColor} />
     </View>
   );
 }

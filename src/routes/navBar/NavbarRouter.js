@@ -2,11 +2,10 @@
 /* eslint-disable react/display-name */
 
 import React from 'react';
-import {Icon} from 'react-native-elements';
 import {createBottomTabNavigator} from 'react-navigation';
 
-import Navbar from './Navbar';
 import HomeScene from '../../scenes/navbar/Home/HomeScene';
+import NavbarIcon from './NavbarIcon';
 import AttendeesScene from '../../scenes/navbar/Attendees/AttendeesScene';
 import ScheduleScene from '../../scenes/navbar/Schedule/ScheduleScene';
 import MapScene from '../../scenes/navbar/Maps/MapScene';
@@ -28,43 +27,56 @@ import {
   ICON_PRESENTER,
 } from '../../constants/icons';
 
+type TabBarProps = {
+  focused: boolean,
+  horizontal: boolean,
+  tintColor: string,
+};
+
 export default createBottomTabNavigator(
   {
     HomeScene: {
       screen: HomeScene,
       navigationOptions: {
-        tabBarIcon: () => <Icon name={ICON_HOME} />,
+        tabBarIcon: (props: TabBarProps) => (
+          <NavbarIcon {...props} name={ICON_HOME} />
+        ),
       },
     },
     AttendeesScene: {
       screen: AttendeesScene,
       navigationOptions: {
-        tabBarIcon: () => <Icon name={ICON_PRESENTER} />,
+        tabBarIcon: (props: TabBarProps) => (
+          <NavbarIcon {...props} name={ICON_PRESENTER} />
+        ),
       },
     },
     ScheduleScene: {
       screen: ScheduleScene,
       navigationOptions: {
-        tabBarIcon: () => <Icon name={ICON_SCHEDULE} />,
+        tabBarIcon: (props: TabBarProps) => (
+          <NavbarIcon {...props} name={ICON_SCHEDULE} />
+        ),
       },
     },
     MapScene: {
       screen: MapScene,
       navigationOptions: {
-        tabBarIcon: () => <Icon name={ICON_MAP} />,
+        tabBarIcon: (props: TabBarProps) => (
+          <NavbarIcon {...props} name={ICON_MAP} />
+        ),
       },
     },
     BookmarkSchedule: {
       screen: BookmarkScheduleScene,
       navigationOptions: {
-        tabBarIcon: () => <Icon name={ICON_BOOKMARK} />,
+        tabBarIcon: (props: TabBarProps) => (
+          <NavbarIcon {...props} name={ICON_BOOKMARK} />
+        ),
       },
     },
   },
   {
-    tabBarComponent: (args) => {
-      return <Navbar {...args} />;
-    },
     tabBarOptions: {
       // iOS
       activeTintColor: ACTIVE_ICON_COLOR,
