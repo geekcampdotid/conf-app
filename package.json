@@ -5,10 +5,12 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "test-src": "node node_modules/jest/bin/jest.js",
-    "test": "npm run lint && npm run typecheck && npm run test-src",
+    "format": "prettier-eslint --write \"src/**/*.js\"",
+    "lint": "eslint . --max-warnings 0",
     "typecheck": "flow",
-    "lint": "eslint . —max-warnings 0"
+    "test-src": "jest --coverage",
+    "test-watch": "yarn test-src --watch",
+    "test": "yarn lint && yarn typecheck && yarn test-src"
   },
   "jest": {
     "preset": "jest-expo"
@@ -47,6 +49,7 @@
   "prettier": {
     "bracketSpacing": false,
     "singleQuote": true,
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "arrowParens": "always"
   }
 }
