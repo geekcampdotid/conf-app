@@ -33,55 +33,57 @@ type TabBarProps = {
   tintColor: string,
 };
 
-export default createBottomTabNavigator(
-  {
-    HomeScene: {
-      screen: HomeScene,
-      navigationOptions: {
-        title: 'Home',
-        tabBarIcon: (props: TabBarProps) => (
-          <NavbarIcon {...props} name={ICON_HOME} />
-        ),
-      },
-    },
-    AttendeesScene: {
-      screen: AttendeesScene,
-      navigationOptions: {
-        title: 'Participants',
-        tabBarIcon: (props: TabBarProps) => (
-          <NavbarIcon {...props} name={ICON_PRESENTER} />
-        ),
-      },
-    },
-    ScheduleScene: {
-      screen: ScheduleScene,
-      navigationOptions: {
-        title: 'Schedule',
-        tabBarIcon: (props: TabBarProps) => (
-          <NavbarIcon {...props} name={ICON_SCHEDULE} />
-        ),
-      },
-    },
-    MapScene: {
-      screen: MapScene,
-      navigationOptions: {
-        title: 'Conference Map',
-        tabBarIcon: (props: TabBarProps) => (
-          <NavbarIcon {...props} name={ICON_MAP} />
-        ),
-      },
-    },
-    BookmarkSchedule: {
-      screen: BookmarkScheduleScene,
-      navigationOptions: {
-        title: 'My Schedule',
-        tabBarIcon: (props: TabBarProps) => (
-          <NavbarIcon {...props} name={ICON_BOOKMARK} />
-        ),
-      },
+const routeConfigs = {
+  HomeScene: {
+    screen: HomeScene,
+    navigationOptions: {
+      title: 'Home',
+      tabBarIcon: (props: TabBarProps) => (
+        <NavbarIcon {...props} name={ICON_HOME} />
+      ),
     },
   },
-  {
+  AttendeesScene: {
+    screen: AttendeesScene,
+    navigationOptions: {
+      title: 'Participants',
+      tabBarIcon: (props: TabBarProps) => (
+        <NavbarIcon {...props} name={ICON_PRESENTER} />
+      ),
+    },
+  },
+  ScheduleScene: {
+    screen: ScheduleScene,
+    navigationOptions: {
+      title: 'Schedule',
+      tabBarIcon: (props: TabBarProps) => (
+        <NavbarIcon {...props} name={ICON_SCHEDULE} />
+      ),
+    },
+  },
+  MapScene: {
+    screen: MapScene,
+    navigationOptions: {
+      title: 'Conference Map',
+      tabBarIcon: (props: TabBarProps) => (
+        <NavbarIcon {...props} name={ICON_MAP} />
+      ),
+    },
+  },
+  BookmarkSchedule: {
+    screen: BookmarkScheduleScene,
+    navigationOptions: {
+      title: 'My Schedule',
+      tabBarIcon: (props: TabBarProps) => (
+        <NavbarIcon {...props} name={ICON_BOOKMARK} />
+      ),
+    },
+  },
+};
+
+export default createBottomTabNavigator(
+  routeConfigs,
+  ({
     tabBarOptions: {
       // iOS
       activeTintColor: ACTIVE_ICON_COLOR,
@@ -103,5 +105,21 @@ export default createBottomTabNavigator(
     swipeEnabled: false,
     animationEnabled: false,
     initialRouteName: INITIAL_SCENE,
-  },
+    navigationOptions: ({navigation}) => {
+      let {index, routes} = navigation.state;
+      let currentRoute = routes[index];
+      let routeConfig = routeConfigs[currentRoute.key];
+      // This is a super hacky way to get the title, but I can't seem to figure
+      // out how to display it otherwise. Nothing else I tried works.
+      // TODO: Implement a better way.
+      // TODO: Add button to open drawer.
+      // TODO: Copy header styles from src/routes/main/MainRouter-style.js
+      let title =
+        (routeConfig &&
+          routeConfig.navigationOptions &&
+          routeConfig.navigationOptions.title) ||
+        null;
+      return {title};
+    },
+  }: any),
 );

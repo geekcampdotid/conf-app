@@ -1,9 +1,13 @@
 // @flow
 
-import {createStackNavigator, createDrawerNavigator} from 'react-navigation';
+import {
+  createStackNavigator,
+  createDrawerNavigator,
+  createAppContainer,
+} from 'react-navigation';
 
 import {configureNavigationHeader} from '../../helpers';
-import NavbarRouter from '../navBar/NavbarRouter';
+import Navbar from '../navBar/NavbarRouter';
 import DrawerContent from '../drawer/DrawerContent';
 
 import AboutUsScene from '../../scenes/AboutUs/AboutUsScene';
@@ -14,10 +18,11 @@ import ScheduleDetailScene from '../../scenes/ScheduleDetail/ScheduleDetailScene
 import ExhibitorDetailScene from '../../scenes/ExhibitorDetail/ExhibitorDetailScene';
 import BookmarkScheduleScene from '../../scenes/BookmarkSchedule/BookmarkScheduleScene';
 
-const MainRouter = createStackNavigator(
+const MainStackNav = createStackNavigator(
   {
-    Navbar: {screen: NavbarRouter},
-    // drawer navigation
+    Navbar: {screen: Navbar},
+
+    // drawer screens
     AboutUsScene: {
       screen: AboutUsScene,
       navigationOptions: {title: 'About Us'},
@@ -65,16 +70,17 @@ const MainRouter = createStackNavigator(
   }: any),
 );
 
-const DrawerRouter = createDrawerNavigator(
+const DrawerNav = createDrawerNavigator(
   {
     Main: {
-      screen: MainRouter,
+      screen: MainStackNav,
     },
   },
   ({
     contentComponent: DrawerContent,
     navigationOptions: ({navigation}) => {
       return {
+        header: null,
         drawerLockMode:
           navigation.state.index > 0 ? 'locked-closed' : 'unlocked',
       };
@@ -82,17 +88,4 @@ const DrawerRouter = createDrawerNavigator(
   }: any),
 );
 
-export default createStackNavigator(
-  {
-    Drawer: {
-      screen: DrawerRouter,
-    },
-  },
-  ({
-    navigationOptions: {
-      headerBackTitle: null,
-      header: null,
-      gesturesEnabled: false,
-    },
-  }: any),
-);
+export default createAppContainer(DrawerNav);
