@@ -1,9 +1,6 @@
 // @flow
 
-import type {
-  NavigationState,
-  NavigationAction,
-} from 'react-navigation';
+import type {NavigationState} from 'react-navigation';
 import type {PresenterState, Presenter} from './data/presenter/Presenter-type';
 import type {
   ScheduleState,
@@ -33,7 +30,6 @@ export type InitialDataAction = {
 
 export type Action =
   | InitialDataAction
-  | NavigationAction
   | ScheduleAction
   | SnackBarAction
   | PinchToZoomImageAction;

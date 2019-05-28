@@ -7,7 +7,6 @@ import snackBarReducer from './data/snackBar/snackBarReducer';
 import pinchToZoomImageReducer from './data/modalComponent/pinchToZoomImage/pinchToZoomImageReducer';
 
 import bookmarkScheduleMiddleware from './data/schedule/bookmarkScheduleMiddleware';
-import snackBarMiddleware from './data/snackBar/snackBarMiddleware';
 
 let app = combineReducers({
   presenterList: presenterReducer,
@@ -20,7 +19,7 @@ let app = combineReducers({
 let createDataStore = () => {
   let store = createStore(
     app,
-    applyMiddleware(bookmarkScheduleMiddleware, snackBarMiddleware),
+    applyMiddleware(bookmarkScheduleMiddleware),
   );
   return store;
 };
