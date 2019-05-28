@@ -30,11 +30,11 @@ it('should render TIME format', () => {
 });
 
 it('should render DATE format', () => {
-  let date = new Date(2017, 4, 1, 21, 51, 23);
-  expect(formatDateTime(date.toISOString(), 'DATE')).toBe(`01 May 2017`);
+  let date = '2017-05-01T14:51:23.000Z';
+  expect(formatDateTime(date, 'DATE')).toBe(`01 May 2017`);
 
-  date = new Date(2017, 3, 24, 9, 51, 23);
-  expect(formatDateTime(date.toISOString(), 'DATE')).toBe(`24 April 2017`);
+  date = '2017-04-24T02:51:23.000Z';
+  expect(formatDateTime(date, 'DATE')).toBe(`24 April 2017`);
 });
 
 it('should return true if the date is today', () => {
