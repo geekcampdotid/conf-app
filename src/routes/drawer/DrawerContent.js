@@ -46,7 +46,9 @@ const list: Array<MenuItem> = [
 ];
 
 export default function DrawerContent(props: Props) {
-  let {navigation: {navigate}} = props;
+  let {
+    navigation: {navigate},
+  } = props;
   return (
     <View style={styles.root}>
       <View style={styles.logoContainer}>

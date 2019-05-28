@@ -12,8 +12,8 @@ import type {SnackBar as SnackBarType} from '../data/snackBar/SnackBar-type';
 import type {RootState, Dispatch} from '../types';
 
 /*
-* Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations
-*/
+ * Values are from https://material.io/guidelines/motion/duration-easing.html#duration-easing-dynamic-durations
+ */
 const easingValues = {
   entry: Easing.bezier(0.0, 0.0, 0.2, 1),
   exit: Easing.bezier(0.4, 0.0, 1, 1),
@@ -81,7 +81,11 @@ export class SnackBarComponent extends Component<Props, void> {
     }
     return (
       <Animated.View
-        onLayout={({nativeEvent: {layout: {height}}}) => {
+        onLayout={({
+          nativeEvent: {
+            layout: {height},
+          },
+        }) => {
           this._viewHeight = height;
         }}
         style={[
@@ -154,4 +158,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SnackBarComponent);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SnackBarComponent);

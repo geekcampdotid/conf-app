@@ -25,15 +25,15 @@ type Props = {
   children?: ReactNode,
 };
 
+type Offset = {
+  x: number,
+  y: number,
+};
+
 type State = {
   index: number,
   total: number,
   offset?: Offset,
-};
-
-type Offset = {
-  x: number,
-  y: number,
 };
 
 export default class Swiper extends Component<Props, State> {

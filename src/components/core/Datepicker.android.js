@@ -4,20 +4,20 @@ import {DatePickerAndroid, ToastAndroid} from 'react-native';
 import autobind from 'class-autobind';
 
 type DatepickerOptions = {
-  defaultDate: Date;
-  maximumDate?: Date;
-  minimumDate?: Date;
+  defaultDate: Date,
+  maximumDate?: Date,
+  minimumDate?: Date,
 };
 
 type Props = {
-  isOpened: boolean;
-  dateOptions: DatepickerOptions;
-  onDateSelected: (date: string) => void;
-  onClose: () => void;
+  isOpened: boolean,
+  dateOptions: DatepickerOptions,
+  onDateSelected: (date: string) => void,
+  onClose: () => void,
 };
 
 export default class DatePicker extends Component {
-  props: Props
+  props: Props;
   constructor() {
     super(...arguments);
     autobind(this);

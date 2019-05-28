@@ -69,4 +69,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(MapScene);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(MapScene);

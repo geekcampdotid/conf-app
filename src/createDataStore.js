@@ -17,10 +17,7 @@ let app = combineReducers({
 });
 
 let createDataStore = () => {
-  let store = createStore(
-    app,
-    applyMiddleware(bookmarkScheduleMiddleware),
-  );
+  let store = createStore(app, applyMiddleware(bookmarkScheduleMiddleware));
   return store;
 };
 

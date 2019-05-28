@@ -46,7 +46,8 @@ export default class CarouselCard extends Component<Props, State> {
     this.width = PlatformInfo.width();
     this.blockWidth = this.width * 0.708;
     this.height =
-      this.props.height || this.blockWidth * PlatformInfo.height() / this.width;
+      this.props.height ||
+      (this.blockWidth * PlatformInfo.height()) / this.width;
     this.blockHeight = this.height;
     this.moveDistance = this.width * 0.733;
     this.ratio = 0.872;
@@ -175,12 +176,12 @@ export default class CarouselCard extends Component<Props, State> {
         ratio = Math.abs(currentPageFloat) < 0.1 ? 1 : 0;
       }
       if (i - 1 === currentPageInt) {
-        ratio = 1 - currentPageFloat % 1;
+        ratio = 1 - (currentPageFloat % 1);
       } else if (i - 1 === currentPageInt + 1) {
         ratio = currentPageFloat % 1;
       }
       let scaleY = this.ratio + (1 - this.ratio) * ratio;
-      let translateY = this.height * (1 - scaleY) / 8;
+      let translateY = (this.height * (1 - scaleY)) / 8;
       Animated.timing(this.state.scaleYArr[i], {
         toValue: scaleY,
         duration: 0,

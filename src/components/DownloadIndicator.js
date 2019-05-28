@@ -42,9 +42,6 @@ const styles = StyleSheet.create({
 });
 
 export default class DownloadIndicator extends Component<Props, void> {
-  constructor() {
-    super(...arguments);
-  }
   render() {
     let {style, isShowing, downloadProgress, totalDownloadSize} = this.props;
     let currentDownloaded = downloadProgress || 0;
@@ -62,7 +59,7 @@ export default class DownloadIndicator extends Component<Props, void> {
             <View style={styles.textContainer}>
               <Text style={styles.text}>
                 Downloading updates...{' '}
-                {Math.round(currentDownloaded / totalDownload * 100)} %
+                {Math.round((currentDownloaded / totalDownload) * 100)} %
               </Text>
             </View>
           </View>

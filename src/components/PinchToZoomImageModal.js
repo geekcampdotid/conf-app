@@ -21,7 +21,10 @@ type Props = {
 let {width: screenWidth, height: screenHeight} = getScreenSize();
 // TODO: make it work for url image
 export function PinchToZoomImageModal(props: Props) {
-  let {pinchToZoomImageModal: {visible, imageSource}, onRequestClose} = props;
+  let {
+    pinchToZoomImageModal: {visible, imageSource},
+    onRequestClose,
+  } = props;
   if (imageSource && typeof imageSource === 'number') {
     let imageSize = resolveAssetSource(imageSource);
     if (imageSize) {
@@ -88,6 +91,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  PinchToZoomImageModal,
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PinchToZoomImageModal);
