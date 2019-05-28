@@ -33,7 +33,3 @@ export default function ContactInfoScene() {
     </View>
   );
 }
-
-ContactInfoScene.navigationOptions = ({
-  title: 'Contact Us',
-}: any);

@@ -54,10 +54,6 @@ export function MapScene(props: Props) {
   );
 }
 
-MapScene.navigationOptions = {
-  title: 'Conference Map',
-};
-
 function mapDispatchToProps(dispatch: Dispatch) {
   return {
     onMapClicked: (imageSource: number) => {

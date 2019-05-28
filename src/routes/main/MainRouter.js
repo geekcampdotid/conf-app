@@ -18,15 +18,44 @@ const MainRouter = createStackNavigator(
   {
     Navbar: {screen: NavbarRouter},
     // drawer navigation
-    AboutUsScene: {screen: AboutUsScene},
-    ContactInfoScene: {screen: ContactInfoScene},
-    SponsorsScene: {screen: SponsorsScene},
+    AboutUsScene: {
+      screen: AboutUsScene,
+      navigationOptions: {title: 'About Us'},
+    },
+    ContactInfoScene: {
+      screen: ContactInfoScene,
+      navigationOptions: {title: 'Contact Us'},
+    },
+    SponsorsScene: {
+      screen: SponsorsScene,
+      navigationOptions: {title: 'Sponsors'},
+    },
 
     // other screens
-    PresenterDetailScene: {screen: PresenterDetailScene},
-    ScheduleDetailScene: {screen: ScheduleDetailScene},
-    ExhibitorDetailScene: {screen: ExhibitorDetailScene},
-    BookmarkScheduleScene: {screen: BookmarkScheduleScene},
+    PresenterDetailScene: {
+      screen: PresenterDetailScene,
+      navigationOptions: ({navigation}) => ({
+        title: `${navigation.state.params.presenter.name}`,
+      }),
+    },
+    ScheduleDetailScene: {
+      screen: ScheduleDetailScene,
+      navigationOptions: ({navigation}) => ({
+        title: `${navigation.state.params.schedule.talkTitle}`,
+      }),
+    },
+    ExhibitorDetailScene: {
+      screen: ExhibitorDetailScene,
+      navigationOptions: ({navigation}) => ({
+        title: `${navigation.state.params.exhibitor.name}`,
+      }),
+    },
+    BookmarkScheduleScene: {
+      screen: BookmarkScheduleScene,
+      navigationOptions: {
+        title: 'My Schedule',
+      },
+    },
   },
   ({
     navigationOptions: ({navigation}) => ({

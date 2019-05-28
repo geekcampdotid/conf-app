@@ -46,7 +46,3 @@ export default function ExhibitorDetailScene(props: Props) {
     </ScrollView>
   );
 }
-
-ExhibitorDetailScene.navigationOptions = ({navigation}) => ({
-  title: `${navigation.state.params.exhibitor.name}`,
-});

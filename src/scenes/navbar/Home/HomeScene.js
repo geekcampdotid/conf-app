@@ -43,9 +43,6 @@ const AVATAR_SIZE = SCALE_RATIO * 110;
 export class HomeScene extends Component<Props, State> {
   state: State;
   props: Props;
-  static navigationOptions = {
-    title: 'Home',
-  };
 
   constructor() {
     super(...arguments);

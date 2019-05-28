@@ -28,7 +28,3 @@ export default function AboutUsScene() {
     </ScrollView>
   );
 }
-
-AboutUsScene.navigationOptions = ({
-  title: 'About Us',
-}: any);

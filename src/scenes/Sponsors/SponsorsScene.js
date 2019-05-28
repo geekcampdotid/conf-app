@@ -25,6 +25,3 @@ export default function SponsorsScene() {
     </ScrollView>
   );
 }
-SponsorsScene.navigationOptions = ({
-  title: 'Sponsors',
-}: any);

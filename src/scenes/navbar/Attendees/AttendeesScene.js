@@ -34,10 +34,6 @@ type State = {
 };
 
 export class AttendeesScene extends Component<Props, State> {
-  static navigationOptions = {
-    title: 'Participants',
-  };
-
   constructor() {
     super(...arguments);
     autobind(this);

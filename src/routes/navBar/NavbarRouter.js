@@ -38,6 +38,7 @@ export default createBottomTabNavigator(
     HomeScene: {
       screen: HomeScene,
       navigationOptions: {
+        title: 'Home',
         tabBarIcon: (props: TabBarProps) => (
           <NavbarIcon {...props} name={ICON_HOME} />
         ),
@@ -46,6 +47,7 @@ export default createBottomTabNavigator(
     AttendeesScene: {
       screen: AttendeesScene,
       navigationOptions: {
+        title: 'Participants',
         tabBarIcon: (props: TabBarProps) => (
           <NavbarIcon {...props} name={ICON_PRESENTER} />
         ),
@@ -54,6 +56,7 @@ export default createBottomTabNavigator(
     ScheduleScene: {
       screen: ScheduleScene,
       navigationOptions: {
+        title: 'Schedule',
         tabBarIcon: (props: TabBarProps) => (
           <NavbarIcon {...props} name={ICON_SCHEDULE} />
         ),
@@ -62,6 +65,7 @@ export default createBottomTabNavigator(
     MapScene: {
       screen: MapScene,
       navigationOptions: {
+        title: 'Conference Map',
         tabBarIcon: (props: TabBarProps) => (
           <NavbarIcon {...props} name={ICON_MAP} />
         ),
@@ -70,6 +74,7 @@ export default createBottomTabNavigator(
     BookmarkSchedule: {
       screen: BookmarkScheduleScene,
       navigationOptions: {
+        title: 'My Schedule',
         tabBarIcon: (props: TabBarProps) => (
           <NavbarIcon {...props} name={ICON_BOOKMARK} />
         ),

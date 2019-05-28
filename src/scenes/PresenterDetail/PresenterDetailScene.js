@@ -46,7 +46,3 @@ export default function PresenterDetailScene(props: Props) {
     </ScrollView>
   );
 }
-
-PresenterDetailScene.navigationOptions = ({navigation}) => ({
-  title: `${navigation.state.params.presenter.name}`,
-});

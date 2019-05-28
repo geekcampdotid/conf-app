@@ -40,12 +40,9 @@ type State = {
 
 export class BookmarkScheduleScene extends Component<Props, State> {
   _flatList: ?Object;
-  static navigationOptions = {
-    title: 'My Schedule',
-  };
+
   constructor() {
     super(...arguments);
-
     this.state = {
       selectedTabIndex: DEFAULT_SELECTED_TAB_INDEX,
       selectedStageFilter: TAB_MENU[DEFAULT_SELECTED_TAB_INDEX],

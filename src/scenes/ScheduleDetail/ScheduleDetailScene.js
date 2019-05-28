@@ -46,10 +46,6 @@ export class ScheduleDetailScene extends Component<Props, State> {
   _bookmarkAnimationInterval: any; // ?TimeoutID
   _isBookmarked: boolean;
 
-  static navigationOptions = ({navigation}: any) => ({
-    title: `${navigation.state.params.schedule.talkTitle}`,
-  });
-
   constructor() {
     super(...arguments);
     autobind(this);

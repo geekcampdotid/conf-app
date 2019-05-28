@@ -40,9 +40,6 @@ const DEFAULT_SELECTED_TAB_INDEX = 0;
 
 export class ScheduleScene extends Component<Props, State> {
   _flatList: ?Object;
-  static navigationOptions = {
-    title: 'Schedule',
-  };
 
   constructor() {
     super(...arguments);
