@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   root: {
     flex: 1,
     paddingTop: 10,
+    backgroundColor: '#eee',
   },
   titleContainer: {
     flex: 1,

@@ -214,6 +214,7 @@ export default class CarouselCard extends Component<Props, State> {
           pointerEvents="none"
           ref={(node) => (this.mainScroll = node)}
           showsHorizontalScrollIndicator={false}
+          style={{paddingVertical: 7}}
         >
           {this._getItems()}
         </ScrollView>

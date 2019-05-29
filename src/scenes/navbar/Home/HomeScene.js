@@ -54,7 +54,7 @@ export class HomeScene extends Component<Props, State> {
 
   render() {
     let {navigation, scheduleList} = this.props;
-    let carouselTitle = '';
+    let carouselTitle = 'Featured Talks';
 
     let now = Date.now();
 
@@ -71,6 +71,7 @@ export class HomeScene extends Component<Props, State> {
     // change this logic if event is more than 1 day
     if (isToday(DateTime.fromString(EVENT_DATE))) {
       events = [...onGoingSchedule, ...upcomingSchedule];
+      carouselTitle = "Today's Talks";
     } else if (now > DateTime.fromString(EVENT_DATE).valueOf()) {
       events = pastSchedule;
     } else {
