@@ -3,6 +3,7 @@
 
 import React from 'react';
 import {createBottomTabNavigator} from 'react-navigation';
+import {Icon} from 'react-native-elements';
 
 import HomeScene from '../../scenes/navbar/Home/HomeScene';
 import NavbarIcon from './NavbarIcon';
@@ -14,6 +15,7 @@ import BookmarkScheduleScene from '../../scenes/BookmarkSchedule/BookmarkSchedul
 import {INITIAL_SCENE} from '../../constants/navigation';
 
 import {
+  themeColors,
   ACTIVE_ICON_COLOR,
   INACTIVE_ICON_COLOR,
   NAVBAR_BACKGROUND_COLOR,
@@ -26,6 +28,10 @@ import {
   ICON_SCHEDULE,
   ICON_PRESENTER,
 } from '../../constants/icons';
+
+import {SCALE_RATIO, HIT_SLOP} from '../../constants/layout';
+
+const ICON_LEFT_SIZE = SCALE_RATIO * 27;
 
 type TabBarProps = {
   focused: boolean,
@@ -119,7 +125,24 @@ export default createBottomTabNavigator(
           routeConfig.navigationOptions &&
           routeConfig.navigationOptions.title) ||
         null;
-      return {title};
+      let headerLeft;
+      if (title != null) {
+        headerLeft = (
+          <Icon
+            name="dehaze"
+            iconStyle={{paddingLeft: 10}}
+            color={themeColors.ACTIVE_ICON_COLOR}
+            underlayColor="transparent"
+            size={ICON_LEFT_SIZE}
+            onPress={() => navigation.toggleDrawer()}
+            hitSlop={HIT_SLOP}
+          />
+        );
+      }
+      return {
+        title,
+        headerLeft,
+      };
     },
   }: any),
 );
